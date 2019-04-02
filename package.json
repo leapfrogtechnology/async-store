@@ -18,7 +18,10 @@
     "test:watch": "cross-env NODE_ENV=test mocha --watch --recursive test/**/*.test.ts",
     "watch": "tsc --watch",
     "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx}'",
-    "postinstall": "run-s build"
+    "postinstall": "run-s build",
+    "prepublishOnly": "yarn build",
+    "changelog": "./release.sh changelog",
+    "release": "./release.sh bump"
   },
   "husky": {
     "hooks": {
