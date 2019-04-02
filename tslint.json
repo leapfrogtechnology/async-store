@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "tslint-config-leapfrog",
+    "tslint-no-unused-expression-chai",
+    "tslint-config-prettier"
+  ]
+}

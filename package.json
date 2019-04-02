@@ -1,0 +1,72 @@
+{
+  "name": "@leapfrogtechnology/async-store",
+  "version": "1.0.0-alpha.1",
+  "description": "Async Store",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "precommit": "lint-staged",
+    "prepush": "tsc --noEmit",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
+    "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
+    "transpile": "tsc",
+    "clean": "rimraf dist",
+    "build": "cross-env NODE_ENV=production run-s clean transpile",
+    "test": "cross-env NODE_ENV=test mocha --recursive test/**/*.test.ts",
+    "test:watch": "cross-env NODE_ENV=test mocha --watch --recursive test/**/*.*",
+    "test:coverage": "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha -- --recursive --require babel-register --colors --reporter spec test",
+    "watch": "tsc --watch",
+    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write \"src/**/*.{ts,js,tsx,json}\"",
+    "postinstall": "run-s build"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "tslint --fix -c tslint.json",
+      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx,json}'",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "node",
+    "express"
+  ],
+  "authors": [
+    "Kabir Baidhya <kabirbaidhya@gmail.com>",
+    "Sagar Chamling <sagarchamling@lftechnology.com>"
+  ],
+  "dependencies": {
+    "debug": "^4.1.1",
+    "ramda": "^0.24.1",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/chai-as-promised": "7.1.0",
+    "@types/debug": "^4.1.2",
+    "@types/express": "^4.16.1",
+    "@types/mocha": "^2.2.48",
+    "@types/ramda": "0.24.11",
+    "@types/uuid": "3.4.2",
+    "chai": "^4.0.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.1.0",
+    "husky": "^0.13.4",
+    "istanbul": "1.1.0-alpha.1",
+    "lint-staged": "^3.5.0",
+    "mocha": "^3.4.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.6.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-config-leapfrog": "^1.0.3",
+    "tslint-config-prettier": "^1.6.0",
+    "tslint-no-unused-expression-chai": "^0.0.3",
+    "typescript": "3.4.1"
+  },
+  "engines": {
+    "node": ">= 8.9.1",
+    "npm": ">= 5.5.1"
+  }
+}
