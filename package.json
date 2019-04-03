@@ -4,6 +4,9 @@
   "description": "Async Store",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
     "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
@@ -72,8 +75,5 @@
   "engines": {
     "node": ">= 8.9.1",
     "npm": ">= 5.5.1"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }
