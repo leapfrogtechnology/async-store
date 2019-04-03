@@ -14,9 +14,9 @@ const logDomain = debug(STORE_DOMAIN);
  * all the async middelwares / callacks triggered
  * via the provided callback to have access to the store.
  *
- * @param {() => void} callback               Callback function to trigger once domain is initialized
- * @param {(...args: any[]) => void} [error]  Error handler to listen for the error even
- * @param {EventEmitter[]}  [emitters]        Emitters to add to the domain
+ * @param {() => void} callback               Callback function to trigger once domain is initialized.
+ * @param {(...args: any[]) => void} [error]  Error handler to listen for the error even.
+ * @param {EventEmitter[]} [emitters]         Emitters to add to the domain when initialized.
  */
 export function initialize(callback: () => void, error?: (...args: any[]) => void, emitters?: EventEmitter[]) {
   const d = createOrUseActiveDomain(error, emitters);
@@ -40,8 +40,8 @@ export function initialize(callback: () => void, error?: (...args: any[]) => voi
  * Create or use active domain. If domain is already intialized in application it uses existing
  * domain else create new domain object.
  *
- * @param {(...args: any[]) => void} [error]  Error handler to listen for the error even
- * @param {EventEmitter[]}  [emitters]        Emitters to add to the domain
+ * @param {(...args: any[]) => void} [error]  Error handler to listen for error events.
+ * @param {EventEmitter[]}  [emitters]        Emitters to add to the domain.
  */
 function createOrUseActiveDomain(error?: (...args: any[]) => void, emitters?: EventEmitter[]): StoreDomain {
   if (isDomainInitialized()) {
