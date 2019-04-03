@@ -14,7 +14,7 @@
     "test:watch": "cross-env NODE_ENV=test mocha --watch --recursive test/**/*.test.ts",
     "test:coverage": "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha -- --recursive --require babel-register --colors --reporter spec test",
     "watch": "tsc --watch",
-    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write \"src/**/*.{ts,js,tsx,json}\"",
+    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx}'",
     "postinstall": "run-s build"
   },
   "husky": {
@@ -26,7 +26,7 @@
   "lint-staged": {
     "*.{ts,js}": [
       "tslint --fix -c tslint.json",
-      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx,json}'",
+      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx}'",
       "git add"
     ]
   },
@@ -73,5 +73,7 @@
     "node": ">= 8.9.1",
     "npm": ">= 5.5.1"
   },
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ]
 }
