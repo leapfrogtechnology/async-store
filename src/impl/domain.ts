@@ -15,7 +15,7 @@ const logDomain = debug(STORE_DOMAIN);
  * via the provided callback to have access to the store.
  *
  * @param {() => void} callback               Callback function to trigger once domain is initialized.
- * @param {(...args: any[]) => void} [error]  Error handler to listen for the error even.
+ * @param {(...args: any[]) => void} [error]  Error handler to listen for the error event.
  * @param {EventEmitter[]} [emitters]         Emitters to add to the domain when initialized.
  */
 export function initialize(callback: () => void, error?: (...args: any[]) => void, emitters?: EventEmitter[]) {
