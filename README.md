@@ -6,6 +6,10 @@
 
 Global store utility for a async operation lifecycle and chain of callbacks. 
 
+## Change Log
+
+Check the [CHANGELOG](CHANGELOG.md) for change log and release history.
+
 ## License
 
 Licensed under [The MIT License](LICENSE).
