@@ -8,7 +8,7 @@ changelog() {
   # https://github.com/skywinder/github-changelog-generator
 
   if [ -z "$NEXT" ]; then
-      NEXT="Next"
+      NEXT="Unreleased"
   fi
 
   echo "Generating changelog upto version: $NEXT"
