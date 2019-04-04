@@ -45,6 +45,7 @@ bump() {
     git tag "$NEXT" && \
     echo -e "\nRelease tagged $NEXT"
   git push origin HEAD --tags
+  yarn publish --new-version "${VERSION}" --no-git-tag-version
 }
 
 # Run command received from args.
