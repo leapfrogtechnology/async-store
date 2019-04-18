@@ -1,8 +1,9 @@
 # Change Log
 
-## [1.0.0-alpha.1 (Unreleased)](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-alpha.1 (Unreleased)) (2019-04-04)
+## [1.0.0-alpha.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-alpha.1) (2019-04-18)
 **Changes**
 
+- Add scripts to generate changelog and release [\#4](https://github.com/leapfrogtechnology/async-store/pull/4) [[script](https://github.com/leapfrogtechnology/async-store/labels/script)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 - Configure Travis CI for running tests [\#3](https://github.com/leapfrogtechnology/async-store/pull/3) [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 - Add MIT License  [\#2](https://github.com/leapfrogtechnology/async-store/pull/2) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 - Add initial source code [\#1](https://github.com/leapfrogtechnology/async-store/pull/1) ([kabirbaidhya](https://github.com/kabirbaidhya))
