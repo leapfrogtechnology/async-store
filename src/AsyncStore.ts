@@ -1,12 +1,13 @@
-import { EventEmitter } from 'events';
+import AsyncStoreParams from './AsyncStoreParams';
 
 /**
  * Async Store implementation contract.
  */
 interface AsyncStore {
-  initialize: (callback: () => void, error?: (...args: any[]) => void, emitters?: EventEmitter[]) => void;
+  initialize: (callback: (err?: any) => void, params?: AsyncStoreParams) => void;
   set: (properties: any) => void;
   get: (key: string) => any;
+  find: (key: string) => any;
   isInitialized: () => boolean;
   getId: () => string | undefined;
 }
