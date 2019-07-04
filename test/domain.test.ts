@@ -54,6 +54,21 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('find()', () => {
+    it('should return null if store not initialized.', () => {
+      expect(globalStore.find('foo')).to.equal(null);
+    });
+
+    it('should return `undefined` if the value was not set.', done => {
+      const callback = () => {
+        expect(globalStore.find('foo')).to.equal(undefined);
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+  });
+
   describe('set()', () => {
     it('should throw an error if store not initialized.', () => {
       expect(globalStore.set.bind(globalStore, {})).to.throw('Async store not initialized.');
