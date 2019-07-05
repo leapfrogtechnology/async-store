@@ -55,6 +55,72 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('find()', () => {
+    it('should successfully return value in synchronous callback', done => {
+      const callback = () => {
+        first();
+        second();
+
+        done();
+      };
+
+      const first = () => {
+        globalStore.set({
+          foo: 'foo',
+          bar: {
+            key1: {
+              foo: 'Hello',
+              bar: 'World'
+            },
+            key2: 'Foo Bar'
+          }
+        });
+      };
+      const second = () => {
+        expect(globalStore.find('foo')).to.equal('foo');
+        expect(globalStore.find('bar')).deep.equal({
+          key1: {
+            foo: 'Hello',
+            bar: 'World'
+          },
+          key2: 'Foo Bar'
+        });
+
+        globalStore.set({ foo: 'Foo' });
+
+        expect(globalStore.find('foo')).to.equal('Foo');
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should successfully return value in asynchronous callback', done => {
+      const callback = () => {
+        globalStore.set({ foo: 'bar' });
+
+        doSomething().then(done);
+      };
+
+      const doSomething = () =>
+        Promise.resolve()
+          .then(() => {
+            expect(globalStore.find('foo')).to.equal('bar');
+          })
+          .then(() => {
+            expect(globalStore.find('foo')).to.equal('bar');
+          })
+          .then(() => {
+            expect(globalStore.find('foo')).to.equal('bar');
+          })
+          .then(() => {
+            expect(globalStore.find('foo')).to.equal('bar');
+          })
+          .then(() => {
+            expect(globalStore.find('foo')).to.equal('bar');
+          });
+
+      globalStore.initialize(adapter)(callback);
+    });
+
     it('should return null if store not initialized.', () => {
       expect(globalStore.find('foo')).to.equal(null);
     });

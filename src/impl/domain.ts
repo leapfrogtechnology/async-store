@@ -127,7 +127,7 @@ export function get(key: string): any {
  */
 export function find(key: string): any {
   try {
-    get(key);
+    return get(key);
   } catch (err) {
     logDomain(`Error finding ${key} in store:`, err);
 
