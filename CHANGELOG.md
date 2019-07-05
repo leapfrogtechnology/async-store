@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.0.0-beta.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-beta.1) (2019-07-05)
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-alpha.1...1.0.0-beta.1)
+
+**Changes**
+
+- Refactor domain implementation and add find\(\) function [\#6](https://github.com/leapfrogtechnology/async-store/pull/6) [[refactor](https://github.com/leapfrogtechnology/async-store/labels/refactor)] ([cham11ng](https://github.com/cham11ng))
+- Upgrade packages using vulnerable js-yaml package as a dependency [\#5](https://github.com/leapfrogtechnology/async-store/pull/5) [[security](https://github.com/leapfrogtechnology/async-store/labels/security)] ([mesaugat](https://github.com/mesaugat))
+
 ## [1.0.0-alpha.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-alpha.1) (2019-04-18)
 **Changes**
 
