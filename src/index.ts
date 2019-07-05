@@ -1,9 +1,9 @@
 import * as debug from 'debug';
-import { EventEmitter } from 'events';
 import { Request, Response, NextFunction } from 'express';
 
 import AsyncStore from './AsyncStore';
 import { STORE_CORE } from './constants';
+import AsyncStoreParams from './AsyncStoreParams';
 import AsyncStoreAdapter from './AsyncStoreAdapter';
 
 // Implementations of Async store.
@@ -40,19 +40,27 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
   return (req: Request, res: Response, next: NextFunction) => {
     // If the store has already been initialized, ignore it.
 
-    coreLog('Initializing async store middleware.');
-
     if (isInitialized()) {
+      coreLog(`Store is already initialized.`);
+
       return next();
     }
 
     const errorHandler = (err: any) => {
-      coreLog('Error: %s', err);
+      coreLog('Async Store Error: %s', err);
 
       next(err);
     };
 
-    initialize(adapter)(next, errorHandler, [req, res]);
+    const params = {
+      req,
+      res,
+      error: errorHandler
+    };
+
+    coreLog(`Initializing async store middleware.`);
+
+    initialize(adapter)(next, params);
   };
 }
 
@@ -82,7 +90,7 @@ export function isEnabled(): boolean {
  * Initialize the async store based on the adapter provided.
  *
  * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
- * @returns {(emitters: EventEmitter[], error: (...args: any[]) => void, callback: () => void)}
+ * @returns {(params: AsyncStoreParams) => void}
  */
 export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
   if (isInitialized()) {
@@ -91,13 +99,10 @@ export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN
 
   const instance = getInstance(adapter);
 
-  return (callback: () => void, error?: (...args: any[]) => void, emitters?: EventEmitter[]) => {
-    const func = () => {
-      initializedAdapter = adapter;
-      callback();
-    };
+  return (callback: (err?: any) => void, params?: AsyncStoreParams) => {
+    initializedAdapter = adapter;
 
-    instance.initialize(func, error, emitters);
+    instance.initialize(callback, params);
   };
 }
 
@@ -126,9 +131,22 @@ export function set(properties: any) {
  * @returns {*}
  */
 export function get(key: string): any {
-  coreLog(`Getting value of key from the store =`, key);
+  coreLog(`Getting ${key} from the store`);
 
   return initializedAdapter && getInstance(initializedAdapter).get(key);
+}
+
+/**
+ * Get a value by a key from the store.
+ * If error, it returns null without emitting error event.
+ *
+ * @param {string} key
+ * @returns {*}
+ */
+export function find(key: string): any {
+  coreLog(`Finding ${key} in the store`);
+
+  return initializedAdapter && getInstance(initializedAdapter).find(key);
 }
 
 /**

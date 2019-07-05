@@ -1,11 +1,11 @@
 import * as debug from 'debug';
 import * as domain from 'domain';
 import { v4 as uuidv4 } from 'uuid';
-import { EventEmitter } from 'events';
 import { mergeDeepRight } from 'ramda'; // TODO: Import merge function only.
 
 import { STORE_DOMAIN } from '../constants';
-import StoreDomain, { STORE_KEY, ID_KEY } from '../StoreDomain';
+import AsyncStoreParams from '../AsyncStoreParams';
+import StoreDomainInterface, { STORE_KEY, ID_KEY } from '../StoreDomain';
 
 const logDomain = debug(STORE_DOMAIN);
 
@@ -14,56 +14,69 @@ const logDomain = debug(STORE_DOMAIN);
  * all the async middelwares / callacks triggered
  * via the provided callback to have access to the store.
  *
- * @param {() => void} callback               Callback function to trigger once domain is initialized.
- * @param {(...args: any[]) => void} [error]  Error handler to listen for the error event.
- * @param {EventEmitter[]} [emitters]         Emitters to add to the domain when initialized.
+ * @param {AsyncStoreParams} params
  */
-export function initialize(callback: () => void, error?: (...args: any[]) => void, emitters?: EventEmitter[]) {
-  const d = createOrUseActiveDomain(error, emitters);
+export function initialize(callback: (err?: any) => void, params?: AsyncStoreParams) {
+  const d = createOrUseActiveDomain();
+
+  if (params) {
+    bindParams(d, params);
+  }
 
   logDomain(`Adding ${STORE_KEY} and ${ID_KEY} in domain store`);
-
   // Initialize the context in the domain.
   d[STORE_KEY] = {};
   d[ID_KEY] = uuidv4();
-
-  if (isDomainInitialized()) {
-    callback();
-
-    return;
-  }
 
   d.run(callback);
 }
 
 /**
- * Create or use active domain. If domain is already intialized in application it uses existing
- * domain else create new domain object.
+ * Bind async store params and error event listener in domain.
  *
- * @param {(...args: any[]) => void} [error]  Error handler to listen for error events.
- * @param {EventEmitter[]}  [emitters]        Emitters to add to the domain.
+ * @param  {StoreDomainInterface} d
+ * @param  {AsyncStoreParams} params
+ * @returns {void}
  */
-function createOrUseActiveDomain(error?: (...args: any[]) => void, emitters?: EventEmitter[]): StoreDomain {
-  if (isDomainInitialized()) {
-    logDomain(`Using active domain.`);
+function bindParams(d: StoreDomainInterface, params: AsyncStoreParams): void {
+  const { req, res, error, emitters } = params;
 
-    return getActiveDomain();
+  logDomain('Binding req and res.');
+  if (req && res) {
+    d.add(req);
+    d.add(res);
   }
 
-  logDomain(`Creating new domain.`);
-
-  const d = domain.create();
-
   logDomain(`Binding emitters.`);
-  if (Array.isArray(emitters)) {
+  if (emitters && Array.isArray(emitters)) {
     emitters.forEach(emitter => d.add(emitter));
   }
 
   if (error) {
     d.on('error', error);
   }
+}
 
-  return d;
+/**
+ * Create or use active domain. If domain is already intialized in application it uses existing
+ * domain else create new domain object.
+ *
+ * @returns {StoreDomainInterface}
+ */
+function createOrUseActiveDomain(): StoreDomainInterface {
+  if (isDomainInitialized()) {
+    logDomain(`Using active domain.`);
+
+    /*
+     * Some packages like Raven uses domain to handle exception which might overwrite async store domain.
+     * For more information: https://github.com/getsentry/sentry-javascript.
+     */
+    return getActiveDomain();
+  }
+
+  logDomain(`Creating new domain.`);
+
+  return domain.create();
 }
 
 /**
@@ -88,6 +101,7 @@ export function set(properties: any) {
 
 /**
  * Get a value by a key from the store.
+ * Throws an error if anything fails while getting the value.
  *
  * @param {string} key
  * @returns {*}
@@ -102,6 +116,23 @@ export function get(key: string): any {
   logDomain(`Value of ${key} in the domain store =`, store[key]);
 
   return store[key];
+}
+
+/**
+ * Get a value by a key from the store.
+ * If anything fails, it returns null without emitting error event.
+ *
+ * @param {string} key
+ * @returns {*}
+ */
+export function find(key: string): any {
+  try {
+    return get(key);
+  } catch (err) {
+    logDomain(`Error finding ${key} in store:`, err);
+
+    return null;
+  }
 }
 
 /**
@@ -127,10 +158,10 @@ export function isInitialized(): boolean {
 /**
  * Add (or override) properties to the given store (mutates the central store object).
  *
- * @param {*} store
+ * @param {StoreDomainInterface} store
  * @param {*} properties
  */
-function updateStore(store: any, properties: any) {
+function updateStore(store: StoreDomainInterface, properties: any) {
   const activeDomain = getActiveDomain();
 
   if (!activeDomain) {
@@ -139,7 +170,7 @@ function updateStore(store: any, properties: any) {
 
   const data = mergeDeepRight(store, properties);
 
-  logDomain(`Updating store`);
+  logDomain('Updating store.');
 
   activeDomain[STORE_KEY] = data;
 }
@@ -147,10 +178,12 @@ function updateStore(store: any, properties: any) {
 /**
  * Get the active domain.
  *
- * @returns {StoreDomain}
+ * @returns {StoreDomainInterface}
  */
-function getActiveDomain(): StoreDomain {
-  return process.domain as StoreDomain;
+export function getActiveDomain(): StoreDomainInterface {
+  logDomain('Getting active domain.');
+
+  return process.domain as StoreDomainInterface;
 }
 
 /**
