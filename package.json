@@ -38,7 +38,15 @@
   "keywords": [
     "typescript",
     "javascript",
-    "node"
+    "node",
+    "async",
+    "store",
+    "thread-local-storage",
+    "local-storage",
+    "async-storage",
+    "request-context",
+    "context",
+    "callback-context"
   ],
   "authors": [
     "Kabir Baidhya <kabirbaidhya@gmail.com>",
