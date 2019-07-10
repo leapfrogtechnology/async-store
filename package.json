@@ -17,7 +17,7 @@
     "test": "NODE_ENV=test mocha --recursive test/**/*.test.ts",
     "test:watch": "NODE_ENV=test mocha --watch --recursive test/**/*.test.ts",
     "watch": "tsc --watch",
-    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx}'",
+    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'",
     "prepublishOnly": "yarn build",
     "changelog": "./release.sh changelog",
     "release": "./release.sh bump"
@@ -31,7 +31,7 @@
   "lint-staged": {
     "*.{ts,js}": [
       "tslint --fix -c tslint.json",
-      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js,tsx}'",
+      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'",
       "git add"
     ]
   },
