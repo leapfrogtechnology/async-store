@@ -70,7 +70,7 @@
     "tslint-config-leapfrog": "^1.0.3",
     "tslint-config-prettier": "^1.18.0",
     "tslint-no-unused-expression-chai": "^0.1.4",
-    "typescript": "^3.4.1"
+    "typescript": "^3.5.3"
   },
   "publishConfig": {
     "access": "public"
