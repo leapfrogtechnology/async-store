@@ -1,5 +1,14 @@
 # Change Log
 
+## [1.0.0](https://github.com/leapfrogtechnology/async-store/tree/1.0.0) (2019-07-19)
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-beta.1...1.0.0)
+
+**Changes**
+
+- Add a sample project using Express and TypeScript [\#9](https://github.com/leapfrogtechnology/async-store/pull/9) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] ([kabirbaidhya](https://github.com/kabirbaidhya))
+- Update docs in README.md [\#8](https://github.com/leapfrogtechnology/async-store/pull/8) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([cham11ng](https://github.com/cham11ng))
+- Cleanup and update dependencies [\#7](https://github.com/leapfrogtechnology/async-store/pull/7) ([kabirbaidhya](https://github.com/kabirbaidhya))
+
 ## [1.0.0-beta.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-beta.1) (2019-07-05)
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-alpha.1...1.0.0-beta.1)
 
