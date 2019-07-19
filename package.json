@@ -1,6 +1,6 @@
 {
   "name": "@leapfrogtechnology/async-store",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Global store utility for an async operation lifecycle and chain of callbacks",
   "license": "MIT",
   "main": "dist/index.js",

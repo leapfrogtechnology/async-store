@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.0.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.1) (2019-07-19)
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0...1.0.1)
+
+**Changes**
+
+- Update example to use correct store [\#11](https://github.com/leapfrogtechnology/async-store/pull/11) ([mesaugat](https://github.com/mesaugat))
+- Add GitHub URL and update description in package.json [\#10](https://github.com/leapfrogtechnology/async-store/pull/10) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([mesaugat](https://github.com/mesaugat))
+
 ## [1.0.0](https://github.com/leapfrogtechnology/async-store/tree/1.0.0) (2019-07-19)
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-beta.1...1.0.0)
 
