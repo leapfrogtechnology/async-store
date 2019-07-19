@@ -33,17 +33,17 @@ function callback() {
 
   Promise.resolve()
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     });
 }
 
@@ -60,14 +60,14 @@ function callback() {
 
   Promise.resolve()
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     });
 }
 
@@ -143,7 +143,7 @@ It gets a value by a key from the store.
 - `@returns {any}`
 
 ```js
-store.get('foo');
+const foo = store.get('foo');
 ```
 
 ### find()
@@ -154,7 +154,7 @@ It gets a value by a key from the store. If anything fails, it returns null with
 - `@returns {any}`
 
 ```js
-store.find('foo');
+const foo = store.find('foo');
 ```
 
 ## Changelog
