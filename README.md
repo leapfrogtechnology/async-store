@@ -101,10 +101,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 
-### Other Examples
-
-- [Async Store Sample](https://github.com/kabirbaidhya/async-store-sample)
-
 ## API Docs
 
 ### initializeMiddleware()
