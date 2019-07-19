@@ -163,7 +163,7 @@ Check the [CHANGELOG](CHANGELOG.md) for release history.
 
 ## Contributing
 
-Fill free to send pull requests.
+Feel free to send pull requests.
 
 ## License
 
