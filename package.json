@@ -1,13 +1,20 @@
 {
   "name": "@leapfrogtechnology/async-store",
   "version": "1.0.0",
-  "description": "Async Store",
+  "description": "Global store utility for an async operation lifecycle and chain of callbacks",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leapfrogtechnology/async-store"
+  },
+  "bugs": {
+    "url": "https://github.com/leapfrogtechnology/async-store/issues"
+  },
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
     "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
