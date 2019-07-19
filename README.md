@@ -21,12 +21,12 @@ yarn add @leapfrogtechnology/async-store
 
 ## Usage
 
-### Simple example
+### Simple JavaScript Example
 
 ```js
 const store = require('@leapfrogtechnology/async-store');
 
-function callback {
+function callback() {
   store({ foo: 'Hello', bar: 'World' });
 
   Promise.resolve()
@@ -43,12 +43,36 @@ function callback {
       // Store value is also available at the end of the promise chain.
       console.log('Value of foo: ', globalStore.get('foo'));
     });
-};
+}
 
 store.initialize()(callback);
 ```
 
-### Express example
+### Simple TypeScript Example
+
+```js
+import * as store from '@leapfrogtechnology/async-store';
+
+function callback() {
+  store({ foo: 'Hello', bar: 'World' });
+
+  Promise.resolve()
+    .then(() => {
+      console.log('Value of foo: ', globalStore.get('foo'));
+    })
+    .then(() => {
+      console.log('Value of foo: ', globalStore.get('foo'));
+    })
+    .then(() => {
+      // Store value is also available at the end of the promise chain.
+      console.log('Value of foo: ', globalStore.get('foo'));
+    });
+}
+
+store.initialize()(callback);
+```
+
+### Express Example
 
 ```js
 const uuid = require('uuid');
@@ -59,7 +83,7 @@ const app = express();
 const port = 3000;
 
 // Initialize async store
-app.use(store.initializeMiddleware);
+app.use(store.initializeMiddleware());
 
 // Set request Id in store
 app.use((req, res, next) => {
@@ -77,25 +101,35 @@ app.get('/', (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 
-### Other Example
+### Other Examples
 
 - [Async Store Sample](https://github.com/kabirbaidhya/async-store-sample)
+
+## Docs
 
 ### initializeMiddleware()
 
 Middleware to initialize the async store and make it accessible from all the subsequent middlewares or async operations triggered afterwards.
 
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]`: Store adaptor (Default: domain).
+- `@returns {(req, res, next) => void}`
+
 ```js
-var express = require('express');
-var store = require('@leapfrogtechnology/async-store');
+const express = require('express');
+const store = require('@leapfrogtechnology/async-store');
 
 // Initialize async store
-app.use(store.initializeMiddleware);
+app.use(store.initializeMiddleware());
 ```
 
 ### set()
 
 It sets properties in the store.
+
+- `@params {any} properties`: Properties to set in store.
+- `@returns {void}`
+
+**Example**
 
 ```js
 store.set({ foo: 'Hello', bar: 'World' });
@@ -105,6 +139,9 @@ store.set({ foo: 'Hello', bar: 'World' });
 
 It gets a value by a key from the store.
 
+- `{string} key` - Key specifies property of store.
+- `@returns {any}`
+
 ```js
 store.get('foo');
 ```
@@ -112,6 +149,9 @@ store.get('foo');
 ### find()
 
 It gets a value by a key from the store. If anything fails, it returns null without emitting error event.
+
+- `{string} key` - Key specifies property of store.
+- `@returns {any}`
 
 ```js
 store.find('foo');
