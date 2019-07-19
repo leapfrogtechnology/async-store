@@ -153,9 +153,9 @@ It gets a value by a key from the store. If anything fails, it returns null with
 store.find('foo');
 ```
 
-## Change Log
+## Changelog
 
-Check the [CHANGELOG](CHANGELOG.md) for change log and release history.
+Check the [CHANGELOG](CHANGELOG.md) for release history.
 
 ## License
 
