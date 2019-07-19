@@ -15,9 +15,11 @@ app.use(requestContext());
 app.get('/', otherMiddleware, async (req: Request, res: Response) => {
   await service.doSomething();
 
-  res.send('Response to request: ' + store.get('x-id'));
+  const requestId = store.get('x-id');
+
+  res.send(`Response to request: ${requestId}\n`);
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`); // tslint:disable-line
+  process.stdout.write(`Express server listening on port ${port}!\n`);
 });

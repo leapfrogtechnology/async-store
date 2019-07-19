@@ -6,7 +6,7 @@ import * as store from '@leapfrogtechnology/async-store';
  * @returns {Promise<void>}
  */
 export async function doSomething() {
-  console.log('Do something with the request.'); // tslint:disable-line
+  // Do something with the request.
 
   await Promise.all([() => logRequestContext()]);
 }
@@ -17,7 +17,7 @@ export async function doSomething() {
  * @returns {Promise<void>}
  */
 async function logRequestContext() {
-  const xId = store.get('x-id');
+  const requestId = store.get('x-id');
 
-  console.log('Request context: ', xId); // tslint:disable-line
+  process.stdout.write(`Request context: ${requestId}\n`);
 }

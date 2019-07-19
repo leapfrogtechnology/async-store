@@ -20,9 +20,9 @@ export function requestContext() {
  * @returns {(req, res, next) => void}
  */
 export function otherMiddleware(req: Request, res: Response, next: NextFunction) {
-  const xId = store.get('x-id');
+  const requestId = store.get('x-id');
 
-  console.log('X-id received in the middleware:', xId); // tslint:disable-line
+  process.stdout.write(`X-Id received in the middleware: ${requestId}\n`);
 
   next();
 }
