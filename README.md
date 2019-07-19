@@ -7,7 +7,7 @@
 
 Global store utility for an async operation lifecycle and chain of callbacks. It is a utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks.
 
-**async-store uses [domain](https://nodejs.org/api/domain.html) Node.js module under the hood.**
+**Note: async-store uses [domain](https://nodejs.org/api/domain.html) Node.js module under the hood.**
 
 ## Installation
 
