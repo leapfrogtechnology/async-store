@@ -143,7 +143,7 @@ It gets a value by a key from the store.
 - `@returns {any}`
 
 ```js
-store.get('foo');
+const foo = store.get('foo');
 ```
 
 ### find()
@@ -154,7 +154,7 @@ It gets a value by a key from the store. If anything fails, it returns null with
 - `@returns {any}`
 
 ```js
-store.find('foo');
+const foo = store.find('foo');
 ```
 
 ## Changelog
