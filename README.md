@@ -5,15 +5,29 @@
 [![LICENSE](https://img.shields.io/github/license/leapfrogtechnology/async-store.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store)
 
-Global store utility for an async operation lifecycle and chain of callbacks. It is utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks. It uses [domain](https://nodejs.org/api/domain.html) native Node.js module.
+Global store utility for an async operation lifecycle and chain of callbacks. It is utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks.
 
-**Simple example,**
+**It uses [domain](https://nodejs.org/api/domain.html) native Node.js module.**
+
+## Installation
+
+```sh
+npm install @leapfrogtechnology/async-store
+```
+
+```sh
+yarn add @leapfrogtechnology/async-store
+```
+
+## Usage
+
+### Simple example
 
 ```js
-var asyncStore = require('async-store');
+const store = require('@leapfrogtechnology/async-store');
 
-var callback = function {
-  asyncStore({ foo: 'Hello', bar: 'World' });
+function callback {
+  store({ foo: 'Hello', bar: 'World' });
 
   Promise.resolve()
     .then(() => {
@@ -31,30 +45,30 @@ var callback = function {
     });
 };
 
-asyncStore.initialize()(callback);
+store.initialize()(callback);
 ```
 
-**Simple express.js example or [here](https://github.com/kabirbaidhya/async-store-sample)**
+### Express example
 
 ```js
-var uuid = require('uuid');
-var express = require('express');
-var asyncStore = require('async-store');
+const uuid = require('uuid');
+const express = require('express');
+const store = require('@leapfrogtechnology/async-store');
 
 const app = express();
 const port = 3000;
 
 // Initialize async store
-app.use(asyncStore.initializeMiddleware);
+app.use(store.initializeMiddleware);
 
 // Set request Id in store
 app.use((req, res, next) => {
-  asyncStore.set({ reqId: uuid.v4() });
+  store.set({ reqId: uuid.v4() });
 });
 
 // Get request Id from store
 app.get('/', (req, res) => {
-  const reqId = asyncStore.get('reqId');
+  const reqId = store.get('reqId');
   console.log(`[${reqId}]`);
 
   res.json({ message: 'Hello World' });
@@ -63,16 +77,20 @@ app.get('/', (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 
+### Other Example
+
+- [Async Store Sample](https://github.com/kabirbaidhya/async-store-sample)
+
 ### initializeMiddleware()
 
 Middleware to initialize the async store and make it accessible from all the subsequent middlewares or async operations triggered afterwards.
 
 ```js
 var express = require('express');
-var asyncStore = require('async-store');
+var store = require('@leapfrogtechnology/async-store');
 
 // Initialize async store
-app.use(asyncStore.initializeMiddleware);
+app.use(store.initializeMiddleware);
 ```
 
 ### set()
@@ -80,7 +98,7 @@ app.use(asyncStore.initializeMiddleware);
 It sets properties in the store.
 
 ```js
-asyncStore.set({ foo: 'Hello', bar: 'World' });
+store.set({ foo: 'Hello', bar: 'World' });
 ```
 
 ### get()
@@ -88,7 +106,7 @@ asyncStore.set({ foo: 'Hello', bar: 'World' });
 It gets a value by a key from the store.
 
 ```js
-asyncStore.get('foo');
+store.get('foo');
 ```
 
 ### find()
@@ -96,7 +114,7 @@ asyncStore.get('foo');
 It gets a value by a key from the store. If anything fails, it returns null without emitting error event.
 
 ```js
-asyncStore.find('foo');
+store.find('foo');
 ```
 
 ## Change Log
