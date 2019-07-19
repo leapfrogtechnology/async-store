@@ -5,9 +5,9 @@
 [![LICENSE](https://img.shields.io/github/license/leapfrogtechnology/async-store.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store)
 
-Global store utility for an async operation lifecycle and chain of callbacks. It is utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks.
+Global store utility for an async operation lifecycle and chain of callbacks. It is a utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks.
 
-**It uses [domain](https://nodejs.org/api/domain.html) native Node.js module.**
+**async-store uses [domain](https://nodejs.org/api/domain.html) Node.js module under the hood.**
 
 ## Installation
 
@@ -40,7 +40,7 @@ function callback() {
       console.log('Value of foo: ', globalStore.get('foo'));
     })
     .then(() => {
-      // Store value is also available at the end of the promise chain.
+      // Store value is available at the end of the promise chain.
       console.log('Value of foo: ', globalStore.get('foo'));
     });
 }
@@ -64,7 +64,7 @@ function callback() {
       console.log('Value of foo: ', globalStore.get('foo'));
     })
     .then(() => {
-      // Store value is also available at the end of the promise chain.
+      // Store value is available at the end of the promise chain.
       console.log('Value of foo: ', globalStore.get('foo'));
     });
 }
@@ -105,7 +105,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 - [Async Store Sample](https://github.com/kabirbaidhya/async-store-sample)
 
-## Docs
+## API Docs
 
 ### initializeMiddleware()
 
@@ -139,7 +139,7 @@ store.set({ foo: 'Hello', bar: 'World' });
 
 It gets a value by a key from the store.
 
-- `{string} key` - Key specifies property of store.
+- `@params {string} key` - Key specifies property of store.
 - `@returns {any}`
 
 ```js
@@ -150,7 +150,7 @@ store.get('foo');
 
 It gets a value by a key from the store. If anything fails, it returns null without emitting error event.
 
-- `{string} key` - Key specifies property of store.
+- `@params {string} key` - Key specifies property of store.
 - `@returns {any}`
 
 ```js
