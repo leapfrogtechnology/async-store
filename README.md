@@ -33,17 +33,17 @@ function callback() {
 
   Promise.resolve()
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     });
 }
 
@@ -60,14 +60,14 @@ function callback() {
 
   Promise.resolve()
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
-      console.log('Value of foo: ', globalStore.get('foo'));
+      console.log('Value of foo: ', store.get('foo'));
     });
 }
 
