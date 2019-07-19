@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@leapfrogtechnology/async-store.svg?style=flat-square)](https://www.npmjs.com/package/@leapfrogtechnology/async-store)
 [![Travis](https://img.shields.io/travis/com/leapfrogtechnology/async-store.svg?style=flat-square)](https://travis-ci.com/leapfrogtechnology/async-store)
 [![LICENSE](https://img.shields.io/github/license/leapfrogtechnology/async-store.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store/blob/master/LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/leapfrogtechnology/async-store#contributing)
 
 Global store utility for an async operation lifecycle and chain of callbacks. It is a utility tool similar to [continuation-local-storage](https://github.com/othiym23/node-continuation-local-storage) which allows us to set and get values that are scoped to the lifetime of these chains of callbacks.
 
@@ -23,7 +23,7 @@ yarn add @leapfrogtechnology/async-store
 
 ## Usage
 
-### Simple JavaScript Example
+### JavaScript Example
 
 ```js
 const store = require('@leapfrogtechnology/async-store');
@@ -50,7 +50,7 @@ function callback() {
 store.initialize()(callback);
 ```
 
-### Simple TypeScript Example
+### TypeScript Example
 
 ```js
 import * as store from '@leapfrogtechnology/async-store';
@@ -113,7 +113,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 Middleware to initialize the async store and make it accessible from all the subsequent middlewares or async operations triggered afterwards.
 
-- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]`: Store adaptor (Default: domain).
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]`: Store adapter.
 - `@returns {(req, res, next) => void}`
 
 ```js
@@ -139,7 +139,7 @@ store.set({ foo: 'Hello', bar: 'World' });
 
 It gets a value by a key from the store.
 
-- `@params {string} key` - Key specifies property of store.
+- `@params {string} key`: Key specifies property of store.
 - `@returns {any}`
 
 ```js
@@ -150,7 +150,7 @@ const foo = store.get('foo');
 
 It gets a value by a key from the store. If anything fails, it returns null without emitting error event.
 
-- `@params {string} key` - Key specifies property of store.
+- `@params {string} key`: Key specifies property of store.
 - `@returns {any}`
 
 ```js
@@ -160,6 +160,10 @@ const foo = store.find('foo');
 ## Changelog
 
 Check the [CHANGELOG](CHANGELOG.md) for release history.
+
+## Contributing
+
+Fill free to send pull requests.
 
 ## License
 
