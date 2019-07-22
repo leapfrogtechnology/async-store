@@ -111,6 +111,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ## API Docs
 
 ### initialize()
+
 Initialize the async store based on the adapter provided.
 
  - `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
