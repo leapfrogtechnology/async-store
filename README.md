@@ -110,11 +110,27 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 ## API Docs
 
+### initialize()
+Initialize the async store based on the adapter provided.
+
+ - `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
+ - `@returns {(params: AsyncStoreParams) => void}` - Returns a function that takes a callback which will be triggered once store has been initialized.
+
+```js
+const store = require('@leapfrogtechnology/async-store');
+
+store.initialize()(callback);
+
+function callback() {
+  // Do something with the store. 
+}
+```
+
 ### initializeMiddleware()
 
 Middleware to initialize the async store and make it accessible from all the subsequent middlewares or async operations triggered afterwards.
 
-- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Store adapter to use.
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
 - `@returns {(req, res, next) => void}` - Returns the express middleware function.
 
 ```js
