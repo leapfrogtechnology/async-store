@@ -114,8 +114,8 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 Middleware to initialize the async store and make it accessible from all the subsequent middlewares or async operations triggered afterwards.
 
-- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]`: Store adapter.
-- `@returns {(req, res, next) => void}`
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Store adapter to use.
+- `@returns {(req, res, next) => void}` - Returns the express middleware function.
 
 ```js
 const express = require('express');
@@ -127,9 +127,9 @@ app.use(store.initializeMiddleware());
 
 ### set()
 
-It sets properties in the store.
+Persists properties in the store.
 
-- `@params {any} properties`: Properties to set in store.
+- `@params {any} properties` - Persist properties to set in store.
 - `@returns {void}`
 
 ```js
@@ -138,10 +138,10 @@ store.set({ foo: 'Hello', bar: 'World' });
 
 ### get()
 
-It gets a value by a key from the store.
+Gets a value by a key from the store.
 
-- `@params {string} key`: Key specifies property of store.
-- `@returns {any}`
+- `@params {string} key` -  Key to get from the store. 
+- `@returns {any}` - Returns the value persisted in the store by `key` which could be `null` if key not found. Any error caught during the retrieval will be thrown and cascaded.
 
 ```js
 const foo = store.get('foo');
@@ -149,10 +149,10 @@ const foo = store.get('foo');
 
 ### find()
 
-It gets a value by a key from the store. If anything fails, it returns null without emitting error event.
+Gets a value by a key from the store. If anything fails, it returns `null` without emitting error event.
 
-- `@params {string} key`: Key specifies property of store.
-- `@returns {any}`
+- `@params {string} key` - Key to get from the store. 
+- `@returns {any}` - Returns the value persisted in the store by `key` which could be `null` if key not found. Any error caught during the retrieval will be supressed and `null` value is returned.
 
 ```js
 const foo = store.find('foo');
