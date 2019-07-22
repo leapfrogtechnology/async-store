@@ -28,26 +28,26 @@ yarn add @leapfrogtechnology/async-store
 ```js
 const store = require('@leapfrogtechnology/async-store');
 
+store.initialize()(callback);
+
 function callback() {
-  store({ foo: 'Hello', bar: 'World' });
+  store.set({ foo: 'Hello', bar: 'World' });
 
   Promise.resolve()
     .then(() => {
       console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', store.get('foo'));
+      console.log('Value of bar: ', store.get('bar'));
     })
     .then(() => {
       console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
-      console.log('Value of foo: ', store.get('foo'));
+      console.log('Value of bar: ', store.get('foo'));
     });
 }
-
-store.initialize()(callback);
 ```
 
 ### TypeScript Example
@@ -55,23 +55,27 @@ store.initialize()(callback);
 ```js
 import * as store from '@leapfrogtechnology/async-store';
 
+store.initialize()(callback);
+
 function callback() {
-  store({ foo: 'Hello', bar: 'World' });
+  store.set({ foo: 'Hello', bar: 'World' });
 
   Promise.resolve()
     .then(() => {
       console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      console.log('Value of foo: ', store.get('foo'));
+      console.log('Value of bar: ', store.get('bar'));
     })
     .then(() => {
       // Store value is available at the end of the promise chain.
       console.log('Value of foo: ', store.get('foo'));
+    })
+    .then(() => {
+      // Store value is available at the end of the promise chain.
+      console.log('Value of bar: ', store.get('bar'));
     });
 }
-
-store.initialize()(callback);
 ```
 
 ### Express Example
@@ -95,7 +99,7 @@ app.use((req, res, next) => {
 // Get request Id from store
 app.get('/', (req, res) => {
   const reqId = store.get('reqId');
-  console.log(`[${reqId}]`);
+  console.log(`Request Id: ${reqId}`);
 
   res.json({ message: 'Hello World' });
 });
