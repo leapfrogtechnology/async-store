@@ -44,8 +44,7 @@ function callback() {
       console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      // Store value is available at the end of the promise chain.
-      console.log('Value of bar: ', store.get('foo'));
+      console.log('Value of bar: ', store.get('bar'));
     });
 }
 ```
@@ -68,11 +67,9 @@ function callback() {
       console.log('Value of bar: ', store.get('bar'));
     })
     .then(() => {
-      // Store value is available at the end of the promise chain.
       console.log('Value of foo: ', store.get('foo'));
     })
     .then(() => {
-      // Store value is available at the end of the promise chain.
       console.log('Value of bar: ', store.get('bar'));
     });
 }
