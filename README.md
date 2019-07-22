@@ -114,7 +114,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 Initialize the async store based on the adapter provided.
 
  - `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
- - `@returns {(params: AsyncStoreParams) => void}` - Returns a function that takes a callback which will be triggered once store has been initialized.
+ - `@returns {(params: AsyncStoreParams) => void}` - Returns a function that takes a callback which will be triggered once the store has been initialized.
 
 ```js
 const store = require('@leapfrogtechnology/async-store');
