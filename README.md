@@ -142,6 +142,18 @@ const store = require('@leapfrogtechnology/async-store');
 app.use(store.initializeMiddleware());
 ```
 
+### isInitialized()
+
+Check if the store has been initialized or not.
+
+- `@params {boolean}` - Returns either true or false.
+
+```js
+if (store.isInitialized()) {
+  // Do something.
+}
+```
+
 ### set()
 
 Persists properties in the store.
