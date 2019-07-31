@@ -179,7 +179,7 @@ const foo = store.find('foo');
 
 Gets the unique domain id created for the current context/scope.
 
-- `@returns {string | undefiend}` - Returns the unique domain id.
+- `@returns {string | undefined}` - Returns the unique domain id.
 
 ```js
 const requestIdentifier = store.getId();
