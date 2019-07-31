@@ -142,6 +142,18 @@ const store = require('@leapfrogtechnology/async-store');
 app.use(store.initializeMiddleware());
 ```
 
+### isInitialized()
+
+Check if the store has been initialized or not.
+
+- `@returns {boolean}` - Returns either true or false.
+
+```js
+if (store.isInitialized()) {
+  // Do something.
+}
+```
+
 ### set()
 
 Persists properties in the store.
@@ -177,9 +189,10 @@ const foo = store.find('foo');
 
 ### getId()
 
-Gets the unique domain id created for the current context/scope.
+Gets the unique store id created for the current context/scope.
+Example: If used in express, it returns unique store id per request.
 
-- `@returns {string | undefined}` - Returns the unique domain id.
+- `@returns {string | undefined}` - Returns the unique store id.
 
 ```js
 const requestIdentifier = store.getId();
