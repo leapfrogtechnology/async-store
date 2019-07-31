@@ -54,6 +54,24 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('getId()', () => {
+    it('should return unique value if store is initialized', done => {
+      const callback = () => {
+        expect(globalStore.getId()).to.be.an('string');
+        expect(globalStore.getId()).to.not.equal(null);
+        expect(globalStore.getId()).to.not.equal(undefined);
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should return `undefined` if store is not initialized.', () => {
+      expect(globalStore.getId).to.not.throw();
+      expect(globalStore.getId()).to.equal(undefined);
+    });
+  });
+
   describe('find()', () => {
     it('should successfully return value in synchronous callback', done => {
       const callback = () => {
