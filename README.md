@@ -114,8 +114,8 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 Initialize the async store based on the adapter provided.
 
- - `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
- - `@returns {(params: AsyncStoreParams) => void}` - Returns a function that takes a callback which will be triggered once the store has been initialized.
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
+- `@returns {(params: AsyncStoreParams) => void}` - Returns a function that takes a callback which will be triggered once the store has been initialized.
 
 ```js
 const store = require('@leapfrogtechnology/async-store');
@@ -123,7 +123,7 @@ const store = require('@leapfrogtechnology/async-store');
 store.initialize()(callback);
 
 function callback() {
-  // Do something with the store. 
+  // Do something with the store.
 }
 ```
 
@@ -157,7 +157,7 @@ store.set({ foo: 'Hello', bar: 'World' });
 
 Gets a value by a key from the store.
 
-- `@params {string} key` -  Key to get from the store. 
+- `@params {string} key` - Key to get from the store.
 - `@returns {any}` - Returns the value persisted in the store by `key` which could be `null` if key not found. Any error caught during the retrieval will be thrown and cascaded.
 
 ```js
@@ -168,11 +168,21 @@ const foo = store.get('foo');
 
 Gets a value by a key from the store. If anything fails, it returns `null` without emitting error event.
 
-- `@params {string} key` - Key to get from the store. 
+- `@params {string} key` - Key to get from the store.
 - `@returns {any}` - Returns the value persisted in the store by `key` which could be `null` if key not found. Any error caught during the retrieval will be supressed and `null` value is returned.
 
 ```js
 const foo = store.find('foo');
+```
+
+### getId()
+
+Gets the unique domain id created for the current context/scope.
+
+- `@returns {string | undefiend}` - Returns the unique domain id
+
+```js
+const requestIdentifier = store.getId();
 ```
 
 ## Changelog
