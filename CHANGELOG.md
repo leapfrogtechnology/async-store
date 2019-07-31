@@ -1,5 +1,18 @@
 # Change Log
 
+## [1.0.2](https://github.com/leapfrogtechnology/async-store/tree/1.0.2) (2019-07-31)
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.1...1.0.2)
+
+**Closed Issues**
+
+- Make store.getId\(\) fail-safe [\#15](https://github.com/leapfrogtechnology/async-store/issues/15)
+
+**Changes**
+
+- Add isInitialized\(\) doc [\#19](https://github.com/leapfrogtechnology/async-store/pull/19) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([cham11ng](https://github.com/cham11ng))
+- Add test cases for getId\(\) method [\#18](https://github.com/leapfrogtechnology/async-store/pull/18) [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([cham11ng](https://github.com/cham11ng))
+- Minor improvements on the documentation [\#12](https://github.com/leapfrogtechnology/async-store/pull/12) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([kabirbaidhya](https://github.com/kabirbaidhya))
+
 ## [1.0.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.1) (2019-07-19)
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0...1.0.1)
 
