@@ -60,6 +60,7 @@ describe('store: [adapter=DOMAIN]', () => {
         expect(globalStore.getId()).to.be.an('string');
         expect(globalStore.getId()).to.not.equal(null);
         expect(globalStore.getId()).to.not.equal(undefined);
+        
         done();
       };
 
@@ -67,7 +68,7 @@ describe('store: [adapter=DOMAIN]', () => {
     });
 
     it('should return `undefined` if store is not initialized.', () => {
-      expect(globalStore.getId).to.not.throw();
+      expect(globalStore.getId()).to.not.throw();
       expect(globalStore.getId()).to.equal(undefined);
     });
   });
