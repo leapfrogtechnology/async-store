@@ -5,6 +5,9 @@
   "sourceMap": true,
   "all": true,
   "instrument": true,
+  "require": [
+    "ts-node/register"
+  ],
   "reporter": [
     "lcov",
     "text",
