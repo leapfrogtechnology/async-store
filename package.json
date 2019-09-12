@@ -20,6 +20,7 @@
     "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js}' 'test/**/*.{ts,js}'",
     "transpile": "tsc",
     "clean": "rimraf dist",
+    "codecov": "codecov",
     "build": "NODE_ENV=production yarn clean && yarn transpile",
     "test": "NODE_ENV=test mocha --recursive test/**/*.test.ts",
     "test:watch": "NODE_ENV=test mocha --watch --recursive test/**/*.test.ts",
