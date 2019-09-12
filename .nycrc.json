@@ -1,6 +1,12 @@
 {
-  "cache": false,
   "extends": "@istanbuljs/nyc-config-typescript",
+  "require": [
+    "ts-node/register"
+  ],
+  "include": [
+    "src"
+  ],
+  "cache": false,
   "sourceMap": true,
   "all": true,
   "instrument": true,
