@@ -1,0 +1,12 @@
+{
+  "cache": false,
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "sourceMap": true,
+  "all": true,
+  "instrument": true,
+  "reporter": [
+    "lcov",
+    "text",
+    "text-summary"
+  ]
+}

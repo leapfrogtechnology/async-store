@@ -23,6 +23,7 @@
     "build": "NODE_ENV=production yarn clean && yarn transpile",
     "test": "NODE_ENV=test mocha --recursive test/**/*.test.ts",
     "test:watch": "NODE_ENV=test mocha --watch --recursive test/**/*.test.ts",
+    "test:coverage": "NODE_ENV=test nyc mocha --recursive test/**/*.test.ts",
     "watch": "tsc --watch",
     "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'",
     "prepublishOnly": "yarn build",
