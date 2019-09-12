@@ -1,13 +1,15 @@
 {
   "extends": "@istanbuljs/nyc-config-typescript",
-  "include": "src",
+  "require": [
+    "ts-node/register"
+  ],
+  "include": [
+    "src"
+  ],
   "cache": false,
   "sourceMap": true,
   "all": true,
   "instrument": true,
-  "require": [
-    "ts-node/register"
-  ],
   "reporter": [
     "lcov",
     "text",
