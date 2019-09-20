@@ -9,7 +9,9 @@ import * as logger from './logger';
 export async function doSomething() {
   // Do something with the request.
 
-  await Promise.all([() => logRequestContext()]);
+  setTimeout(() => {
+    logRequestContext();
+  }, 2000);
 }
 
 /**
