@@ -1,5 +1,6 @@
 import * as store from '@leapfrogtechnology/async-store';
 import { Request, Response, NextFunction } from 'express';
+import * as logger from './logger';
 
 /**
  * Middleware to set the request context `x-id` on the async store.
@@ -22,7 +23,7 @@ export function requestContext() {
 export function otherMiddleware(req: Request, res: Response, next: NextFunction) {
   const requestId = store.get('x-id');
 
-  process.stdout.write(`X-Id received in the middleware: ${requestId}\n`);
+  logger.info(`X-Id received in the middleware: ${requestId}\n`);
 
   next();
 }
