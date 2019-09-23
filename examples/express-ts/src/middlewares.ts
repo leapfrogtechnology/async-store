@@ -26,6 +26,28 @@ export function requestParams() {
 }
 
 /**
+ * Middleware to add the parameters `a` and `b` and set `sum` on the async store.
+ *
+ * @returns {(req, res, next) => void}
+ */
+export function add() {
+  return (req: Request, res: Response, next: NextFunction) => {
+    logger.info('Simulating Delay');
+    setTimeout(() => {
+      const a = store.get('a');
+      const b = store.get('b');
+
+      const sum = a + b;
+
+      store.set({ sum });
+      logger.debug(`Calculated sum: ${sum}`);
+
+      next();
+    }, 2000);
+  };
+}
+
+/**
  * Middleware to set the request context `x-id` on the async store.
  *
  * @returns {(req, res, next) => void}
