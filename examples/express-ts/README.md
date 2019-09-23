@@ -13,15 +13,21 @@ $ yarn start
 ```
 Now you can test it through `curl`. Trigger concurrent requests with different ids that are a part of request context.
 ```
-$ curl localhost:3000 -H X-Id:1 && curl localhost:3000 -H X-Id:2 && curl localhost:3000 -H X-Id:3
+$ curl 'http://localhost:3000?a=20&b=30' && curl 'http://localhost:3000?a=10&b=50' && curl 'http://localhost:3000?a=50&b=100'
 ```
 **Output**
 ```
-[ INFO ] [ 4456b3a2-5362-4302-9897-e0be27e6a6c6 ] X-Id received in the middleware: 1
-[ INFO ] [ 3da70b7d-d580-46f3-9768-76bdb40fb827 ] X-Id received in the middleware: 2
-[ INFO ] [ 480d1b23-fdd4-4d26-92ed-7258d258bf4f ] X-Id received in the middleware: 3
-[ INFO ] [ 4456b3a2-5362-4302-9897-e0be27e6a6c6 ] Request context: 1
-[ INFO ] [ 3da70b7d-d580-46f3-9768-76bdb40fb827 ] Request context: 2
-[ INFO ] [ 480d1b23-fdd4-4d26-92ed-7258d258bf4f ] Request context: 3
+[ DEBUG ] [ 445ef6fb ] Received a: 20
+[ DEBUG ] [ 445ef6fb ] Received b: 30
+[ INFO ] [ 445ef6fb ] Simulating Delay
+[ DEBUG ] [ 445ef6fb ] Calculated sum: 50
+[ DEBUG ] [ b4c27a00 ] Received a: 10
+[ DEBUG ] [ b4c27a00 ] Received b: 50
+[ INFO ] [ b4c27a00 ] Simulating Delay
+[ DEBUG ] [ b4c27a00 ] Calculated sum: 60
+[ DEBUG ] [ a24d4281 ] Received a: 50
+[ DEBUG ] [ a24d4281 ] Received b: 100
+[ INFO ] [ a24d4281 ] Simulating Delay
+[ DEBUG ] [ a24d4281 ] Calculated sum: 150
 
 ```
