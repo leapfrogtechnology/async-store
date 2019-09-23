@@ -1,6 +1,29 @@
 import * as store from '@leapfrogtechnology/async-store';
 import { Request, Response, NextFunction } from 'express';
+
 import * as logger from './logger';
+
+/**
+ * Middleware to set query params `a` and `b` on async-store
+ *
+ * @returns {(req, res, next) => void}
+ */
+export function requestParams() {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const a = req.query.a;
+    const b = req.query.b;
+
+    store.set({
+      a: parseFloat(a) || 0,
+      b: parseFloat(b) || 0
+    });
+
+    logger.debug(`Received a: ${a}`);
+    logger.debug(`Received b: ${b}`);
+
+    next();
+  };
+}
 
 /**
  * Middleware to set the request context `x-id` on the async store.
