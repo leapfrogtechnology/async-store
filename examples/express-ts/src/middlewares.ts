@@ -33,17 +33,15 @@ export function requestParams() {
 export function add() {
   return (req: Request, res: Response, next: NextFunction) => {
     logger.info('Simulating Delay');
-    setTimeout(() => {
-      const a = store.get('a');
-      const b = store.get('b');
+    const a = store.get('a');
+    const b = store.get('b');
 
-      const sum = a + b;
+    const sum = a + b;
 
-      store.set({ sum });
-      logger.debug(`Calculated sum: ${sum}`);
+    store.set({ sum });
+    logger.debug(`Calculated sum: ${sum}`);
 
-      next();
-    }, 2000);
+    next();
   };
 }
 
