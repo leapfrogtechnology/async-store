@@ -17,20 +17,20 @@ $ curl 'http://localhost:3000?a=20&b=30' && curl 'http://localhost:3000?a=10&b=5
 ```
 **Output**
 ```
-[ DEBUG ] [ 006a0e32 ] Received a: 20
-[ DEBUG ] [ 006a0e32 ] Received b: 30
-[ INFO ] [ 006a0e32 ] Simulating Delay
-[ DEBUG ] [ 006a0e32 ] Calculated sum: 50
-[ DEBUG ] [ 0ffd1142 ] Received a: 10
-[ DEBUG ] [ 0ffd1142 ] Received b: 50
-[ INFO ] [ 0ffd1142 ] Simulating Delay
-[ DEBUG ] [ 0ffd1142 ] Calculated sum: 60
-[ DEBUG ] [ 2fa186b9 ] Received a: 50
-[ DEBUG ] [ 2fa186b9 ] Received b: 100
-[ INFO ] [ 2fa186b9 ] Simulating Delay
-[ DEBUG ] [ 2fa186b9 ] Calculated sum: 150
-[ INFO ] [ 006a0e32 ] Delay end.
-[ INFO ] [ 0ffd1142 ] Delay end.
-[ INFO ] [ 2fa186b9 ] Delay end.
+[ DEBUG ] [ 4d5fc07c ] Received a: 20
+[ DEBUG ] [ 4d5fc07c ] Received b: 30
+[ INFO  ] [ 4d5fc07c ] Simulating delay
+[ DEBUG ] [ 4d5fc07c ] Calculated sum: 2030
+[ DEBUG ] [ b3862126 ] Received a: 10
+[ DEBUG ] [ b3862126 ] Received b: 50
+[ INFO  ] [ b3862126 ] Simulating delay
+[ DEBUG ] [ b3862126 ] Calculated sum: 1050
+[ DEBUG ] [ 40f72e60 ] Received a: 50
+[ DEBUG ] [ 40f72e60 ] Received b: 100
+[ INFO  ] [ 40f72e60 ] Simulating delay
+[ DEBUG ] [ 40f72e60 ] Calculated sum: 50100
+[ INFO  ] [ 4d5fc07c ] Delay end
+[ INFO  ] [ b3862126 ] Delay end
+[ INFO  ] [ 40f72e60 ] Delay end
 
 ```
