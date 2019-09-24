@@ -1,4 +1,5 @@
 import * as store from '@leapfrogtechnology/async-store';
+
 import * as logger from './logger';
 
 /**
