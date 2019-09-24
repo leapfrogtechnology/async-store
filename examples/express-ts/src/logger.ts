@@ -1,7 +1,7 @@
 import * as store from '@leapfrogtechnology/async-store';
 
 /**
- * Get unique request id from store or return empty string
+ * Get unique request id from store or return empty string.
  *
  * @returns {string}
  */
@@ -10,7 +10,7 @@ function getRequestId() {
 }
 
 /**
- * A example service to log info with unique request id
+ * A example service to log info with unique request id.
  *
  * @param {string} infoText
  */
@@ -21,7 +21,7 @@ export function info(infoText: string) {
 }
 
 /**
- * A example service to log debug with unique request id
+ * A example service to log debug with unique request id.
  *
  * @param {string} debugText
  */

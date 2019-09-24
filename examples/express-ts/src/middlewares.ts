@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import * as logger from './logger';
 
 /**
- * Middleware to set query params `a` and `b` on async-store
+ * Middleware to set query params `a` and `b` on async-store.
  *
  * @returns {(req, res, next) => void}
  */
