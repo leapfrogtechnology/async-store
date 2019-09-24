@@ -1,5 +1,3 @@
-import * as store from '@leapfrogtechnology/async-store';
-
 import * as logger from './logger';
 
 /**
@@ -11,17 +9,6 @@ export async function doSomething() {
   // Do something with the request.
 
   setTimeout(() => {
-    logRequestContext();
+    logger.info('Delay end.');
   }, 2000);
-}
-
-/**
- * An example function making use of the request context set in the store.
- *
- * @returns {Promise<void>}
- */
-async function logRequestContext() {
-  const requestId = store.get('x-id');
-
-  logger.info(`Request context: ${requestId}\n`);
 }
