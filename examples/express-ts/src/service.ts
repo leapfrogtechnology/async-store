@@ -10,6 +10,6 @@ export function doSomething() {
   logger.info('Simulating delay');
 
   setTimeout(() => {
-    logger.info('Delay end.');
+    logger.info('Delay end');
   }, 2000);
 }
