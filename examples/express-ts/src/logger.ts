@@ -12,21 +12,21 @@ function getRequestId() {
 /**
  * Write info logs and associated request id to stdout.
  *
- * @param {string} infoText
+ * @param {string} text
  */
-export function info(infoText: string) {
+export function info(text: string) {
   const requestId = getRequestId();
 
-  process.stdout.write(`[ INFO ] ${requestId ? `[ ${requestId} ]` : ''} ${infoText}\n`);
+  process.stdout.write(`[ INFO ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
 }
 
 /**
  * Write debug logs and associated request id to stdout.
  *
- * @param {string} debugText
+ * @param {string} text
  */
-export function debug(debugText: string) {
+export function debug(text: string) {
   const requestId = getRequestId();
 
-  process.stdout.write(`[ DEBUG ] ${requestId ? `[ ${requestId} ]` : ''} ${debugText}\n`);
+  process.stdout.write(`[ DEBUG ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
 }
