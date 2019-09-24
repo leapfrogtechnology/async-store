@@ -14,10 +14,7 @@ export function requestParams() {
     const a = req.query.a;
     const b = req.query.b;
 
-    store.set({
-      a: parseFloat(a) || 0,
-      b: parseFloat(b) || 0
-    });
+    store.set({ a, b });
 
     logger.debug(`Received a: ${a}`);
     logger.debug(`Received b: ${b}`);
