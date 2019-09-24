@@ -17,7 +17,7 @@ function getRequestId() {
 export function info(text: string) {
   const requestId = getRequestId();
 
-  process.stdout.write(`[ INFO ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
+  process.stdout.write(`[ INFO  ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
 }
 
 /**
