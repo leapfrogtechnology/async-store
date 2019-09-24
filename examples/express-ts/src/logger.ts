@@ -10,7 +10,7 @@ function getRequestId() {
 }
 
 /**
- * A example service to log info with unique request id.
+ * Write info logs and associated request id to stdout.
  *
  * @param {string} infoText
  */
@@ -21,7 +21,7 @@ export function info(infoText: string) {
 }
 
 /**
- * A example service to log debug with unique request id.
+ * Write debug logs and associated request id to stdout.
  *
  * @param {string} debugText
  */
