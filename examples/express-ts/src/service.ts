@@ -7,7 +7,7 @@ import * as logger from './logger';
  */
 export function doSomething() {
   // Do something with the request.
-  logger.info('Simulating Delay');
+  logger.info('Simulating delay');
 
   setTimeout(() => {
     logger.info('Delay end.');
