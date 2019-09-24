@@ -3,9 +3,9 @@ import * as logger from './logger';
 /**
  * An example function making use of the request context set in the store.
  *
- * @returns {Promise<void>}
+ * @returns {void}
  */
-export async function doSomething() {
+export function doSomething() {
   // Do something with the request.
   logger.info('Simulating Delay');
 

@@ -12,7 +12,7 @@ const port = 3000;
 app.use(store.initializeMiddleware());
 app.use(requestParams());
 
-app.get('/', add(), async (req: Request, res: Response) => {
+app.get('/', add(), (req: Request, res: Response) => {
   const a = store.get('a');
   const b = store.get('b');
   const sum = store.get('sum');

@@ -10,7 +10,7 @@ import { doSomething } from './service';
  * @returns {(req, res, next) => void}
  */
 export function requestParams() {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     const a = req.query.a;
     const b = req.query.b;
 
@@ -32,8 +32,8 @@ export function requestParams() {
  * @returns {(req, res, next) => void}
  */
 export function add() {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    await doSomething();
+  return (req: Request, res: Response, next: NextFunction) => {
+    doSomething();
 
     const a = store.get('a');
     const b = store.get('b');
