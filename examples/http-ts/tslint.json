@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "tslint-config-leapfrog",
+    "tslint-config-prettier"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "**/*.d.ts"
+    ]
+  }
+}
