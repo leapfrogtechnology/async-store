@@ -3,23 +3,23 @@ import { Request, Response } from 'express';
 
 import * as store from '@leapfrogtechnology/async-store';
 
-import * as service from './service';
-import { requestContext, otherMiddleware } from './middlewares';
+import * as logger from './logger';
+import { requestParams, add } from './middlewares';
 
 const app = express();
 const port = 3000;
 
 app.use(store.initializeMiddleware());
-app.use(requestContext());
+app.use(requestParams());
 
-app.get('/', otherMiddleware, async (req: Request, res: Response) => {
-  await service.doSomething();
+app.get('/', add(), (req: Request, res: Response) => {
+  const a = store.get('a');
+  const b = store.get('b');
+  const sum = store.get('sum');
 
-  const requestId = store.get('x-id');
-
-  res.send(`Response to request: ${requestId}\n`);
+  res.send(`Sum of ${a}, ${b}: ${sum}\n`);
 });
 
 app.listen(port, () => {
-  process.stdout.write(`Express server listening on port ${port}!\n`);
+  logger.info(`Express server listening on port ${port}!\n`);
 });
