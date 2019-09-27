@@ -1,4 +1,4 @@
-# Node http Example (TypeScript)
+# Basic HTTP Server (TypeScript)
 
 Sample project for async-store with [node-http](https://nodejs.org/api/http.html). 
 
