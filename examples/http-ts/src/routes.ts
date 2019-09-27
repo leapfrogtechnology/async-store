@@ -21,8 +21,10 @@ export default function(path: string | undefined): Controller | null {
   switch (path.toLowerCase()) {
     case HOME_ROUTE:
       return controller.home;
+
     case OTHER_ROUTE:
       return controller.other;
+
     default:
       return null;
   }

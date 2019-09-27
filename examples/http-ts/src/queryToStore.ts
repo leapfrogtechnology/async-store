@@ -11,6 +11,7 @@ export default function queryToStore(params: URLSearchParams) {
   const queryParams: any = {};
 
   let result: IteratorResult<string, any> = queryKeys.next();
+
   while (!result.done) {
     const key: string = result.value;
     const value: string[] = params.getAll(key);
