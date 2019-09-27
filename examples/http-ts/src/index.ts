@@ -7,9 +7,9 @@ import * as logger from './logger';
 import { BASE_URL, PORT } from './config';
 
 const app = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
-  const storeContext = store.initialize(AsyncStoreAdapter.DOMAIN);
+  const init = store.initialize(AsyncStoreAdapter.DOMAIN);
 
-  storeContext(() => router(req, res), { req, res, error: logger.error });
+  init(() => router(req, res), { req, res, error: logger.error });
 });
 
 app.listen(PORT, () => {
