@@ -1,18 +1,15 @@
-import * as store from '@leapfrogtechnology/async-store';
-
 import * as logger from './logger';
 
 /**
- * A example service that says hi to the
- * name specified in query key of async-store.
+ * An example function making use of the request context set in the store.
  *
- * @returns {string}
+ * @returns {void}
  */
-export function sayHi() {
-  const name = store.get('query').name;
-  const hiText = `Hi! ${name}`;
+export function doSomething() {
+  // Do something with the request.
+  logger.info('Simulating delay');
 
-  logger.debug(hiText);
-
-  return hiText;
+  setTimeout(() => {
+    logger.info('Delay end');
+  }, 2000);
 }
