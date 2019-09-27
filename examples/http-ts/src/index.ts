@@ -2,20 +2,16 @@ import * as http from 'http';
 import * as store from '@leapfrogtechnology/async-store';
 import AsyncStoreAdapter from '@leapfrogtechnology/async-store/dist/AsyncStoreAdapter';
 
+import router from './router';
 import * as logger from './logger';
+import { BASE_URL, PORT } from './config';
 
-const PORT = 8000;
+const app = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
+  const storeContext = store.initialize(AsyncStoreAdapter.DOMAIN);
 
-const app = http.createServer((req, res) => {
-  store.initialize(AsyncStoreAdapter.DOMAIN)(() => {
-    logger.debug(`Received a request at url: ${req.url}`);
-
-    res.statusCode = 200;
-    res.write(`Hello, World`);
-    res.end();
-  });
+  storeContext(() => router(req, res), { req, res, error: logger.error });
 });
 
 app.listen(PORT, () => {
-  logger.info(`Server listening at ${PORT}..\n\n`);
+  logger.info(`Server listening at ${BASE_URL}..\n\n`);
 });
