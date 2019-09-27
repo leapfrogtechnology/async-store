@@ -10,8 +10,8 @@ import routes, { Controller } from './routes';
 /**
  * Main application router
  *
- * @param { IncomingMessage } req
- * @param { ServerResponse } res
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
  */
 export default function(req: IncomingMessage, res: ServerResponse): void {
   const url: URL = toFullURL(req.url || '');

@@ -11,7 +11,6 @@ export type Controller = (req: IncomingMessage, res: ServerResponse) => void;
  * Returns a controller for a path if exists, null otherwise.
  *
  * @param {string} path A path to find controller for.
- *
  * @returns {Controller | null} Controller for path.
  */
 export default function(path: string | undefined): Controller | null {

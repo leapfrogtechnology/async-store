@@ -4,7 +4,7 @@ import * as store from '@leapfrogtechnology/async-store';
 /**
  * Get the query params from the url and set them to async-store with `query` key.
  *
- * @param {URLSearchParams} url The url to parse query params from.
+ * @param {URLSearchParams} url
  */
 export default function queryToStore(urlQueryParams: URLSearchParams): void {
   const queryKeys: Iterator<string> = urlQueryParams.keys();
