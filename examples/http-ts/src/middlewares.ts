@@ -8,7 +8,7 @@ import { doSomething } from './service';
 export type Middleware = (req: IncomingMessage, res: ServerResponse) => void;
 
 /**
- * Middleware to log query params `a` and `b`
+ * Middleware to set query params `a` and `b` on async-store.
  *
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
