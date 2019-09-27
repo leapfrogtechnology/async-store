@@ -30,3 +30,14 @@ export function debug(text: string) {
 
   process.stdout.write(`[ DEBUG ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
 }
+
+/**
+ * Write error logs and associated request id to stdout.
+ *
+ * @param {any} err
+ */
+export function error(err: any) {
+  const requestId = getRequestId();
+
+  process.stdout.write(`[ ERROR ] ${requestId ? `[ ${requestId} ]` : ''} ${err}\n`);
+}
