@@ -6,7 +6,7 @@ import * as store from '@leapfrogtechnology/async-store';
  *
  * @param {URLSearchParams} url
  */
-export default function queryToStore(urlQueryParams: URLSearchParams): void {
+export default function queryToStore(urlQueryParams: URLSearchParams) {
   const queryKeys: Iterator<string> = urlQueryParams.keys();
   const queryParams: any = {};
 

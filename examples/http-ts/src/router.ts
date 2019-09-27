@@ -13,7 +13,7 @@ import routes, { Controller } from './routes';
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export default function(req: IncomingMessage, res: ServerResponse): void {
+export default function(req: IncomingMessage, res: ServerResponse) {
   const url: URL = toFullURL(req.url || '');
   const controller: Controller | null = routes(url.pathname);
 

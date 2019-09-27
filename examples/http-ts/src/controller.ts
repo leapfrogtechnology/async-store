@@ -10,7 +10,7 @@ import * as logger from './logger';
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export function home(req: IncomingMessage, res: ServerResponse): void {
+export function home(req: IncomingMessage, res: ServerResponse) {
   logger.info('Home controller called.');
 
   res.write('<h1>Home</h1>');
@@ -24,7 +24,7 @@ export function home(req: IncomingMessage, res: ServerResponse): void {
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export function other(req: IncomingMessage, res: ServerResponse): void {
+export function other(req: IncomingMessage, res: ServerResponse) {
   logger.info('Other controller called.');
 
   const someData: string = store.get('query').someData;

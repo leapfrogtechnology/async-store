@@ -8,7 +8,7 @@ import * as logger from './logger';
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export default function(req: IncomingMessage, res: ServerResponse): void {
+export default function(req: IncomingMessage, res: ServerResponse) {
   const url = req.url;
 
   logger.debug(`404 encountered at: ${url}`);
