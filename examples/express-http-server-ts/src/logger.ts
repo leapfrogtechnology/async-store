@@ -13,11 +13,11 @@ function getRequestId(): string {
  * Print log message to the stdout / stderr.
  *
  * @param {string} level
- * @param {string} requestId
  * @param {string} message
  */
-function log(level: string, requestId: string, message: string) {
+function log(level: string, message: string) {
   const timestamp = new Date().toISOString();
+  const requestId = getRequestId();
   const line = `${timestamp} [ ${level} ] ${requestId ? `${requestId} - ` : ''}${message}\n`;
 
   if (level === 'ERROR') {
@@ -35,9 +35,7 @@ function log(level: string, requestId: string, message: string) {
  * @param {string} message
  */
 export function info(message: string) {
-  const requestId = getRequestId();
-
-  log('INFO', requestId, message);
+  log('INFO', message);
 }
 
 /**
@@ -46,9 +44,7 @@ export function info(message: string) {
  * @param {string} message
  */
 export function debug(message: string) {
-  const requestId = getRequestId();
-
-  log('DEBUG', requestId, message);
+  log('DEBUG', message);
 }
 
 /**
@@ -57,7 +53,5 @@ export function debug(message: string) {
  * @param {any} err
  */
 export function error(err: any) {
-  const requestId = getRequestId();
-
-  log('ERROR', requestId, err);
+  log('ERROR', err);
 }
