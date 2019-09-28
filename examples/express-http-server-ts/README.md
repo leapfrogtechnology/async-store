@@ -16,7 +16,7 @@ Run the express app server.
 $ yarn start
 ```
 
-Now you can test it through `curl`. Trigger concurrent requests with different ids that are a part of request context.
+Now you can test it through `curl`.
 
 ```
 $ curl 'http://localhost:3000?a=20&b=30' && curl 'http://localhost:3000?a=10&b=50' && curl 'http://localhost:3000?a=50&b=100'
