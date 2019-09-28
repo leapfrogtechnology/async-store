@@ -5,7 +5,7 @@ import AsyncStoreAdapter from '@leapfrogtechnology/async-store/dist/AsyncStoreAd
 import * as logger from './logger';
 import { requestParams, add } from './middlewares';
 
-export const PORT = process.env.PORT || 8000;
+export const PORT = process.env.PORT || 3000;
 export const BASE_URL = `http://localhost:${PORT}`;
 
 /**
