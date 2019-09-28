@@ -4,13 +4,13 @@ import { Request, Response } from 'express';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
-import { requestParams, add } from './middlewares';
+import { storeParams, add } from './middlewares';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(store.initializeMiddleware());
-app.use(requestParams());
+app.use(storeParams());
 
 app.get('/', add(), (req: Request, res: Response) => {
   const a = store.get('a');
@@ -18,6 +18,7 @@ app.get('/', add(), (req: Request, res: Response) => {
   const sum = store.get('sum');
 
   res.send(`Sum of ${a}, ${b}: ${sum}\n`);
+  logger.info('Response sent');
 });
 
 app.listen(port, () => {
