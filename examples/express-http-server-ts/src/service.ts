@@ -1,6 +1,6 @@
-import * as logger from './logger';
-
 import * as store from '@leapfrogtechnology/async-store';
+
+import * as logger from './logger';
 
 /**
  * An example function making use of the request context

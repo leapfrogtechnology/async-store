@@ -11,8 +11,7 @@ import { doSomethingAsync } from './service';
  */
 export function storeParams() {
   return (req: Request, res: Response, next: NextFunction) => {
-    const a = req.query.a;
-    const b = req.query.b;
+    const { a, b } = req.query;
 
     store.set({ a, b });
 
@@ -28,13 +27,12 @@ export function storeParams() {
  *
  * @returns {(req, res, next) => void}
  */
-export function add() {
+export function calculateSum() {
   return (req: Request, res: Response, next: NextFunction) => {
     doSomethingAsync();
 
-    const a = store.get('a');
-    const b = store.get('b');
-
+    const a = +store.get('a');
+    const b = +store.get('b');
     const sum = a + b;
 
     store.set({ sum });

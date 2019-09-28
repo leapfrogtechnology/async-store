@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
-import { storeParams, add } from './middlewares';
+import { storeParams, calculateSum } from './middlewares';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 app.use(store.initializeMiddleware());
 app.use(storeParams());
 
-app.get('/', add(), (req: Request, res: Response) => {
+app.get('/', calculateSum(), (req: Request, res: Response) => {
   const a = store.get('a');
   const b = store.get('b');
   const sum = store.get('sum');
