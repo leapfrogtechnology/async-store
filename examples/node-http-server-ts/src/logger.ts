@@ -17,7 +17,8 @@ function getRequestId(): string {
  * @param {string} message
  */
 function log(level: string, requestId: string, message: string) {
-  const line = `[ ${level} ] ${requestId ? `[ ${requestId} ]` : ''} ${message}\n`;
+  const timestamp = new Date().toISOString();
+  const line = `${timestamp} [ ${level} ] ${requestId ? `${requestId} - ` : ''}${message}\n`;
 
   if (level === 'ERROR') {
     process.stderr.write(line);
