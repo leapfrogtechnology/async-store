@@ -7,7 +7,7 @@ import * as logger from './logger';
 import { requestParams, add } from './middlewares';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(store.initializeMiddleware());
 app.use(requestParams());
@@ -21,5 +21,5 @@ app.get('/', add(), (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  logger.info(`Express server listening on port ${port}!\n`);
+  logger.info(`HTTP server listening on port ${port}!\n`);
 });

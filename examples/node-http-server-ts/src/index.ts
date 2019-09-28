@@ -3,11 +3,10 @@ import * as http from 'http';
 import * as logger from './logger';
 import { initializeApp } from './middlewares';
 
-export const PORT = process.env.PORT || 3000;
-export const BASE_URL = `http://localhost:${PORT}`;
+const port = process.env.PORT || 3000;
 
 const app = http.createServer(initializeApp);
 
-app.listen(PORT, () => {
-  logger.info(`Server listening at ${BASE_URL}..\n\n`);
+app.listen(port, () => {
+  logger.info(`HTTP server listening on port ${port}!\n`);
 });
