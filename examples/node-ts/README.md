@@ -1,22 +1,30 @@
 # Basic HTTP Server (TypeScript)
 
-Sample project for async-store with [node-http](https://nodejs.org/api/http.html). 
+Sample http server in node and typescript using async-store.
 
 ## Running
-Install dependencies. 
+
+Install dependencies.
+
 ```bash
 $ yarn
 ```
-Run the http app server. 
-```
+
+Run the http app server.
+
+```bash
 $ yarn start
 ```
+
 Now you can test it through `curl`.
-```
+
+```bash
 $ curl 'http://localhost:8000?a=20&b=30' && curl 'http://localhost:8000?a=10&b=50' && curl 'http://localhost:8000?a=50&b=100'
 ```
+
 **Output**
-```
+
+```plain
 [ DEBUG ] [ acd04c5b ] Received a: 20
 [ DEBUG ] [ acd04c5b ] Received b: 30
 [ INFO  ] [ acd04c5b ] Simulating delay
