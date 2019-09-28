@@ -1,4 +1,5 @@
-import * as http from 'http';
+import { IncomingMessage, ServerResponse, createServer } from 'http';
+
 import * as store from '@leapfrogtechnology/async-store';
 import AsyncStoreAdapter from '@leapfrogtechnology/async-store/dist/AsyncStoreAdapter';
 
@@ -14,7 +15,7 @@ export const BASE_URL = `http://localhost:${PORT}`;
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-function router(req: http.IncomingMessage, res: http.ServerResponse) {
+function router(req: IncomingMessage, res: ServerResponse) {
   const params = (req.url || '').split('?', 2)[1];
 
   store.set({ query: params });
@@ -23,7 +24,7 @@ function router(req: http.IncomingMessage, res: http.ServerResponse) {
   add(req, res);
 }
 
-const app = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
+const app = createServer((req: IncomingMessage, res: ServerResponse) => {
   const init = store.initialize(AsyncStoreAdapter.DOMAIN);
 
   init(() => router(req, res), { req, res, error: logger.error });
