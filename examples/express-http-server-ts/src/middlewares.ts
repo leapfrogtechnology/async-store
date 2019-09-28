@@ -2,22 +2,21 @@ import * as store from '@leapfrogtechnology/async-store';
 import { Request, Response, NextFunction } from 'express';
 
 import * as logger from './logger';
-import { doSomething } from './service';
+import { doSomethingAsync } from './service';
 
 /**
  * Middleware to set query params `a` and `b` on async-store.
  *
  * @returns {(req, res, next) => void}
  */
-export function requestParams() {
+export function storeParams() {
   return (req: Request, res: Response, next: NextFunction) => {
-    const a = req.query.a;
-    const b = req.query.b;
+    const { a, b } = req.query;
 
     store.set({ a, b });
 
-    logger.debug(`Received a: ${a}`);
-    logger.debug(`Received b: ${b}`);
+    logger.debug(`Persisted a: ${a}`);
+    logger.debug(`Persisted b: ${b}`);
 
     next();
   };
@@ -28,17 +27,17 @@ export function requestParams() {
  *
  * @returns {(req, res, next) => void}
  */
-export function add() {
+export function calculateSum() {
   return (req: Request, res: Response, next: NextFunction) => {
-    doSomething();
+    doSomethingAsync();
 
-    const a = store.get('a');
-    const b = store.get('b');
-
+    const a = +store.get('a');
+    const b = +store.get('b');
     const sum = a + b;
 
     store.set({ sum });
     logger.debug(`Calculated sum: ${sum}`);
+    logger.debug(`Persisted sum: ${sum}`);
 
     next();
   };

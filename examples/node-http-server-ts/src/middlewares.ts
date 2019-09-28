@@ -1,25 +1,23 @@
 import * as qs from 'qs';
 import { ServerResponse, IncomingMessage } from 'http';
+
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
-import { doSomething } from './service';
-
-export type Middleware = (req: IncomingMessage, res: ServerResponse) => void;
+import { doSomethingAsync } from './service';
 
 /**
- * Middleware to set query params `a` and `b` on async-store.
+ * Set input params received from query in the store.
  *
- * @param {IncomingMessage} req
- * @param {ServerResponse} res
+ * @param {any} query
  */
-export function requestParams(req: IncomingMessage, res: ServerResponse) {
-  const { a, b } = qs.parse(store.get('query'));
+export function storeParams(query: any) {
+  const { a, b } = qs.parse(query);
 
   store.set({ a, b });
 
-  logger.debug(`Received a: ${a}`);
-  logger.debug(`Received b: ${b}`);
+  logger.debug(`Persisted a: ${a}`);
+  logger.debug(`Persisted b: ${b}`);
 }
 
 /**
@@ -28,17 +26,14 @@ export function requestParams(req: IncomingMessage, res: ServerResponse) {
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export function add(req: IncomingMessage, res: ServerResponse) {
-  doSomething();
+export function calculateSum(req: IncomingMessage, res: ServerResponse) {
+  doSomethingAsync();
 
-  const a: number = +store.get('a');
-  const b: number = +store.get('b');
-
+  const a = +store.get('a');
+  const b = +store.get('b');
   const sum = a + b;
 
   store.set({ sum });
   logger.debug(`Calculated sum: ${sum}`);
-
-  res.write(`Sum of ${a}, ${b} = ${sum}\n`);
-  res.end();
+  logger.debug(`Persisted sum: ${sum}`);
 }

@@ -1,34 +1,39 @@
 import * as http from 'http';
+import { IncomingMessage, ServerResponse } from 'http';
 import * as store from '@leapfrogtechnology/async-store';
-import AsyncStoreAdapter from '@leapfrogtechnology/async-store/dist/AsyncStoreAdapter';
 
 import * as logger from './logger';
-import { requestParams, add } from './middlewares';
+import { storeParams, calculateSum } from './middlewares';
 
-export const PORT = process.env.PORT || 3000;
-export const BASE_URL = `http://localhost:${PORT}`;
+const port = process.env.PORT || 3000;
+
+const app = http.createServer((req, res) =>
+  store.initialize()(
+    () => {
+      storeParams((req.url || '').split('?', 2)[1]);
+      calculateSum(req, res);
+      handleRequest(req, res);
+    },
+    { req, res, error: logger.error }
+  )
+);
+
+app.listen(port, () => {
+  logger.info(`HTTP server listening on port ${port}!\n`);
+});
 
 /**
- * Main application router
+ * Handle incoming http request.
  *
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-function router(req: http.IncomingMessage, res: http.ServerResponse) {
-  const params = (req.url || '').split('?', 2)[1];
+function handleRequest(req: IncomingMessage, res: ServerResponse) {
+  const a = store.get('a');
+  const b = store.get('b');
+  const sum = store.get('sum');
 
-  store.set({ query: params });
-
-  requestParams(req, res);
-  add(req, res);
+  res.write(`Sum of ${a}, ${b} = ${sum}\n`);
+  res.end();
+  logger.info('Response sent');
 }
-
-const app = http.createServer((req: http.IncomingMessage, res: http.ServerResponse) => {
-  const init = store.initialize(AsyncStoreAdapter.DOMAIN);
-
-  init(() => router(req, res), { req, res, error: logger.error });
-});
-
-app.listen(PORT, () => {
-  logger.info(`Server listening at ${BASE_URL}..\n\n`);
-});
