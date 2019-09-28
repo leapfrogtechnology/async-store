@@ -5,28 +5,59 @@ import * as store from '@leapfrogtechnology/async-store';
  *
  * @returns {string}
  */
-function getRequestId() {
+function getRequestId(): string {
   return (store.getId() || '').substring(0, 8);
+}
+
+/**
+ * Print log message to the stdout / stderr.
+ *
+ * @param {string} level
+ * @param {string} requestId
+ * @param {string} message
+ */
+function log(level: string, requestId: string, message: string) {
+  const timestamp = new Date().toISOString();
+  const line = `${timestamp} [ ${level} ] ${requestId ? `${requestId} - ` : ''}${message}\n`;
+
+  if (level === 'ERROR') {
+    process.stderr.write(line);
+
+    return;
+  }
+
+  process.stdout.write(line);
 }
 
 /**
  * Write info logs and associated request id to stdout.
  *
- * @param {string} text
+ * @param {string} message
  */
-export function info(text: string) {
+export function info(message: string) {
   const requestId = getRequestId();
 
-  process.stdout.write(`[ INFO  ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
+  log('INFO', requestId, message);
 }
 
 /**
  * Write debug logs and associated request id to stdout.
  *
- * @param {string} text
+ * @param {string} message
  */
-export function debug(text: string) {
+export function debug(message: string) {
   const requestId = getRequestId();
 
-  process.stdout.write(`[ DEBUG ] ${requestId ? `[ ${requestId} ]` : ''} ${text}\n`);
+  log('DEBUG', requestId, message);
+}
+
+/**
+ * Write error logs and associated request id to stdout.
+ *
+ * @param {any} err
+ */
+export function error(err: any) {
+  const requestId = getRequestId();
+
+  log('ERROR', requestId, err);
 }
