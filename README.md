@@ -107,7 +107,8 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 ## Sample Projects
 
-1. [Simple Express Sample (TypeScript)](examples/express-ts)
+1. [Basic Node Web Server (TypeScript)](examples/node-http-server-ts)
+2. [Simple Express Web Server (TypeScript)](examples/express-http-server-ts)
 
 ## API Docs
 
