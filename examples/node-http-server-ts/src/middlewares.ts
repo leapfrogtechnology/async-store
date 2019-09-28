@@ -5,9 +5,19 @@ import * as store from '@leapfrogtechnology/async-store';
 import AsyncStoreAdapter from '@leapfrogtechnology/async-store/dist/AsyncStoreAdapter';
 
 import * as logger from './logger';
-import { doSomething } from './service';
+import { doSomethingAsync } from './service';
 
-export type Middleware = (req: IncomingMessage, res: ServerResponse) => void;
+/**
+ * Listener function for the incoming http requests.
+ *
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ */
+export function initializeApp(req: IncomingMessage, res: ServerResponse) {
+  const initStore = store.initialize(AsyncStoreAdapter.DOMAIN);
+
+  initStore(() => handleRequest(req, res), { req, res, error: logger.error });
+}
 
 /**
  * Handle incoming http request.
@@ -20,35 +30,23 @@ function handleRequest(req: IncomingMessage, res: ServerResponse) {
 
   store.set({ query: params });
 
-  requestParams(req, res);
+  storeParams(req, res);
   add(req, res);
 }
 
 /**
- * Listener function for the incoming http requests.
+ * Set input params received from query in the store.
  *
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export function initializeApp(req: IncomingMessage, res: ServerResponse) {
-  const init = store.initialize(AsyncStoreAdapter.DOMAIN);
-
-  init(() => handleRequest(req, res), { req, res, error: logger.error });
-}
-
-/**
- * Middleware to set query params `a` and `b` on async-store.
- *
- * @param {IncomingMessage} req
- * @param {ServerResponse} res
- */
-export function requestParams(req: IncomingMessage, res: ServerResponse) {
+function storeParams(req: IncomingMessage, res: ServerResponse) {
   const { a, b } = qs.parse(store.get('query'));
 
   store.set({ a, b });
 
-  logger.debug(`Received a: ${a}`);
-  logger.debug(`Received b: ${b}`);
+  logger.debug(`Persisted a: ${a}`);
+  logger.debug(`Persisted b: ${b}`);
 }
 
 /**
@@ -57,17 +55,20 @@ export function requestParams(req: IncomingMessage, res: ServerResponse) {
  * @param {IncomingMessage} req
  * @param {ServerResponse} res
  */
-export function add(req: IncomingMessage, res: ServerResponse) {
-  doSomething();
+function add(req: IncomingMessage, res: ServerResponse) {
+  doSomethingAsync();
 
-  const a: number = +store.get('a');
-  const b: number = +store.get('b');
+  const a = +store.get('a');
+  const b = +store.get('b');
 
   const sum = a + b;
 
-  store.set({ sum });
   logger.debug(`Calculated sum: ${sum}`);
+
+  store.set({ sum });
+  logger.debug(`Persisted sum: ${sum}`);
 
   res.write(`Sum of ${a}, ${b} = ${sum}\n`);
   res.end();
+  logger.info('Response sent');
 }
