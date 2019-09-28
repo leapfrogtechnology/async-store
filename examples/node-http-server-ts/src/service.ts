@@ -26,8 +26,8 @@ export function doSomethingAsync() {
   logger.debug('Simulating delayed access');
 
   setTimeout(() => {
-    const [a, b, sum, query] = [store.get('a'), store.get('b'), store.get('sum'), store.get('query')];
+    const [a, b, sum] = [store.get('a'), store.get('b'), store.get('sum')];
 
-    logger.info('Store contents: ' + JSON.stringify({ a, b, sum, query }));
+    logger.info('Store contents: ' + JSON.stringify({ a, b, sum }));
   }, 2000);
 }
