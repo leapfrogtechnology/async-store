@@ -61,7 +61,19 @@ describe('store: [adapter=DOMAIN]', () => {
 
     it('should return an object with `undefined` as the value for the requested key if that key was not set.', done => {
       const callback = () => {
-        expect(globalStore.getByKeys(['foo'])).to.deep.equal({ foo: undefined });
+        expect(globalStore.getByKeys(['foo'])).to.deep.equal([undefined]);
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should return an array of matching values in the same order as the list of requested keys.', done => {
+      const callback = () => {
+        globalStore.set({ a: 1, b: 2, sum: 3, somethingNull: null });
+
+        expect(globalStore.getByKeys(['a', 'b', 'somethingNull', 'sum'])).to.deep.equal([1, 2, null, 3]);
+
         done();
       };
 
@@ -281,7 +293,7 @@ describe('store: [adapter=DOMAIN]', () => {
 
         globalStore.set({ foo: 'Foo' });
 
-        expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal({ foo: 'Foo', bar: 'bar' });
+        expect(globalStore.get('foo')).to.equal('Foo');
       };
 
       const third = () => {
@@ -298,7 +310,7 @@ describe('store: [adapter=DOMAIN]', () => {
             expect(globalStore.get('foo')).to.equal('bar');
           })
           .then(() => {
-            expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal({ foo: 'bar', bar: 'bonk' });
+            expect(globalStore.get('foo')).to.equal('bar');
           })
           .then(() => {
             expect(globalStore.get('foo')).to.equal('bar');

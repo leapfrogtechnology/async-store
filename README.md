@@ -178,12 +178,16 @@ Gets a value by a key from the store.
 const foo = store.get('foo');
 ```
 
-### getByKeys()
+### getByKeys<T>()
 
-Gets multiple values by key from the store, and returns an object with those keys and their corresponding values.
+Gets multiple values by key from the store, returns them in the same order they were requested.
 
 - `@params {Array<string> keys}` - Keys to get from the store
-- `@returns {any}` - Returns and object with the values found for those keys (any keys not found are mapped to `undefined`). 
+- `@returns {T[]}` - Returns an array of those objects, in the same order they were requested.
+
+```js
+let [a, b, sum] = store.get(['a', 'b', 'sum']);
+```
 
 ### find()
 
