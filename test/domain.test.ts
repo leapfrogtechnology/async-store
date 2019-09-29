@@ -59,9 +59,9 @@ describe('store: [adapter=DOMAIN]', () => {
       expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');
     });
 
-    it('should return an object with `undefined` as the value for the requested key if that key was not set.', done => {
+    it('should return `undefined` as the value for requested keys that were not set.', done => {
       const callback = () => {
-        expect(globalStore.getByKeys(['foo'])).to.deep.equal([undefined]);
+        expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal([undefined, undefined]);
         done();
       };
 
