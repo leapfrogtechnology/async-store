@@ -119,6 +119,28 @@ export function get(key: string): any {
 }
 
 /**
+ * Retrieves all values that correspond to a given list of keys.
+ *
+ * Example:
+ *  const a = 1;
+ *  const b = 2;
+ *  const sum = a + b;
+ *  store.set({a, b, sum})
+ *  const results = store.getByKeys(['a', 'b', 'sum']); // {a: 1, b: 2, sum: 3}
+ *
+ * @param {Array<string>} keys
+ * @returns {*}
+ */
+export function getByKeys(keys: string[]): any {
+  const result: any = {};
+  keys.forEach(key => {
+    result[key] = get(key);
+  });
+
+  return result;
+}
+
+/**
  * Get a value by a key from the store.
  * If anything fails, it returns null without emitting error event.
  *

@@ -178,6 +178,13 @@ Gets a value by a key from the store.
 const foo = store.get('foo');
 ```
 
+### getByKeys()
+
+Gets multiple values by key from the store, and returns an object with those keys and their corresponding values.
+
+- `@params {Array<string> keys}` - Keys to get from the store
+- `@returns {any}` - Returns and object with the values found for those keys (any keys not found are mapped to `undefined`). 
+
 ### find()
 
 Gets a value by a key from the store. If anything fails, it returns `null` without emitting error event.

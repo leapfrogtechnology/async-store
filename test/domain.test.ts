@@ -54,6 +54,21 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('getByKeys()', () => {
+    it('should throw an error if store not initialized.', () => {
+      expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');
+    });
+
+    it('should return an object with `undefined` as the value for the requested key if that key was not set.', done => {
+      const callback = () => {
+        expect(globalStore.getByKeys(['foo'])).to.deep.equal({ foo: undefined });
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+  });
+
   describe('getId()', () => {
     it('should return unique value if store is initialized', done => {
       const callback = () => {
@@ -249,7 +264,7 @@ describe('store: [adapter=DOMAIN]', () => {
   describe('Test Cases:', () => {
     it('should work with a chain of sequentially invoked callbacks (synchronous).', done => {
       const callback = () => {
-        globalStore.set({ foo: 'foo' });
+        globalStore.set({ foo: 'foo', bar: 'bar' });
 
         first();
         second();
@@ -266,7 +281,7 @@ describe('store: [adapter=DOMAIN]', () => {
 
         globalStore.set({ foo: 'Foo' });
 
-        expect(globalStore.get('foo')).to.equal('Foo');
+        expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal({ foo: 'Foo', bar: 'bar' });
       };
 
       const third = () => {
@@ -283,7 +298,7 @@ describe('store: [adapter=DOMAIN]', () => {
             expect(globalStore.get('foo')).to.equal('bar');
           })
           .then(() => {
-            expect(globalStore.get('foo')).to.equal('bar');
+            expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal({ foo: 'bar', bar: 'bonk' });
           })
           .then(() => {
             expect(globalStore.get('foo')).to.equal('bar');
@@ -296,7 +311,7 @@ describe('store: [adapter=DOMAIN]', () => {
           });
 
       const callback = () => {
-        globalStore.set({ foo: 'bar' });
+        globalStore.set({ foo: 'bar', bar: 'bonk' });
 
         doSomething().then(done);
       };
