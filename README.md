@@ -178,6 +178,16 @@ Gets a value by a key from the store.
 const foo = store.get('foo');
 ```
 
+### getAll()
+
+Gets all values from the store.
+
+- `@returns {any}` - Returns all values persisted in the store. Any error caught during the retrieval will be thrown and cascaded.
+
+```js
+const foo = store.getAll();
+```
+
 ### getByKeys()
 
 Gets multiple values from the store for each of the keys provided.
