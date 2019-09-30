@@ -134,6 +134,10 @@ export function get(key: string): any {
  * @returns {T[]}
  */
 export function getByKeys<T>(keys: string[]): T[] {
+  if (!(keys && keys.length > 0)) {
+    throw new Error('No keys provided for getting the values from store.');
+  }
+
   return keys.map(key => get(key));
 }
 
