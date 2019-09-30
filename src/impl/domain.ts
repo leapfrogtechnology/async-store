@@ -127,6 +127,7 @@ export function get(key: string): any {
  *  const b = 2;
  *  const sum = a + b;
  *  store.set({a, b, sum})
+ *
  *  const results = store.getByKeys(['a', 'b', 'other', 'sum']); // [1, 2, undefined, 3]
  *
  * @param {string[]} keys
