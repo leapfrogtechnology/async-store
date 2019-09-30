@@ -119,6 +119,24 @@ export function get(key: string): any {
 }
 
 /**
+ * Retrieves all values that correspond to a given list of keys.
+ * Any keys not found are included in-order as `undefined`.
+ *
+ * Example:
+ *  const a = 1;
+ *  const b = 2;
+ *  const sum = a + b;
+ *  store.set({a, b, sum})
+ *  const results = store.getByKeys(['a', 'b', 'other', 'sum']); // [1, 2, undefined, 3]
+ *
+ * @param {string[]} keys
+ * @returns {T[]}
+ */
+export function getByKeys<T>(keys: string[]): T[] {
+  return keys.map(key => get(key));
+}
+
+/**
  * Get a value by a key from the store.
  * If anything fails, it returns null without emitting error event.
  *

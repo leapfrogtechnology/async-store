@@ -54,6 +54,33 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('getByKeys()', () => {
+    it('should throw an error if store not initialized.', () => {
+      expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');
+    });
+
+    it('should return `undefined` as the value for requested keys that were not set.', done => {
+      const callback = () => {
+        expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal([undefined, undefined]);
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should return an array of matching values in the same order as the list of requested keys.', done => {
+      const callback = () => {
+        globalStore.set({ a: 1, b: 2, sum: 3, somethingNull: null });
+
+        expect(globalStore.getByKeys(['a', 'b', 'somethingNull', 'sum'])).to.deep.equal([1, 2, null, 3]);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+  });
+
   describe('getId()', () => {
     it('should return unique value if store is initialized', done => {
       const callback = () => {
@@ -249,7 +276,7 @@ describe('store: [adapter=DOMAIN]', () => {
   describe('Test Cases:', () => {
     it('should work with a chain of sequentially invoked callbacks (synchronous).', done => {
       const callback = () => {
-        globalStore.set({ foo: 'foo' });
+        globalStore.set({ foo: 'foo', bar: 'bar' });
 
         first();
         second();
@@ -296,7 +323,7 @@ describe('store: [adapter=DOMAIN]', () => {
           });
 
       const callback = () => {
-        globalStore.set({ foo: 'bar' });
+        globalStore.set({ foo: 'bar', bar: 'bonk' });
 
         doSomething().then(done);
       };

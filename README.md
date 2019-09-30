@@ -178,6 +178,17 @@ Gets a value by a key from the store.
 const foo = store.get('foo');
 ```
 
+### getByKeys<T>()
+
+Gets multiple values by key from the store, returns them in the same order they were requested.
+
+- `@params {Array<string> keys}` - Keys to get from the store
+- `@returns {T[]}` - Returns an array of those objects, in the same order they were requested.
+
+```js
+let [a, b, sum] = store.get(['a', 'b', 'sum']);
+```
+
 ### find()
 
 Gets a value by a key from the store. If anything fails, it returns `null` without emitting error event.
