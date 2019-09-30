@@ -217,7 +217,7 @@ Check the [CHANGELOG](CHANGELOG.md) for release history.
 
 ## Contributing
 
-Feel free to send pull requests.
+Any types of contributions are welcome. Feel free to send pull requests or create issues.
 
 ## License
 
