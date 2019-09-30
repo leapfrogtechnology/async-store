@@ -10,7 +10,7 @@ interface AsyncStore {
   getByKeys: (keys: string[]) => any;
   find: (key: string) => any;
   isInitialized: () => boolean;
-  getId: () => string | undefined;
+  getId: (short: boolean) => string | undefined;
 }
 
 export default AsyncStore;
