@@ -211,7 +211,6 @@ export function getActiveDomain(): StoreDomainInterface {
 
 /**
  * Get's the unique domain id created for the current context / scope.
- * Returns full id by default. Set `short` to true to get short id.
  *
  * Example:
  * ```
@@ -220,7 +219,7 @@ export function getActiveDomain(): StoreDomainInterface {
  * ```
  *
  * @param {boolean} short Set `true` to get short id. Default `false`
- * @returns {(string | undefined)}
+ * @returns {(string | undefined)} Returns full id by default. Set `short` to true to get short id.
  */
 export function getId(short: boolean = false): string | undefined {
   const activeDomain = getActiveDomain();
