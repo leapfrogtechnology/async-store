@@ -29,7 +29,7 @@ describe('store: [adapter=DOMAIN]', () => {
       }, 500);
     });
 
-    it('should return true when initialized and invokved within the active domain.', done => {
+    it('should return true when initialized and invoked within the active domain.', done => {
       const callback = () => {
         expect(globalStore.isInitialized()).to.equal(true);
         done();
