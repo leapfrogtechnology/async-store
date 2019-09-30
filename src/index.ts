@@ -144,7 +144,8 @@ export function get(key: string): any {
  *  const a = 1;
  *  const b = 2;
  *  const sum = a + b;
- *  store.set({a, b, sum})
+ *  store.set({ a, b, sum })
+ *
  *  const results = store.getByKeys(['a', 'b', 'other', 'sum']); // [1, 2, undefined, 3]
  *
  * @param {string[]} keys
@@ -179,7 +180,7 @@ export function isInitialized(): boolean {
 }
 
 /**
- * Get's the unique domain id created for the current context / scope.
+ * Gets the unique domain id created for the current context / scope.
  *
  * @returns {(string | undefined)}
  */
