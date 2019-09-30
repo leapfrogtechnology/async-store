@@ -79,6 +79,28 @@ describe('store: [adapter=DOMAIN]', () => {
 
       globalStore.initialize(adapter)(callback);
     });
+
+    it('should return an identical array of same length even if there are unknown (not set) keys.', done => {
+      const callback = () => {
+        globalStore.set({ a: 1, b: 2, z: 5 });
+
+        expect(globalStore.getByKeys(['a', 'b', 'c', 'd', 'z'])).to.deep.equal([1, 2, undefined, undefined, 5]);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should throw an error when empty list of keys is passed.', () => {
+      const callback = () => {
+        expect(globalStore.getByKeys.bind(globalStore, [])).to.throw(
+          'No keys provided for getting the values from store.'
+        );
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
   });
 
   describe('getId()', () => {
