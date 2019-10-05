@@ -44,6 +44,16 @@ describe('store: [adapter=DOMAIN]', () => {
       expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');
     });
 
+    it('should return null if invoked under active domain w/o proper store initialization.', done => {
+      const d = domain.create();
+
+      d.run(() => {
+        // Ensure data in the existing domain is available at this point.
+        expect(globalStore.get('foo')).to.equal(null);
+        done();
+      });
+    });
+
     it('should return `undefined` if the value was not set.', done => {
       const callback = () => {
         expect(globalStore.get('foo')).to.equal(undefined);
@@ -79,6 +89,16 @@ describe('store: [adapter=DOMAIN]', () => {
           });
 
       globalStore.initialize(adapter)(callback);
+    });
+
+    it('should return null if invoked under active domain w/o proper store initialization.', done => {
+      const d = domain.create();
+
+      d.run(() => {
+        // Ensure data in the existing domain is available at this point.
+        expect(globalStore.getAll).to.equal(null);
+        done();
+      });
     });
   });
 
@@ -219,7 +239,7 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.initialize(adapter)(callback);
     });
 
-    it('should return null if store not initialized.', () => {
+    it('should return null even if store not initialized.', () => {
       expect(globalStore.find('foo')).to.equal(null);
     });
 
