@@ -13,4 +13,15 @@ describe('store: General', () => {
       'Invalid async store adapter provided UNKNOWN_ADAPTER.'
     );
   });
+
+  it('should throw an error when initialized multiple times.', () => {
+    const callback = () => {
+      // Try re-initializing the store and it should throw an error.
+      expect(globalStore.initialize.bind(globalStore, AsyncStoreAdapter.DOMAIN)).to.throw(
+        'Async store already initialized, cannot re-initialize again.'
+      );
+    };
+
+    globalStore.initialize(AsyncStoreAdapter.DOMAIN)(callback);
+  });
 });
