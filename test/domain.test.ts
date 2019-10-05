@@ -104,7 +104,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('getAll()', () => {
-    it('should return all value from the store', done => {
+    it('should return all value from the store.', done => {
       const a = 1;
       const b = 2;
       const sum = a + b;
@@ -191,7 +191,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('getId()', () => {
-    it('should return unique value if store is initialized', done => {
+    it('should return unique value if store is initialized.', done => {
       const callback = () => {
         expect(globalStore.getId()).to.be.an('string');
         expect(globalStore.getId()).to.not.equal(null);
@@ -212,7 +212,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('find()', () => {
-    it('should successfully return value in synchronous callback', done => {
+    it('should successfully return value in synchronous callback.', done => {
       const callback = () => {
         first();
         second();
@@ -250,7 +250,7 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.initialize(adapter)(callback);
     });
 
-    it('should successfully return value in asynchronous callback', done => {
+    it('should successfully return value in asynchronous callback.', done => {
       const callback = () => {
         globalStore.set({ foo: 'bar' });
 
@@ -311,7 +311,7 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.initialize(adapter)(callback);
     });
 
-    it('should set properties in the store', done => {
+    it('should set properties in the store.', done => {
       const callback = () => {
         globalStore.set({ foo: 'Hello', bar: 'World' });
         second();
