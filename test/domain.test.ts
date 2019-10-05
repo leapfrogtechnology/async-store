@@ -238,6 +238,20 @@ describe('store: [adapter=DOMAIN]', () => {
       expect(globalStore.set.bind(globalStore, {})).to.throw('Async store not initialized.');
     });
 
+    it('should throw an error if invalid arguments are provided.', done => {
+      const callback = () => {
+        expect(globalStore.set.bind(globalStore, 5)).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, 'five')).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, null)).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, undefined)).to.throw(
+          'Invalid arguments provided for asyncStore.set()'
+        );
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
     it('should set properties in the store', done => {
       const callback = () => {
         globalStore.set({ foo: 'Hello', bar: 'World' });
