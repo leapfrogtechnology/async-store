@@ -7,6 +7,7 @@ interface AsyncStore {
   initialize: (callback: (err?: any) => void, params?: AsyncStoreParams) => void;
   set: (properties: any) => void;
   get: (key: string) => any;
+  getAll: () => any;
   getByKeys: (keys: string[]) => any;
   find: (key: string) => any;
   isInitialized: () => boolean;

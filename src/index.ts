@@ -137,6 +137,17 @@ export function get(key: string): any {
 }
 
 /**
+ * Get all values from the store.
+ *
+ * @returns {*}
+ */
+export function getAll(): any {
+  coreLog(`Getting all values from the store`);
+
+  return initializedAdapter && getInstance(initializedAdapter).getAll();
+}
+
+/**
  * Retrieves all values that correspond to a given list of keys.
  * Any keys not found are included in-order as `undefined`.
  *

@@ -54,6 +54,34 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('getAll()', () => {
+    it('should return all value from the store', done => {
+      const a = 1;
+      const b = 2;
+      const sum = a + b;
+
+      const callback = () => {
+        globalStore.set({ a, b });
+        globalStore.set({ sum });
+
+        doSomething().then(done);
+      };
+
+      const doSomething = () =>
+        Promise.resolve()
+          .then(() => {
+            expect(globalStore.get('a')).to.equal(a);
+            expect(globalStore.get('b')).to.equal(b);
+            expect(globalStore.get('sum')).to.equal(sum);
+          })
+          .then(() => {
+            expect(globalStore.getAll()).deep.equal({ a, b, sum });
+          });
+
+      globalStore.initialize(adapter)(callback);
+    });
+  });
+
   describe('getByKeys()', () => {
     it('should throw an error if store not initialized.', () => {
       expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');

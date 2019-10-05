@@ -119,6 +119,24 @@ export function get(key: string): any {
 }
 
 /**
+ * Get all values from the store.
+ * Throws an error if anything fails while getting values.
+ *
+ * @returns {*}
+ */
+export function getAll(): any {
+  const store = getStore();
+
+  if (!store) {
+    return null;
+  }
+
+  logDomain('All values in the store');
+
+  return store;
+}
+
+/**
  * Retrieves all values that correspond to a given list of keys.
  * Any keys not found are included in-order as `undefined`.
  *
