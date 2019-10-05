@@ -96,7 +96,7 @@ describe('store: [adapter=DOMAIN]', () => {
 
       d.run(() => {
         // Ensure data in the existing domain is available at this point.
-        expect(globalStore.getAll).to.equal(null);
+        expect(globalStore.getAll()).to.equal(null);
         done();
       });
     });
