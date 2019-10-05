@@ -185,7 +185,7 @@ Gets all values from the store.
 - `@returns {any}` - Returns all values persisted in the store. Any error caught during the retrieval will be thrown and cascaded.
 
 ```js
-const foo = store.getAll();
+const values = store.getAll();
 ```
 
 ### getByKeys()
