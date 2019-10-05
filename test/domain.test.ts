@@ -1,6 +1,7 @@
 import 'mocha';
 import { expect } from 'chai';
 import * as domain from 'domain';
+import { EventEmitter } from 'events';
 
 import * as globalStore from '../src';
 import { STORE_KEY } from '../src/StoreDomain';
@@ -11,6 +12,44 @@ describe('store: [adapter=DOMAIN]', () => {
 
   beforeEach(() => {
     Object.assign(process, { domain: undefined });
+  });
+
+  describe('initialize()', () => {
+    it('should initialize the store.', done => {
+      const callback = () => {
+        expect(!!(process.domain as any)[STORE_KEY]).to.equal(true);
+        expect(globalStore.isInitialized()).to.equal(true);
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should also bind params if params are passed through arguments.', done => {
+      const req = new EventEmitter();
+      const res = new EventEmitter();
+      const emitters = [req, res];
+      const errorCallback = (err: any) => err;
+
+      const callback = () => {
+        expect(!!(process.domain as any)[STORE_KEY]).to.equal(true);
+        expect(globalStore.isInitialized()).to.equal(true);
+
+        // Postmortem domain to check bound arguments.
+        expect((process.domain as any)._events.error).to.equal(errorCallback);
+        expect((process.domain as any).members[0]).to.equal(req);
+        expect((process.domain as any).members[1]).to.equal(res);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback, {
+        req,
+        res,
+        emitters,
+        error: errorCallback
+      });
+    });
   });
 
   describe('isInitialized()', () => {
