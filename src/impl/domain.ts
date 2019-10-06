@@ -10,9 +10,9 @@ import StoreDomainInterface, { STORE_KEY, ID_KEY } from '../StoreDomain';
 const logDomain = debug(STORE_DOMAIN);
 
 /**
- * Initialize the store domain and enable
- * all the async middelwares / callacks triggered
- * via the provided callback to have access to the store.
+ * Initialize the store domain and enable all the async
+ * middlewares/callbacks triggered via the provided
+ * callback to have access to the store.
  *
  * @param {AsyncStoreParams} params
  */
@@ -58,8 +58,9 @@ function bindParams(d: StoreDomainInterface, params: AsyncStoreParams): void {
 }
 
 /**
- * Create or use active domain. If domain is already intialized in application it uses existing
- * domain else create new domain object.
+ * Create or use active domain. If domain is already initialized
+ * in application it uses existing domain else create new
+ * domain object.
  *
  * @returns {StoreDomainInterface}
  */
@@ -67,10 +68,9 @@ function createOrUseActiveDomain(): StoreDomainInterface {
   if (isDomainInitialized()) {
     logDomain(`Using active domain.`);
 
-    /*
-     * Some packages like Raven uses domain to handle exception which might overwrite async store domain.
-     * For more information: https://github.com/getsentry/sentry-javascript.
-     */
+    // Some packages like Raven (sentry) uses domain to handle exception
+    // which might overwrite async store domain.
+    // For more information: https://github.com/getsentry/sentry-javascript.
     return getActiveDomain();
   }
 
@@ -205,10 +205,6 @@ export function isInitialized(): boolean {
 function updateStore(store: StoreDomainInterface, properties: any) {
   const activeDomain = getActiveDomain();
 
-  if (!activeDomain) {
-    throw new Error('No active domain found in store.');
-  }
-
   const data = mergeDeepRight(store, properties);
 
   logDomain('Updating store.');
@@ -228,7 +224,7 @@ export function getActiveDomain(): StoreDomainInterface {
 }
 
 /**
- * Get's the unique domain id created for the current context / scope.
+ * Gets the unique domain id created for the current context / scope.
  *
  * @returns {(string | undefined)}
  */
