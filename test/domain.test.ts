@@ -19,6 +19,7 @@ describe('store: [adapter=DOMAIN]', () => {
       const callback = () => {
         expect(!!(process.domain as any)[STORE_KEY]).to.equal(true);
         expect(globalStore.isInitialized()).to.equal(true);
+
         done();
       };
 
@@ -32,9 +33,6 @@ describe('store: [adapter=DOMAIN]', () => {
       const errorCallback = (err: any) => err;
 
       const callback = () => {
-        expect(!!(process.domain as any)[STORE_KEY]).to.equal(true);
-        expect(globalStore.isInitialized()).to.equal(true);
-
         // Postmortem domain to check bound arguments.
         expect((process.domain as any)._events.error).to.equal(errorCallback);
         expect((process.domain as any).members[0]).to.equal(req);
