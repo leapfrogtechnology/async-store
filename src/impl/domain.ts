@@ -205,10 +205,6 @@ export function isInitialized(): boolean {
 function updateStore(store: StoreDomainInterface, properties: any) {
   const activeDomain = getActiveDomain();
 
-  if (!activeDomain) {
-    throw new Error('No active domain found in store.');
-  }
-
   const data = mergeDeepRight(store, properties);
 
   logDomain('Updating store.');
