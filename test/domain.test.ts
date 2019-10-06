@@ -1,6 +1,7 @@
 import 'mocha';
 import { expect } from 'chai';
 import * as domain from 'domain';
+import { EventEmitter } from 'events';
 
 import * as globalStore from '../src';
 import { STORE_KEY } from '../src/StoreDomain';
@@ -11,6 +12,42 @@ describe('store: [adapter=DOMAIN]', () => {
 
   beforeEach(() => {
     Object.assign(process, { domain: undefined });
+  });
+
+  describe('initialize()', () => {
+    it('should initialize the store.', done => {
+      const callback = () => {
+        expect(!!(process.domain as any)[STORE_KEY]).to.equal(true);
+        expect(globalStore.isInitialized()).to.equal(true);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should also bind params if params are passed through arguments.', done => {
+      const req = new EventEmitter();
+      const res = new EventEmitter();
+      const emitters = [req, res];
+      const errorCallback = (err: any) => err;
+
+      const callback = () => {
+        // Postmortem domain to check bound arguments.
+        expect((process.domain as any)._events.error).to.equal(errorCallback);
+        expect((process.domain as any).members[0]).to.equal(req);
+        expect((process.domain as any).members[1]).to.equal(res);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback, {
+        req,
+        res,
+        emitters,
+        error: errorCallback
+      });
+    });
   });
 
   describe('isInitialized()', () => {
@@ -44,6 +81,17 @@ describe('store: [adapter=DOMAIN]', () => {
       expect(globalStore.get.bind(globalStore, 'foo')).to.throw('No active domain found in store.');
     });
 
+    it('should return null if invoked under active domain w/o proper store initialization.', done => {
+      const d = domain.create();
+
+      d.run(() => {
+        // Ensure data in the existing domain is available at this point.
+        expect(globalStore.get('foo')).to.equal(null);
+
+        done();
+      });
+    });
+
     it('should return `undefined` if the value was not set.', done => {
       const callback = () => {
         expect(globalStore.get('foo')).to.equal(undefined);
@@ -55,7 +103,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('getAll()', () => {
-    it('should return all value from the store', done => {
+    it('should return all values from the store.', done => {
       const a = 1;
       const b = 2;
       const sum = a + b;
@@ -80,6 +128,17 @@ describe('store: [adapter=DOMAIN]', () => {
 
       globalStore.initialize(adapter)(callback);
     });
+
+    it('should return null if invoked under active domain w/o proper store initialization.', done => {
+      const d = domain.create();
+
+      d.run(() => {
+        // Ensure data in the existing domain is available at this point.
+        expect(globalStore.getAll()).to.equal(null);
+
+        done();
+      });
+    });
   });
 
   describe('getByKeys()', () => {
@@ -90,6 +149,7 @@ describe('store: [adapter=DOMAIN]', () => {
     it('should return `undefined` as the value for requested keys that were not set.', done => {
       const callback = () => {
         expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal([undefined, undefined]);
+
         done();
       };
 
@@ -132,7 +192,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('getId()', () => {
-    it('should return unique value if store is initialized', done => {
+    it('should return unique value if store is initialized.', done => {
       const callback = () => {
         expect(globalStore.getId()).to.be.an('string');
         expect(globalStore.getId()).to.not.equal(null);
@@ -153,7 +213,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('find()', () => {
-    it('should successfully return value in synchronous callback', done => {
+    it('should successfully return value in synchronous callback.', done => {
       const callback = () => {
         first();
         second();
@@ -191,7 +251,7 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.initialize(adapter)(callback);
     });
 
-    it('should successfully return value in asynchronous callback', done => {
+    it('should successfully return value in asynchronous callback.', done => {
       const callback = () => {
         globalStore.set({ foo: 'bar' });
 
@@ -219,7 +279,7 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.initialize(adapter)(callback);
     });
 
-    it('should return null if store not initialized.', () => {
+    it('should return null even if store not initialized.', () => {
       expect(globalStore.find('foo')).to.equal(null);
     });
 
@@ -238,7 +298,22 @@ describe('store: [adapter=DOMAIN]', () => {
       expect(globalStore.set.bind(globalStore, {})).to.throw('Async store not initialized.');
     });
 
-    it('should set properties in the store', done => {
+    it('should throw an error if invalid arguments are provided.', done => {
+      const callback = () => {
+        expect(globalStore.set.bind(globalStore, 5)).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, 'five')).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, null)).to.throw('Invalid arguments provided for asyncStore.set()');
+        expect(globalStore.set.bind(globalStore, undefined)).to.throw(
+          'Invalid arguments provided for asyncStore.set()'
+        );
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should set properties in the store.', done => {
       const callback = () => {
         globalStore.set({ foo: 'Hello', bar: 'World' });
         second();
