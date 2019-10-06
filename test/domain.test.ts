@@ -87,6 +87,7 @@ describe('store: [adapter=DOMAIN]', () => {
       d.run(() => {
         // Ensure data in the existing domain is available at this point.
         expect(globalStore.get('foo')).to.equal(null);
+
         done();
       });
     });
@@ -102,7 +103,7 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('getAll()', () => {
-    it('should return all value from the store.', done => {
+    it('should return all values from the store.', done => {
       const a = 1;
       const b = 2;
       const sum = a + b;
@@ -134,6 +135,7 @@ describe('store: [adapter=DOMAIN]', () => {
       d.run(() => {
         // Ensure data in the existing domain is available at this point.
         expect(globalStore.getAll()).to.equal(null);
+
         done();
       });
     });
@@ -147,6 +149,7 @@ describe('store: [adapter=DOMAIN]', () => {
     it('should return `undefined` as the value for requested keys that were not set.', done => {
       const callback = () => {
         expect(globalStore.getByKeys(['foo', 'bar'])).to.deep.equal([undefined, undefined]);
+
         done();
       };
 
@@ -303,6 +306,7 @@ describe('store: [adapter=DOMAIN]', () => {
         expect(globalStore.set.bind(globalStore, undefined)).to.throw(
           'Invalid arguments provided for asyncStore.set()'
         );
+
         done();
       };
 
