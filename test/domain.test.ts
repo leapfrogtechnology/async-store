@@ -212,6 +212,28 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('getShortId()', () => {
+    it('should return short (8 chars) unique value if store is initialized.', done => {
+      const callback = () => {
+        expect(globalStore.getShortId()).to.be.an('string');
+        expect(globalStore.getShortId()).to.not.equal(null);
+        expect(globalStore.getShortId()).to.not.equal(undefined);
+        expect(globalStore.getShortId()).to.be.lengthOf(8);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should return `undefined` if store is not initialized.', done => {
+      expect(globalStore.getShortId).to.not.throw();
+      expect(globalStore.getShortId()).to.equal(undefined);
+
+      done();
+    });
+  });
+
   describe('find()', () => {
     it('should successfully return value in synchronous callback.', done => {
       const callback = () => {
