@@ -200,6 +200,15 @@ export function getId(): string | undefined {
 }
 
 /**
+ * Gets the short unique domain id created for the current context / scope.
+ *
+ * @returns {(string | undefined)}
+ */
+export function getShortId(): string | undefined {
+  return initializedAdapter && getInstance(initializedAdapter).getShortId();
+}
+
+/**
  * Get the adapter instance based on adapter type.
  *
  * @param {AsyncStoreAdapter} adapter

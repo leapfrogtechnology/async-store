@@ -12,6 +12,7 @@ interface AsyncStore {
   find: (key: string) => any;
   isInitialized: () => boolean;
   getId: () => string | undefined;
+  getShortId: () => string | undefined;
 }
 
 export default AsyncStore;
