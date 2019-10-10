@@ -227,6 +227,16 @@ Example: If used in express, it returns unique store id per request.
 const requestIdentifier = store.getId();
 ```
 
+### getShortId()
+
+Gets the short unique store id created for the current context/scope.
+
+- `@returns {string | undefined}` - Returns the short unique store id.
+
+```js
+const requestIdentifier = store.getShortId();
+```
+
 ## Changelog
 
 Check the [CHANGELOG](CHANGELOG.md) for release history.
