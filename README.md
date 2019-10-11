@@ -231,6 +231,8 @@ const requestIdentifier = store.getId();
 
 Gets the short unique store id created for the current context/scope.
 
+Note: This is same as `getId();` the difference being it only returns the first 8 characters.
+
 - `@returns {string | undefined}` - Returns the short unique store id.
 
 ```js
