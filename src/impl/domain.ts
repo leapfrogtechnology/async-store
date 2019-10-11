@@ -240,8 +240,7 @@ export function getId(): string | undefined {
  * @returns {(string | undefined)}
  */
 export function getShortId(): string | undefined {
-  const activeDomain = getActiveDomain();
-  const id = activeDomain && activeDomain[ID_KEY];
+  const id = getId();
 
   return id && id.substring(0, 8);
 }
