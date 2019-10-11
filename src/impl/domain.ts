@@ -235,6 +235,19 @@ export function getId(): string | undefined {
 }
 
 /**
+ * Gets the short unique domain id created for the current context / scope.
+ *
+ * Note: This is same as `getId();` the difference being it only returns the first 8 characters.
+ *
+ * @returns {(string | undefined)}
+ */
+export function getShortId(): string | undefined {
+  const id = getId();
+
+  return id && id.substring(0, 8);
+}
+
+/**
  * Get the store from the active domain.
  *
  * @returns {*}
