@@ -1,3 +1,11 @@
 {
-    "extends": ["eslint-config-leapfrog"]
+  "extends": ["eslint-config-leapfrog"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
 }
