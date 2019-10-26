@@ -1,4 +1,4 @@
-import * as store from '@leapfrogtechnology/async-store';
+import * as store from "@leapfrogtechnology/async-store";
 
 /**
  * Get unique request id from store or return empty string.
@@ -6,7 +6,7 @@ import * as store from '@leapfrogtechnology/async-store';
  * @returns {string}
  */
 function getRequestId() {
-  return (store.getId() || '').substring(0, 8);
+  return (store.getId() || "").substring(0, 8);
 }
 
 /**
@@ -18,9 +18,11 @@ function getRequestId() {
 function log(level, message) {
   const timestamp = new Date().toISOString();
   const requestId = getRequestId();
-  const line = `${timestamp} [ ${level} ] ${requestId ? `${requestId} - ` : ''}${message}\n`;
+  const line = `${timestamp} [ ${level} ] ${
+    requestId ? `${requestId} - ` : ""
+  }${message}\n`;
 
-  if (level === 'ERROR') {
+  if (level === "ERROR") {
     process.stderr.write(line);
 
     return;
@@ -35,7 +37,7 @@ function log(level, message) {
  * @param {string} message
  */
 export function info(message) {
-  log('INFO', message);
+  log("INFO", message);
 }
 
 /**
@@ -44,7 +46,7 @@ export function info(message) {
  * @param {string} message
  */
 export function debug(message) {
-  log('DEBUG', message);
+  log("DEBUG", message);
 }
 
 /**
@@ -53,5 +55,5 @@ export function debug(message) {
  * @param {any} err
  */
 export function error(err) {
-  log('ERROR', err);
+  log("ERROR", err);
 }

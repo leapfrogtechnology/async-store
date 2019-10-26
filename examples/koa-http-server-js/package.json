@@ -6,6 +6,8 @@
   "author": "Swechhya Bista",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint -c eslint.json 'src/*.js'",
+    "lint:fix": "eslint --fix -c eslint.json 'src/*.js'",
     "start": "backpack",
     "build": "backpack build"
   },
