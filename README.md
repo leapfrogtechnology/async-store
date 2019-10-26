@@ -109,6 +109,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 1. [Basic Node Web Server (TypeScript)](examples/node-http-server-ts)
 2. [Simple Express Web Server (TypeScript)](examples/express-http-server-ts)
+3. [Simple Koa Web Server (JavaScript)](examples/koa-http-server-js)
 
 ## API Docs
 
