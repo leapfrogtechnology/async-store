@@ -1,9 +1,9 @@
-import Koa from "koa";
+import Koa from 'koa';
 
-import * as store from "@leapfrogtechnology/async-store";
+import * as store from '@leapfrogtechnology/async-store';
 
-import * as logger from "./logger";
-import { storeParams, calculateSum } from "./middlewares";
+import * as logger from './logger';
+import { storeParams, calculateSum } from './middlewares';
 
 const app = new Koa();
 
@@ -27,10 +27,10 @@ app.listen(port, () => {
  * @param {Object} ctx
  */
 function handleRequest(ctx) {
-  const a = store.get("a");
-  const b = store.get("b");
-  const sum = store.get("sum");
+  const a = store.get('a');
+  const b = store.get('b');
+  const sum = store.get('sum');
 
   ctx.body = `Sum of ${a}, ${b} = ${sum}\n`;
-  logger.info("Response sent");
+  logger.info('Response sent');
 }
