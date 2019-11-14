@@ -706,7 +706,7 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@leapfrogtechnology/async-store@^1.0.2":
+"@leapfrogtechnology/async-store@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@leapfrogtechnology/async-store/-/async-store-1.1.0.tgz#91cc5a29e9c0926366767f648d3f6b75f46b99d8"
   integrity sha512-6y+KcdHscnsfFcXO76QRm8bo8xb3F5vTQPFQjuIbYO3IU4YtoyZNezWGVR+MFAVwL8FUikscw31YNksrtvvL5g==

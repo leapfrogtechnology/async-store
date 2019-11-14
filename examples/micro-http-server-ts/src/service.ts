@@ -33,7 +33,3 @@ export function doSomethingAsync() {
     }, 2000);
   });
 }
-
-
-
-
