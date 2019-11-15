@@ -10,9 +10,11 @@ export function doSomethingAsync() {
   // Do something with the request with a delay.
   logger.debug('Simulating delayed access');
 
-  setTimeout(() => {
-    const [a, b, sum] = [store.get('a'), store.get('b'), store.get('sum')];
-
-    logger.info('Store contents: ' + JSON.stringify({ a, b, sum }));
-  }, 2000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = store.getAll();
+      logger.info('Store contents: ' + JSON.stringify(data));
+      resolve();
+    }, 2000);
+  });
 }

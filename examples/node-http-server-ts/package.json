@@ -10,17 +10,17 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@leapfrogtechnology/async-store": "^1.0.2",
-    "qs": "^6.9.0"
+    "@leapfrogtechnology/async-store": "^1.1.0",
+    "qs": "^6.9.1"
   },
   "devDependencies": {
-    "@types/qs": "^6.5.3",
+    "@types/qs": "^6.9.0",
     "backpack-core": "^0.8.4",
-    "fork-ts-checker-webpack-plugin": "^1.5.0",
-    "ts-loader": "^6.1.2",
-    "tslint": "^5.20.0",
+    "fork-ts-checker-webpack-plugin": "^3.1.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.20.1",
     "tslint-config-leapfrog": "^1.0.3",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.7.2"
   }
 }
