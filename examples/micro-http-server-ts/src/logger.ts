@@ -6,7 +6,7 @@ import * as store from '@leapfrogtechnology/async-store';
  * @returns {string}
  */
 function getRequestId() {
-  return (store.getId() || '').substring(0, 8);
+  return store.getShortId();
 }
 
 /**

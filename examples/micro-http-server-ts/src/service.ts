@@ -28,7 +28,7 @@ export function doSomethingAsync() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const data = store.getAll();
-      logger.info('Store contents: '+ JSON.stringify(data));
+      logger.info('Store contents: ' + JSON.stringify(data));
       resolve();
     }, 2000);
   });
