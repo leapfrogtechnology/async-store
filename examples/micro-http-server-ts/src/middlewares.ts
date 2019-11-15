@@ -1,10 +1,10 @@
-import * as qs from "qs";
-import { ServerResponse, IncomingMessage } from "http";
+import * as qs from 'qs';
+import { ServerResponse, IncomingMessage } from 'http';
 
-import * as store from "@leapfrogtechnology/async-store";
+import * as store from '@leapfrogtechnology/async-store';
 
-import * as logger from "./logger";
-import { doSomethingAsync } from "./service";
+import * as logger from './logger';
+import { doSomethingAsync } from './service';
 
 /**
  * Middleware to set query params `a` and `b` on async-store.
@@ -29,8 +29,8 @@ export function storeParams(query: any) {
 export function calculateSum(req: IncomingMessage, res: ServerResponse) {
   doSomethingAsync();
 
-  const a = +store.get("a");
-  const b = +store.get("b");
+  const a = +store.get('a');
+  const b = +store.get('b');
   const sum = a + b;
 
   store.set({ sum });
