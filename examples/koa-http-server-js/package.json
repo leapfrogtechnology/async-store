@@ -12,7 +12,7 @@
     "build": "backpack build"
   },
   "dependencies": {
-    "@leapfrogtechnology/async-store": "^1.0.2",
+    "@leapfrogtechnology/async-store": "^1.1.0",
     "koa": "^2.10.0",
     "koa-request": "^1.0.0",
     "qs": "^6.9.0"
@@ -23,6 +23,6 @@
     "backpack-core": "^0.8.4",
     "eslint": "^6.6.0",
     "eslint-config-leapfrog": "^2.0.1",
-    "eslint-config-prettier": "^6.4.0"
+    "eslint-config-prettier": "^6.5.0"
   }
 }
