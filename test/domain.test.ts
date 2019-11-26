@@ -2,16 +2,58 @@ import 'mocha';
 import { expect } from 'chai';
 import * as domain from 'domain';
 import { EventEmitter } from 'events';
+import { createRequest, createResponse } from 'node-mocks-http';
 
 import * as globalStore from '../src';
 import { STORE_KEY } from '../src/StoreDomain';
 import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
+import Middleware from '../src/Middleware';
 
 describe('store: [adapter=DOMAIN]', () => {
   const adapter = AsyncStoreAdapter.DOMAIN;
+  const initMiddleware: Middleware = globalStore.initializeMiddleware(adapter);
+  const initDefaultMiddleware: Middleware = globalStore.initializeMiddleware();
 
   beforeEach(() => {
     Object.assign(process, { domain: undefined });
+  });
+
+  describe('initializeMiddleware()', () => {
+    it('should return a function which references the middleware', () => {
+      expect(initMiddleware).to.be.a('function');
+      expect(initDefaultMiddleware).to.be.a('function');
+    });
+
+    it('should return 3 arguments', () => {
+      expect(initMiddleware.length).to.equal(3);
+      expect(initDefaultMiddleware.length).to.equal(3);
+    });
+  });
+
+  describe('isInitialized() through middleware', () => {
+    const [req, res] = [createRequest(), createResponse()];
+
+    function checkStore(done: Mocha.Done) {
+      const cbNext = () => {
+        const isInitialized = globalStore.isInitialized();
+        expect(isInitialized).to.equal(true);
+        initMiddleware(req, res, () => {
+          expect(isInitialized).to.equal(true);
+        });
+
+        done();
+      };
+
+      initMiddleware(req, res, cbNext);
+    }
+
+    it('should return false when not initialized.', () => {
+      expect(globalStore.isInitialized()).to.equal(false);
+    });
+
+    it('should return true when initialized', done => {
+      checkStore(done);
+    });
   });
 
   describe('initialize()', () => {
