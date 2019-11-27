@@ -19,12 +19,9 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('initializeMiddleware()', () => {
-    it('should return a function which references the middleware', () => {
+    it('should return a middleware function.', () => {
       expect(initMiddleware).to.be.a('function');
       expect(initDefaultMiddleware).to.be.a('function');
-    });
-
-    it('should return 3 arguments', () => {
       expect(initMiddleware.length).to.equal(3);
       expect(initDefaultMiddleware.length).to.equal(3);
     });
