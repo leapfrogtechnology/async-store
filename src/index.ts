@@ -12,14 +12,6 @@ import * as domainImplementation from './impl/domain';
 const coreLog = debug(STORE_CORE);
 
 /**
- * This variable is to check whether store is enabled or not. Since, Async Store is initialized
- * only when request is made.
- *
- * Note: By default it is disabled and is enabled when isEnabled() is invoked.
- */
-let isStoreEnabled = false;
-
-/**
  * The adapter which was used to initialize the store. The value
  * is set when this is initialized the first time.
  *
@@ -62,28 +54,6 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
 
     initialize(adapter)(next, params);
   };
-}
-
-/**
- * Set the store as enabled (by default it's not).
- *
- * @return void
- */
-export function enable(): void {
-  coreLog('Enabling the async store.');
-
-  isStoreEnabled = true;
-}
-
-/**
- * Check if the stored is enabled.
- *
- * @returns {boolean}
- */
-export function isEnabled(): boolean {
-  coreLog(`Async Store enable status =`, isStoreEnabled);
-
-  return isStoreEnabled;
 }
 
 /**
