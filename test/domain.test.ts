@@ -2,16 +2,29 @@ import 'mocha';
 import { expect } from 'chai';
 import * as domain from 'domain';
 import { EventEmitter } from 'events';
+import { createRequest, createResponse } from 'node-mocks-http';
 
 import * as globalStore from '../src';
+import Middleware from '../src/Middleware';
 import { STORE_KEY } from '../src/StoreDomain';
 import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
 
 describe('store: [adapter=DOMAIN]', () => {
   const adapter = AsyncStoreAdapter.DOMAIN;
+  const initMiddleware: Middleware = globalStore.initializeMiddleware(adapter);
+  const initDefaultMiddleware: Middleware = globalStore.initializeMiddleware();
 
   beforeEach(() => {
     Object.assign(process, { domain: undefined });
+  });
+
+  describe('initializeMiddleware()', () => {
+    it('should return a middleware function.', () => {
+      expect(initMiddleware).to.be.a('function');
+      expect(initDefaultMiddleware).to.be.a('function');
+      expect(initMiddleware.length).to.equal(3);
+      expect(initDefaultMiddleware.length).to.equal(3);
+    });
   });
 
   describe('initialize()', () => {
@@ -51,8 +64,28 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('isInitialized()', () => {
+    const [req, res] = [createRequest(), createResponse()];
+
+    const checkStore = (done: Mocha.Done) => {
+      const callback = () => {
+        const isInitialized = globalStore.isInitialized();
+        expect(isInitialized).to.equal(true);
+        initMiddleware(req, res, () => {
+          expect(isInitialized).to.equal(true);
+        });
+
+        done();
+      };
+
+      initMiddleware(req, res, callback);
+    };
+
     it('should return false when not initialized.', () => {
       expect(globalStore.isInitialized()).to.equal(false);
+    });
+
+    it('should return true when initialized through the middleware.', done => {
+      checkStore(done);
     });
 
     it('should return false when initialized but invoked out of the active domain.', done => {
