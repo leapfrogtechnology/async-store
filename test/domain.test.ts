@@ -30,32 +30,6 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
-  describe('isInitialized() through middleware', () => {
-    const [req, res] = [createRequest(), createResponse()];
-
-    function checkStore(done: Mocha.Done) {
-      const cbNext = () => {
-        const isInitialized = globalStore.isInitialized();
-        expect(isInitialized).to.equal(true);
-        initMiddleware(req, res, () => {
-          expect(isInitialized).to.equal(true);
-        });
-
-        done();
-      };
-
-      initMiddleware(req, res, cbNext);
-    }
-
-    it('should return false when not initialized.', () => {
-      expect(globalStore.isInitialized()).to.equal(false);
-    });
-
-    it('should return true when initialized', done => {
-      checkStore(done);
-    });
-  });
-
   describe('initialize()', () => {
     it('should initialize the store.', done => {
       const callback = () => {
@@ -93,8 +67,28 @@ describe('store: [adapter=DOMAIN]', () => {
   });
 
   describe('isInitialized()', () => {
+    const [req, res] = [createRequest(), createResponse()];
+
+    const checkStore = (done: Mocha.Done) => {
+      const callback = () => {
+        const isInitialized = globalStore.isInitialized();
+        expect(isInitialized).to.equal(true);
+        initMiddleware(req, res, () => {
+          expect(isInitialized).to.equal(true);
+        });
+
+        done();
+      };
+
+      initMiddleware(req, res, callback);
+    };
+
     it('should return false when not initialized.', () => {
       expect(globalStore.isInitialized()).to.equal(false);
+    });
+
+    it('should return true when initialized through the middleware.', done => {
+      checkStore(done);
     });
 
     it('should return false when initialized but invoked out of the active domain.', done => {
