@@ -5,9 +5,9 @@ import { EventEmitter } from 'events';
 import { createRequest, createResponse } from 'node-mocks-http';
 
 import * as globalStore from '../src';
+import Middleware from '../src/Middleware';
 import { STORE_KEY } from '../src/StoreDomain';
 import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
-import Middleware from '../src/Middleware';
 
 describe('store: [adapter=DOMAIN]', () => {
   const adapter = AsyncStoreAdapter.DOMAIN;
