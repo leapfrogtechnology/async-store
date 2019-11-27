@@ -1,5 +1,23 @@
 # Change Log
 
+## [1.2.0](https://github.com/leapfrogtechnology/async-store/tree/1.2.0) (2019-11-27)
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.1.0...1.2.0)
+
+**Closed Issues**
+
+- Micro example doesn't point to correct path. [\#42](https://github.com/leapfrogtechnology/async-store/issues/42)
+- Use the latest release in all the examples [\#39](https://github.com/leapfrogtechnology/async-store/issues/39) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)]
+- Add tests to cover initializeMiddleware function [\#38](https://github.com/leapfrogtechnology/async-store/issues/38) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)]
+- Add an example project for micro [\#13](https://github.com/leapfrogtechnology/async-store/issues/13) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)] [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)]
+
+**Changes**
+
+- Remove is\_enabled flag and unused methods [\#46](https://github.com/leapfrogtechnology/async-store/pull/46) [[breaking change](https://github.com/leapfrogtechnology/async-store/labels/breaking%20change)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)] ([mesaugat](https://github.com/mesaugat))
+- Add tests to cover initializeMiddleware function [\#45](https://github.com/leapfrogtechnology/async-store/pull/45) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([p0k8h](https://github.com/p0k8h))
+- Micro Example Path fix [\#43](https://github.com/leapfrogtechnology/async-store/pull/43) ([sumansta](https://github.com/sumansta))
+- Use latest release in all examples [\#41](https://github.com/leapfrogtechnology/async-store/pull/41) ([sumansta](https://github.com/sumansta))
+- Add example for micro [\#37](https://github.com/leapfrogtechnology/async-store/pull/37) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] ([sumansta](https://github.com/sumansta))
+
 ## [1.1.0](https://github.com/leapfrogtechnology/async-store/tree/1.1.0) (2019-11-14)
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.2...1.1.0)
 
