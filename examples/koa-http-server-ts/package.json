@@ -1,0 +1,30 @@
+{
+  "name": "koa-http-server-ts",
+  "version": "1.0.0",
+  "description": "async-store example for koajs using typescript",
+  "main": "index.js",
+  "author": "Saroj Rana <rana.saroj95@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "backpack",
+    "build": "backpack build"
+  },
+  "dependencies": {
+    "@leapfrogtechnology/async-store": "^1.1.0",
+    "koa": "^2.11.0",
+    "koa-request": "^1.0.0",
+    "qs": "^6.9.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.0",
+    "@types/node": "^12.12.14",
+    "@types/qs": "^6.9.0",
+    "backpack-core": "^0.8.4",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.20.1",
+    "tslint-config-leapfrog": "^1.0.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.2"
+  }
+}
