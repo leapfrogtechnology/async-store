@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "async-store example for koajs using typescript",
   "main": "index.js",
-  "author": "Saroj Rana <rana.saroj95@gmail.com>",
+  "author": "Swechhya Bista",
+  "contributors": ["Saroj Rana <rana.saroj95@gmail.com>"],
   "license": "MIT",
   "scripts": {
     "start": "backpack",
