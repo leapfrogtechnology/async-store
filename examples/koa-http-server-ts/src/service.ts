@@ -6,9 +6,9 @@ import * as logger from './logger';
 /**
  * Set input params received from query in the store.
  *
- * @param {any} query
+ * @param {string} query
  */
-export function storeParams(query: any) {
+export function storeParams(query: string) {
   const { a, b } = qs.parse(query);
 
   store.set({ a, b });
@@ -27,7 +27,7 @@ export function doSomethingAsync(): Promise<any> {
   // Do something with the request with a delay.
   logger.debug('Simulating delayed access');
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       const data = store.getAll();
       logger.info('Store contents: ' + JSON.stringify(data));

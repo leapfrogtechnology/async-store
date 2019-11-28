@@ -1,3 +1,4 @@
+import { Context } from 'koa';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
@@ -6,10 +7,10 @@ import { doSomethingAsync } from './service';
 /**
  * Middleware to set query params `a` and `b` on async-store.
  *
- * @param {Object} ctx
+ * @param {Context} ctx
  *
  */
-export function storeParams(ctx: any) {
+export function storeParams(ctx: Context) {
   const { a, b } = ctx.query;
 
   store.set({ a, b });
@@ -29,6 +30,7 @@ export function calculateSum() {
   const sum = a + b;
 
   store.set({ sum });
+
   logger.debug(`Calculated sum: ${sum}`);
   logger.debug(`Persisted sum: ${sum}`);
 }
