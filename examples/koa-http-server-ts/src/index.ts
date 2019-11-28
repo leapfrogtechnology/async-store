@@ -1,5 +1,4 @@
-import * as Koa from 'koa';
-import { Context } from 'koa';
+import Koa, { Context } from 'koa';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';

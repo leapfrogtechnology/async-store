@@ -1,4 +1,4 @@
-import * as qs from 'qs';
+import qs from 'qs';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
@@ -21,9 +21,9 @@ export function storeParams(query: string) {
  * An example function making use of the request context
  * set in the store asynchronously (with delay).
  *
- * @returns {Promise<any>}
+ * @returns {Promise<void>}
  */
-export function doSomethingAsync(): Promise<any> {
+export function doSomethingAsync(): Promise<void> {
   // Do something with the request with a delay.
   logger.debug('Simulating delayed access');
 
