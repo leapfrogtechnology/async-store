@@ -1,5 +1,4 @@
-import Koa from 'koa';
-
+import Koa, { Context } from 'koa';
 import * as store from '@leapfrogtechnology/async-store';
 
 import * as logger from './logger';
@@ -9,7 +8,7 @@ const app = new Koa();
 
 const port = process.env.PORT || 3000;
 
-app.use(ctx => {
+app.use((ctx: Context) => {
   store.initialize()(() => {
     storeParams(ctx);
     calculateSum();
@@ -24,9 +23,9 @@ app.listen(port, () => {
 /**
  * Handle incoming request.
  *
- * @param {Object} ctx
+ * @param {Context} ctx
  */
-function handleRequest(ctx) {
+function handleRequest(ctx: Context) {
   const a = store.get('a');
   const b = store.get('b');
   const sum = store.get('sum');

@@ -5,8 +5,8 @@ import * as store from '@leapfrogtechnology/async-store';
  *
  * @returns {string}
  */
-function getRequestId() {
-  return (store.getId() || '').substring(0, 8);
+function getRequestId(): string {
+  return store.getShortId();
 }
 
 /**
@@ -15,7 +15,7 @@ function getRequestId() {
  * @param {string} level
  * @param {string} message
  */
-function log(level, message) {
+function log(level: string, message: string) {
   const timestamp = new Date().toISOString();
   const requestId = getRequestId();
   const line = `${timestamp} [ ${level} ] ${requestId ? `${requestId} - ` : ''}${message}\n`;
@@ -34,7 +34,7 @@ function log(level, message) {
  *
  * @param {string} message
  */
-export function info(message) {
+export function info(message: string) {
   log('INFO', message);
 }
 
@@ -43,7 +43,7 @@ export function info(message) {
  *
  * @param {string} message
  */
-export function debug(message) {
+export function debug(message: string) {
   log('DEBUG', message);
 }
 
@@ -52,6 +52,6 @@ export function debug(message) {
  *
  * @param {any} err
  */
-export function error(err) {
+export function error(err: any) {
   log('ERROR', err);
 }
