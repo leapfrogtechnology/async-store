@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Example for Koajs using TypeScript",
   "main": "index.js",
-  "author": "Swechhya Bista",
+  "author": "Swechhya Bista <swechhyabista@gmail.com>",
   "contributors": [
     "Saroj Rana <rana.saroj95@gmail.com>"
   ],
