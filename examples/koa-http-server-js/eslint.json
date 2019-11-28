@@ -1,3 +1,0 @@
-{
-  "extends": ["eslint-config-leapfrog", "eslint-config-prettier"]
-}
