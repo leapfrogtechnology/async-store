@@ -1,6 +1,6 @@
 # Koa Example (TypeScript)
 
-Sample project for with [koa](https://koajs.com//).
+Sample project for with [koa](https://koajs.com/).
 
 ## Running
 
