@@ -38,8 +38,7 @@
   "lint-staged": {
     "*.{ts,js}": [
       "tslint --fix -c tslint.json",
-      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'",
-      "git add"
+      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'"
     ]
   },
   "keywords": [
