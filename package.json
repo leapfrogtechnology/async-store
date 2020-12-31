@@ -24,7 +24,7 @@
     "build": "NODE_ENV=production yarn clean && yarn transpile",
     "test": "NODE_ENV=test nyc mocha --recursive test/**/*.test.ts",
     "watch": "tsc --watch",
-    "prettify": "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'",
+    "prettify": "prettier --single-quote --trailing-comma none --print-width 120 --write './**/*.{ts,js,yml}'",
     "prepublishOnly": "yarn build",
     "changelog": "./release.sh changelog",
     "release": "./release.sh bump"
@@ -36,9 +36,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts,js}": [
+    "*.{ts,js,yml}": [
       "tslint --fix -c tslint.json",
-      "prettier --single-quote --parser typescript --print-width 120 --write './**/*.{ts,js}'"
+      "prettier --single-quote --trailing-comma none --print-width 120 --write './**/*.{ts,js,yml}'"
     ]
   },
   "keywords": [

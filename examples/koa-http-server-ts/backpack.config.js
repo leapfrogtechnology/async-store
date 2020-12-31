@@ -2,7 +2,7 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-  webpack: config => {
+  webpack: (config) => {
     config.context = path.resolve(__dirname, 'src');
     config.entry = {
       main: './index.ts'

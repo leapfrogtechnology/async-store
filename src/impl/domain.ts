@@ -49,7 +49,7 @@ function bindParams(d: StoreDomainInterface, params: AsyncStoreParams): void {
 
   logDomain(`Binding emitters.`);
   if (emitters && Array.isArray(emitters)) {
-    emitters.forEach(emitter => d.add(emitter));
+    emitters.forEach((emitter) => d.add(emitter));
   }
 
   if (error) {
@@ -156,7 +156,7 @@ export function getByKeys<T>(keys: string[]): T[] {
     throw new Error('No keys provided for getting the values from store.');
   }
 
-  return keys.map(key => get(key));
+  return keys.map((key) => get(key));
 }
 
 /**

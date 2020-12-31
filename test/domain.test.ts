@@ -58,7 +58,7 @@ describe('store: [adapter=DOMAIN]', () => {
         req,
         res,
         emitters,
-        error: errorCallback,
+        error: errorCallback
       });
     });
   });
@@ -282,10 +282,10 @@ describe('store: [adapter=DOMAIN]', () => {
           bar: {
             key1: {
               foo: 'Hello',
-              bar: 'World',
+              bar: 'World'
             },
-            key2: 'Foo Bar',
-          },
+            key2: 'Foo Bar'
+          }
         });
       };
       const second = () => {
@@ -293,9 +293,9 @@ describe('store: [adapter=DOMAIN]', () => {
         expect(globalStore.find('bar')).deep.equal({
           key1: {
             foo: 'Hello',
-            bar: 'World',
+            bar: 'World'
           },
-          key2: 'Foo Bar',
+          key2: 'Foo Bar'
         });
 
         globalStore.set({ foo: 'Foo' });
@@ -420,10 +420,10 @@ describe('store: [adapter=DOMAIN]', () => {
           bar: {
             key1: {
               foo: 'Hello',
-              bar: 'World',
+              bar: 'World'
             },
-            key2: 'Foo Bar',
-          },
+            key2: 'Foo Bar'
+          }
         });
 
         expect((process.domain as any)[STORE_KEY]['foo']).to.equal('Foo');
@@ -437,9 +437,9 @@ describe('store: [adapter=DOMAIN]', () => {
           bar: {
             key1: 'Foo Bar',
             key2: 'Hello World',
-            key3: 'Foo World',
+            key3: 'Foo World'
           },
-          baz: 'Baz',
+          baz: 'Baz'
         });
 
         expect((process.domain as any)[STORE_KEY]['foo']).to.equal('Foo');
