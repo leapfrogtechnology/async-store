@@ -14,7 +14,7 @@ export function doSomethingAsync() {
     setTimeout(() => {
       const data = store.getAll();
       logger.info('Store contents: ' + JSON.stringify(data));
-      resolve();
+      resolve(null);
     }, 2000);
   });
 }
