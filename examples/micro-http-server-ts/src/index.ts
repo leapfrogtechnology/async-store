@@ -1,4 +1,5 @@
-import * as micro from 'micro';
+import * as http from 'http';
+import micro from 'micro';
 import { IncomingMessage, ServerResponse } from 'http';
 
 import * as store from '@leapfrogtechnology/async-store';
@@ -8,13 +9,15 @@ import { storeParams, calculateSum } from './middlewares';
 
 const PORT = 3000;
 
-const server = micro((req: IncomingMessage, res: ServerResponse) => {
-  store.initialize()(() => {
-    storeParams((req.url || '').split('?', 2)[1]);
-    calculateSum(req, res);
-    handleRequest(req, res);
-  });
-});
+const server = new http.Server(
+  micro((req: IncomingMessage, res: ServerResponse) => {
+    store.initialize()(() => {
+      storeParams((req.url || '').split('?', 2)[1]);
+      calculateSum(req, res);
+      handleRequest(req, res);
+    });
+  })
+);
 
 server.listen(PORT, () => {
   logger.info(`HTTP server listening on port ${PORT}!\n`);
