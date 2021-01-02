@@ -1,7 +1,7 @@
 {
   "name": "async-store-example-node-ts",
   "version": "1.0.0",
-  "description": "A basic example for async-store and node and typescript.",
+  "description": "A basic example for async-store and node and TypeScript.",
   "main": "index.js",
   "scripts": {
     "start": "backpack",

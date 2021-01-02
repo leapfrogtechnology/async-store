@@ -27,7 +27,7 @@ export function doSomethingAsync(): Promise<void> {
   // Do something with the request with a delay.
   logger.debug('Simulating delayed access');
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       const data = store.getAll();
       logger.info('Store contents: ' + JSON.stringify(data));
