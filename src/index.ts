@@ -1,10 +1,8 @@
 import * as debug from 'debug';
 import { Request, Response, NextFunction } from 'express';
 
-import AsyncStore from './AsyncStore';
 import { STORE_CORE } from './constants';
-import AsyncStoreParams from './AsyncStoreParams';
-import AsyncStoreAdapter from './AsyncStoreAdapter';
+import { AsyncStore, AsyncStoreAdapter, AsyncStoreParams } from './AsyncStore';
 
 // Implementations of Async store.
 import * as domainImplementation from './impl/domain';

@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { mergeDeepRight } from 'ramda'; // TODO: Import merge function only.
 
 import { STORE_DOMAIN } from '../constants';
-import AsyncStoreParams from '../AsyncStoreParams';
+import { AsyncStoreParams } from '../AsyncStore';
 import StoreDomainInterface, { STORE_KEY, ID_KEY } from '../StoreDomain';
 
-const logDomain = debug(STORE_DOMAIN);
+const log = debug(STORE_DOMAIN);
 
 /**
  * Initialize the store domain and enable all the async
@@ -23,7 +23,7 @@ export function initialize(callback: (err?: any) => void, params?: AsyncStorePar
     bindParams(d, params);
   }
 
-  logDomain(`Adding ${STORE_KEY} and ${ID_KEY} in domain store`);
+  log(`Adding ${STORE_KEY} and ${ID_KEY} in domain store`);
   // Initialize the context in the domain.
   d[STORE_KEY] = {};
   d[ID_KEY] = uuidv4();
@@ -41,13 +41,13 @@ export function initialize(callback: (err?: any) => void, params?: AsyncStorePar
 function bindParams(d: StoreDomainInterface, params: AsyncStoreParams): void {
   const { req, res, error, emitters } = params;
 
-  logDomain('Binding req and res.');
+  log('Binding req and res.');
   if (req && res) {
     d.add(req);
     d.add(res);
   }
 
-  logDomain(`Binding emitters.`);
+  log(`Binding emitters.`);
   if (emitters && Array.isArray(emitters)) {
     emitters.forEach((emitter) => d.add(emitter));
   }
@@ -66,7 +66,7 @@ function bindParams(d: StoreDomainInterface, params: AsyncStoreParams): void {
  */
 function createOrUseActiveDomain(): StoreDomainInterface {
   if (isDomainInitialized()) {
-    logDomain(`Using active domain.`);
+    log(`Using active domain.`);
 
     // Some packages like Raven (sentry) uses domain to handle exception
     // which might overwrite async store domain.
@@ -74,7 +74,7 @@ function createOrUseActiveDomain(): StoreDomainInterface {
     return getActiveDomain();
   }
 
-  logDomain(`Creating new domain.`);
+  log(`Creating new domain.`);
 
   return domain.create();
 }
@@ -88,7 +88,7 @@ function createOrUseActiveDomain(): StoreDomainInterface {
  * @param {*} properties
  */
 export function set(properties: any) {
-  logDomain(`Setting properties in the domain store =`, properties);
+  log(`Setting properties in the domain store =`, properties);
 
   if (properties && typeof properties === 'object') {
     updateStore(getStore(), properties);
@@ -113,7 +113,7 @@ export function get(key: string): any {
     return null;
   }
 
-  logDomain(`Value of ${key} in the domain store =`, store[key]);
+  log(`Value of ${key} in the domain store =`, store[key]);
 
   return store[key];
 }
@@ -131,7 +131,7 @@ export function getAll(): any {
     return null;
   }
 
-  logDomain('All values in the store');
+  log('All values in the store');
 
   return store;
 }
@@ -170,7 +170,7 @@ export function find(key: string): any {
   try {
     return get(key);
   } catch (err) {
-    logDomain(`Error finding ${key} in store:`, err);
+    log(`Error finding ${key} in store:`, err);
 
     return null;
   }
@@ -207,7 +207,7 @@ function updateStore(store: StoreDomainInterface, properties: any) {
 
   const data = mergeDeepRight(store, properties);
 
-  logDomain('Updating store.');
+  log('Updating store.');
 
   activeDomain[STORE_KEY] = data;
 }
@@ -218,7 +218,7 @@ function updateStore(store: StoreDomainInterface, properties: any) {
  * @returns {StoreDomainInterface}
  */
 export function getActiveDomain(): StoreDomainInterface {
-  logDomain('Getting active domain.');
+  log('Getting active domain.');
 
   return process.domain as StoreDomainInterface;
 }
