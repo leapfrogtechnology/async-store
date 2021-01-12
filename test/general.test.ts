@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 
 import * as globalStore from '../src';
-import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
+import { AsyncStoreAdapter } from '../src/AsyncStore';
 
 describe('store: General', () => {
   beforeEach(() => {

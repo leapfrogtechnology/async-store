@@ -2,12 +2,14 @@ import 'mocha';
 import { expect } from 'chai';
 import * as domain from 'domain';
 import { EventEmitter } from 'events';
+import { Request, Response, NextFunction } from 'express';
 import { createRequest, createResponse } from 'node-mocks-http';
 
 import * as globalStore from '../src';
-import Middleware from '../src/Middleware';
 import { STORE_KEY } from '../src/StoreDomain';
-import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
+import { AsyncStoreAdapter } from '../src/AsyncStore';
+
+type Middleware = (req: Request, res: Response, next: NextFunction) => Promise<any> | void;
 
 describe('store: [adapter=DOMAIN]', () => {
   const adapter = AsyncStoreAdapter.DOMAIN;
