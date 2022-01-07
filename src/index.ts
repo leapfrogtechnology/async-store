@@ -1,5 +1,6 @@
 import * as debug from 'debug';
 import { Request, Response, NextFunction } from 'express';
+import { FastifyRequest, FastifyReply, DoneFuncWithErrOrRes } from 'fastify';
 
 import AsyncStore from './AsyncStore';
 import { STORE_CORE } from './constants';
@@ -19,6 +20,34 @@ const coreLog = debug(STORE_CORE);
  * once initialized the store cannot be re-initialized.
  */
 let initializedAdapter: AsyncStoreAdapter;
+
+export function initializeHooks(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
+  return (req: FastifyRequest, reply: FastifyReply, done: DoneFuncWithErrOrRes) => {
+    // If the store has already been initialized, ignore it.
+
+    if (isInitialized()) {
+      coreLog(`Store is already initialized.`);
+
+      return done();
+    }
+
+    const errorHandler = (err: any) => {
+      coreLog('Async Store Error: %s', err);
+
+      done(err);
+    };
+
+    const params = {
+      req,
+      reply,
+      error: errorHandler
+    };
+
+    coreLog(`Initializing async store middleware.`);
+
+    initialize(adapter)(done, params);
+  };
+}
 
 /**
  * Middleware to initialize the async store and make it
