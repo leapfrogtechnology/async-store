@@ -105,6 +105,64 @@ app.get('/', (req, res) => {
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 
+### Fastify Example
+
+```js plugin
+const fp = require('fastify-plugin');
+const store = require('@leapfrogtechnology/async-store');
+
+const plugin = (fastify, opts, next) => {
+  fastify.addHook('onRequest', (req, reply, done) => {
+    store.initializeHooks();
+    done();
+  });
+  next();
+};
+
+export default fp(plugin);
+```
+
+```js main
+const uuid = require('uuid');
+const store = require('@leapfrogtechnology/async-store');
+const Fastify = require('fastify');
+const storePlugin = require('./plugin');
+
+const fastifyServer = Fastify({ logger: true });
+
+const port = 3000;
+
+fastifyServer.register(storePlugin);
+
+fastifyServer.register((fastifyInstance, opts, done) => {
+  fastifyInstance.addHook('preHandler', (req, reply, done) => {
+    store.set({ reqId: uuid.v4() });
+    done();
+  });
+
+  fastifyInstance.get('/', (req, reply) => {
+    const reqId = store.get('reqId');
+    console.log(`Request Id: ${reqId}`);
+
+    reply.send({ message: 'Hello World' });
+  });
+
+  done();
+});
+
+const start = async () => {
+  try {
+    await fastifyServer.listen(port);
+    fastifyServer.log.info(`Server is listening at ${port}`);
+  } catch (err) {
+    fastifyServer.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();
+```
+
 ## Sample Projects
 
 1. [Node Web Server (TypeScript)](examples/node-http-server-ts)
