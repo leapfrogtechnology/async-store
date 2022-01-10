@@ -21,32 +21,6 @@ const coreLog = debug(STORE_CORE);
  */
 let initializedAdapter: AsyncStoreAdapter;
 
-export function initializeHooks(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
-  return (req: FastifyRequest, reply: FastifyReply, done: DoneFuncWithErrOrRes) => {
-    // If the store has already been initialized, ignore it.
-    if (isInitialized()) {
-      coreLog(`Store is already initialized.`);
-
-      return done();
-    }
-
-    const errorHandler = (err: any) => {
-      coreLog('Async Store Error: %s', err);
-
-      done(err);
-    };
-    const params = {
-      req,
-      reply,
-      error: errorHandler
-    };
-
-    coreLog(`Initializing async store middleware.`);
-
-    initialize(adapter)(done, params);
-  };
-}
-
 /**
  * Middleware to initialize the async store and make it
  * accessible from all the subsequent middlewares or
@@ -83,6 +57,40 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
   };
 }
 
+/**
+ * Hook to initialize the async store for fastify and make it
+ * accessible from all the subsequent fastify plugins and hooks or
+ * async operations triggered afterwards.
+ *
+ * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
+ * @returns {(req, reply, done) => void}
+ */
+export function initializeHooks(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
+  return (req: FastifyRequest, reply: FastifyReply, done: DoneFuncWithErrOrRes) => {
+    // If the store has already been initialized, ignore it.
+    if (isInitialized()) {
+      coreLog(`Store is already initialized.`);
+
+      return done();
+    }
+
+    const errorHandler = (err: any) => {
+      coreLog('Async Store Error: %s', err);
+
+      done(err);
+    };
+
+    const params = {
+      req,
+      reply,
+      error: errorHandler
+    };
+
+    coreLog(`Initializing async store middleware.`);
+
+    initialize(adapter)(done, params);
+  };
+}
 /**
  * Initialize the async store based on the adapter provided.
  *
