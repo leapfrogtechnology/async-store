@@ -6,7 +6,7 @@ import { storeParamsPlugin, calculateSum } from './plugin';
 
 const fastifyServer: FastifyInstance = Fastify({ logger: true });
 
-fastifyServer.register(fastifyPlugin(store.initializePlugin()));
+fastifyServer.register(fastifyPlugin(store.initializeFastifyPlugin()));
 fastifyServer.register(fastifyPlugin(storeParamsPlugin));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
