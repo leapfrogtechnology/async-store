@@ -154,6 +154,7 @@ start();
 2. [Express Web Server (TypeScript)](examples/express-http-server-ts)
 3. [Koa Web Server (TypeScript)](examples/koa-http-server-ts)
 4. [Micro Web Server (TypeScript)](examples/micro-http-server-ts)
+5. [Fastify Web Server (TypeScript)](examples/fastify-http-server-ts)
 
 ## API Docs
 
