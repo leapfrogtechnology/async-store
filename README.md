@@ -161,7 +161,7 @@ start();
 
 On request to `http://localhost:3000` we get the following output in the console:
 
-```json
+```
 {"level":30,"time":1641890535421,"pid":12489,"hostname":"macbookpro","msg":"Server listening at http://[::1]:3000"}
 {"level":30,"time":1641890535421,"pid":12489,"hostname":"macbookpro","msg":"Server is listening at 3000"}
 {"level":30,"time":1641890539755,"pid":12489,"hostname":"macbookpro","reqId":"req-1","req":{"method":"GET","url":"/","hostname":"localhost:3000","remoteAddress":"::1","remotePort":51539},"msg":"incoming request"}
