@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": false,
+    "target": "es5",
+    "sourceMap": true,
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "lib": ["es2015", "es2016", "es2017"],
+    "skipLibCheck": true,
+    "types": ["node"],
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "test/**/*"]
+}
