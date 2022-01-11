@@ -1,5 +1,5 @@
+import { doSomethingAsync } from './service';
 import * as store from '@leapfrogtechnology/async-store';
-// import fastifyPlugin from 'fastify-plugin';
 import {
   FastifyReply,
   FastifyRequest,
@@ -8,7 +8,6 @@ import {
   FastifyPluginOptions,
   FastifyPluginAsync
 } from 'fastify';
-import { doSomethingAsync } from './service';
 
 type RequestQuery = FastifyRequest<{
   Querystring: { a: string; b: string };

@@ -1,5 +1,5 @@
-import * as store from '@leapfrogtechnology/async-store';
 import fastifyPlugin from 'fastify-plugin';
+import * as store from '@leapfrogtechnology/async-store';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
 import { storeParamsPlugin, calculateSum } from './plugin';

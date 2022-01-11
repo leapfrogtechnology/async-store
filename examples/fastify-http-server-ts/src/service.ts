@@ -6,7 +6,6 @@ import * as store from '@leapfrogtechnology/async-store';
  */
 export function doSomethingAsync() {
   // Do something with the request with a delay.
-
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const data = store.getAll();
