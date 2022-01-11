@@ -52,7 +52,7 @@ function callback() {
 
 #### Output
 
-On initialization of store we get the following output in the console:
+On initialization the following output in the console is seen:
 
 ```
 Value of foo:  Hello
@@ -89,7 +89,7 @@ function callback() {
 
 #### Output
 
-On initialization of store we get the following output in the console:
+On initialization the following output in the console is seen:
 
 ```
 Value of foo:  Hello
@@ -130,7 +130,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 #### Output
 
-On request to `http://localhost:3000` we get the following output in the console:
+On request to `http://localhost:3000`, the following output in the console is seen:
 
 ```
 Example app listening on port 3000!
@@ -181,7 +181,7 @@ start();
 
 #### Output
 
-On request to `http://localhost:3000` we get the following output in the console:
+On request to `http://localhost:3000`, the following output in the console is seen:
 
 ```
 {"level":30,"time":1641890535421,"pid":12489,"hostname":"macbookpro","msg":"Server listening at http://[::1]:3000"}
