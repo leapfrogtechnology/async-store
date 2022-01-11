@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 import { Request, Response, NextFunction } from 'express';
-import { FastifyRequest, FastifyReply, DoneFuncWithErrOrRes } from 'fastify';
+import { FastifyPluginCallback } from 'fastify';
 
 import AsyncStore from './AsyncStore';
 import { STORE_CORE } from './constants';
@@ -58,39 +58,43 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
 }
 
 /**
- * Hook to initialize the async store for fastify and make it
- * accessible from all the subsequent fastify plugins and hooks or
+ * Plugin to initialize the async store for fastify and make it
+ * accessible from all the subsequent fastify plugins
  * async operations triggered afterwards.
  *
  * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
- * @returns {(req, reply, done) => void}
+ * @returns {FastifyPluginCallback}
  */
-export function initializeHooks(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
-  return (req: FastifyRequest, reply: FastifyReply, done: DoneFuncWithErrOrRes) => {
-    // If the store has already been initialized, ignore it.
-    if (isInitialized()) {
-      coreLog(`Store is already initialized.`);
+export function initializePlugin(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN): FastifyPluginCallback {
+  return (fastify, opts, next) => {
+    fastify.addHook('onRequest', (req, reply, done) => {
+      // If the store has already been initialized, ignore it.
+      if (isInitialized()) {
+        coreLog(`Store is already initialized.`);
 
-      return done();
-    }
+        return done();
+      }
 
-    const errorHandler = (err: any) => {
-      coreLog('Async Store Error: %s', err);
+      const errorHandler = (err: any) => {
+        coreLog('Async Store Error: %s', err);
 
-      done(err);
-    };
+        done(err);
+      };
 
-    const params = {
-      req,
-      reply,
-      error: errorHandler
-    };
+      const params = {
+        req,
+        reply,
+        error: errorHandler
+      };
 
-    coreLog(`Initializing async store middleware.`);
+      coreLog(`Initializing async store middleware.`);
 
-    initialize(adapter)(done, params);
+      initialize(adapter)(done, params);
+    });
+    next();
   };
 }
+
 /**
  * Initialize the async store based on the adapter provided.
  *

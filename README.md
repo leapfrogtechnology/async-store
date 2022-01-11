@@ -107,32 +107,17 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 ### Fastify Example
 
-```js plugin
-const fp = require('fastify-plugin');
-const store = require('@leapfrogtechnology/async-store');
-
-const plugin = (fastify, opts, next) => {
-  fastify.addHook('onRequest', (req, reply, done) => {
-    store.initializeHooks();
-    done();
-  });
-  next();
-};
-
-export default fp(plugin);
-```
-
 ```js main
 const uuid = require('uuid');
-const store = require('@leapfrogtechnology/async-store');
 const Fastify = require('fastify');
-const storePlugin = require('./plugin');
+const fastifyPlugin = require('fastify-plugin');
+const store = require('@leapfrogtechnology/async-store');
 
 const fastifyServer = Fastify({ logger: true });
 
 const port = 3000;
 
-fastifyServer.register(storePlugin);
+fastifyServer.register(fastifyPlugin(store.initializePlugin()));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
   fastifyInstance.addHook('preHandler', (req, reply, done) => {
