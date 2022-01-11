@@ -65,7 +65,7 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
  * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
  * @returns {FastifyPluginCallback}
  */
-export function initializePlugin(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN): FastifyPluginCallback {
+export function initializeFastifyPlugin(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN): FastifyPluginCallback {
   return (fastify, opts, next) => {
     fastify.addHook('onRequest', (req, reply, done) => {
       // If the store has already been initialized, ignore it.

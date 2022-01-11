@@ -50,6 +50,17 @@ function callback() {
 }
 ```
 
+#### Output
+
+On initialization the following output in the console is seen:
+
+```
+Value of foo:  Hello
+Value of bar:  World
+Value of foo:  Hello
+Value of bar:  World
+```
+
 ### TypeScript Example
 
 ```js
@@ -76,6 +87,17 @@ function callback() {
 }
 ```
 
+#### Output
+
+On initialization the following output in the console is seen:
+
+```
+Value of foo:  Hello
+Value of bar:  World
+Value of foo:  Hello
+Value of bar:  World
+```
+
 ### Express Example
 
 ```js
@@ -92,6 +114,7 @@ app.use(store.initializeMiddleware());
 // Set request Id in store
 app.use((req, res, next) => {
   store.set({ reqId: uuid.v4() });
+  next();
 });
 
 // Get request Id from store
@@ -99,25 +122,33 @@ app.get('/', (req, res) => {
   const reqId = store.get('reqId');
   console.log(`Request Id: ${reqId}`);
 
-  res.json({ message: 'Hello World' });
+  res.json({ message: 'Hello World', reqId });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 ```
 
+#### Output
+
+On request to `http://localhost:3000`, the following output in the console is seen:
+
+```
+Example app listening on port 3000!
+Request Id: 03d8bd27-9097-427a-9460-7d8d9576f156
+```
+
 ### Fastify Example
 
-```js main
+```js
 const uuid = require('uuid');
-const Fastify = require('fastify');
 const fastifyPlugin = require('fastify-plugin');
 const store = require('@leapfrogtechnology/async-store');
 
-const fastifyServer = Fastify({ logger: true });
+const fastifyServer = require('fastify')({ logger: true });
 
 const port = 3000;
 
-fastifyServer.register(fastifyPlugin(store.initializePlugin()));
+fastifyServer.register(fastifyPlugin(store.initializeFastifyPlugin()));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
   fastifyInstance.addHook('preHandler', (req, reply, done) => {
@@ -129,7 +160,7 @@ fastifyServer.register((fastifyInstance, opts, done) => {
     const reqId = store.get('reqId');
     console.log(`Request Id: ${reqId}`);
 
-    reply.send({ message: 'Hello World' });
+    reply.send({ message: 'Hello World', reqId });
   });
 
   done();
@@ -148,13 +179,17 @@ const start = async () => {
 start();
 ```
 
-## Sample Projects
+#### Output
 
-1. [Node Web Server (TypeScript)](examples/node-http-server-ts)
-2. [Express Web Server (TypeScript)](examples/express-http-server-ts)
-3. [Koa Web Server (TypeScript)](examples/koa-http-server-ts)
-4. [Micro Web Server (TypeScript)](examples/micro-http-server-ts)
-5. [Fastify Web Server (TypeScript)](examples/fastify-http-server-ts)
+On request to `http://localhost:3000`, the following output in the console is seen:
+
+```
+{"level":30,"time":1641890535421,"pid":12489,"hostname":"macbookpro","msg":"Server listening at http://[::1]:3000"}
+{"level":30,"time":1641890535421,"pid":12489,"hostname":"macbookpro","msg":"Server is listening at 3000"}
+{"level":30,"time":1641890539755,"pid":12489,"hostname":"macbookpro","reqId":"req-1","req":{"method":"GET","url":"/","hostname":"localhost:3000","remoteAddress":"::1","remotePort":51539},"msg":"incoming request"}
+Request Id: aa6e86e9-c9d4-414a-8670-9aeaf2a8d932
+{"level":30,"time":1641890539759,"pid":12489,"hostname":"macbookpro","reqId":"req-1","res":{"statusCode":200},"responseTime":3.7935830000787973,"msg":"request completed"}
+```
 
 ## API Docs
 
@@ -188,6 +223,22 @@ const store = require('@leapfrogtechnology/async-store');
 
 // Initialize async store
 app.use(store.initializeMiddleware());
+```
+
+### initializeFastifyPlugin()
+
+Plugin to initialize the async store and make it accessible from all the subsequent plugin or async operations triggered afterwards from fastify server.
+
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
+- `@returns {(fastifyInstance, opts, next) => void}` - Returns the fastify plugin callback.
+
+```js
+const fastify = require('fastify');
+const fastifyPlugin = require('fastify-plugin');
+const store = require('@leapfrogtechnology/async-store');
+
+// Initialize async store
+fastify.register(fastifyPlugin(store.initializeFastifyPlugin()));
 ```
 
 ### isInitialized()
@@ -284,6 +335,14 @@ Note: This is same as `getId();` the difference being it only returns the first 
 ```js
 const requestIdentifier = store.getShortId();
 ```
+
+## Example Projects
+
+1. [Node Web Server (TypeScript)](examples/node-http-server-ts)
+2. [Express Web Server (TypeScript)](examples/express-http-server-ts)
+3. [Koa Web Server (TypeScript)](examples/koa-http-server-ts)
+4. [Micro Web Server (TypeScript)](examples/micro-http-server-ts)
+5. [Fastify Web Server (TypeScript)](examples/fastify-http-server-ts)
 
 ## Changelog
 
