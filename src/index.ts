@@ -1,5 +1,6 @@
 import * as debug from 'debug';
 import { Request, Response, NextFunction } from 'express';
+import { FastifyPluginCallback } from 'fastify';
 
 import AsyncStore from './AsyncStore';
 import { STORE_CORE } from './constants';
@@ -53,6 +54,44 @@ export function initializeMiddleware(adapter: AsyncStoreAdapter = AsyncStoreAdap
     coreLog(`Initializing async store middleware.`);
 
     initialize(adapter)(next, params);
+  };
+}
+
+/**
+ * Plugin to initialize the async store for fastify and make it
+ * accessible from all the subsequent fastify plugins
+ * async operations triggered afterwards.
+ *
+ * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
+ * @returns {FastifyPluginCallback}
+ */
+export function initializeFastifyPlugin(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN): FastifyPluginCallback {
+  return (fastify, opts, next) => {
+    fastify.addHook('onRequest', (req, reply, done) => {
+      // If the store has already been initialized, ignore it.
+      if (isInitialized()) {
+        coreLog(`Store is already initialized.`);
+
+        return done();
+      }
+
+      const errorHandler = (err: any) => {
+        coreLog('Async Store Error: %s', err);
+
+        done(err);
+      };
+
+      const params = {
+        req,
+        reply,
+        error: errorHandler
+      };
+
+      coreLog(`Initializing async store middleware.`);
+
+      initialize(adapter)(done, params);
+    });
+    next();
   };
 }
 
