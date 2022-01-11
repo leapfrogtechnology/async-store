@@ -148,7 +148,7 @@ const fastifyServer = require('fastify')({ logger: true });
 
 const port = 3000;
 
-fastifyServer.register(fastifyPlugin(store.initializePlugin()));
+fastifyServer.register(fastifyPlugin(store.initializeFastifyPlugin()));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
   fastifyInstance.addHook('preHandler', (req, reply, done) => {
@@ -225,7 +225,7 @@ const store = require('@leapfrogtechnology/async-store');
 app.use(store.initializeMiddleware());
 ```
 
-### initializePlugin()
+### initializeFastifyPlugin()
 
 Plugin to initialize the async store and make it accessible from all the subsequent plugin or async operations triggered afterwards from fastify server.
 
@@ -234,10 +234,11 @@ Plugin to initialize the async store and make it accessible from all the subsequ
 
 ```js
 const fastify = require('fastify');
+const fastifyPlugin = require('fastify-plugin');
 const store = require('@leapfrogtechnology/async-store');
 
 // Initialize async store
-fastify.register(store.initializePlugin());
+fastify.register(fastifyPlugin(store.initializeFastifyPlugin()));
 ```
 
 ### isInitialized()
