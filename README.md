@@ -50,6 +50,17 @@ function callback() {
 }
 ```
 
+#### Output
+
+On initialization of store we get the following output in the console:
+
+```
+Value of foo:  Hello
+Value of bar:  World
+Value of foo:  Hello
+Value of bar:  World
+```
+
 ### TypeScript Example
 
 ```js
@@ -74,6 +85,17 @@ function callback() {
       console.log('Value of bar: ', store.get('bar'));
     });
 }
+```
+
+#### Output
+
+On initialization of store we get the following output in the console:
+
+```
+Value of foo:  Hello
+Value of bar:  World
+Value of foo:  Hello
+Value of bar:  World
 ```
 
 ### Express Example
@@ -201,6 +223,21 @@ const store = require('@leapfrogtechnology/async-store');
 
 // Initialize async store
 app.use(store.initializeMiddleware());
+```
+
+### initializePlugin()
+
+Plugin to initialize the async store and make it accessible from all the subsequent plugin or async operations triggered afterwards from fastify server.
+
+- `@param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]` - Async store adapter to use.
+- `@returns {(fastifyInstance, opts, next) => void}` - Returns the fastify plugin callback.
+
+```js
+const fastify = require('fastify');
+const store = require('@leapfrogtechnology/async-store');
+
+// Initialize async store
+fastify.register(store.initializePlugin());
 ```
 
 ### isInitialized()
