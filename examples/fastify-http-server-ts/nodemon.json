@@ -2,5 +2,5 @@
   "watch": ["src/**/*", ".env"],
   "ext": "ts,js,.env",
   "verbose": false,
-  "exec": "ts-node src/index.ts"
+  "exec": "yarn build && node dist/index.js"
 }
