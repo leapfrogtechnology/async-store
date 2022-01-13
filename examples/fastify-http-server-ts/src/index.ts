@@ -2,14 +2,14 @@ import fastifyPlugin from 'fastify-plugin';
 import * as store from '@leapfrogtechnology/async-store';
 import Fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 
-import { storeParamsPlugin, calculateSum } from './plugin';
+import { storeParams, calculateSum } from './plugin';
 
 const fastifyServer: FastifyInstance = Fastify({ logger: true });
 
 fastifyServer.register(fastifyPlugin(store.initializeFastifyPlugin()));
-fastifyServer.register(fastifyPlugin(storeParamsPlugin));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
+  fastifyInstance.register(fastifyPlugin(storeParams));
   fastifyInstance.register(fastifyPlugin(calculateSum));
   fastifyInstance.get('/', (req: FastifyRequest, reply: FastifyReply) => {
     const a = store.get('a');
@@ -24,6 +24,9 @@ fastifyServer.register((fastifyInstance, opts, done) => {
   done();
 });
 
+/**
+ * Start the Fastify server.
+ */
 async function start() {
   try {
     await fastifyServer.listen(3000);
