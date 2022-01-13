@@ -24,7 +24,7 @@ fastifyServer.register((fastifyInstance, opts, done) => {
   done();
 });
 
-const start = async () => {
+async function start() {
   try {
     await fastifyServer.listen(3000);
     fastifyServer.log.info(`Server is listening at 3000`);
@@ -32,6 +32,6 @@ const start = async () => {
     fastifyServer.log.error(err);
     process.exit(1);
   }
-};
+}
 
 start();

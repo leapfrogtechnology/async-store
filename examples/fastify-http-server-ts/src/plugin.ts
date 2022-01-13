@@ -13,6 +13,14 @@ type RequestQuery = FastifyRequest<{
   Querystring: { a: string; b: string };
 }>;
 
+/**
+ * Plugin to set query params `a` and `b` on async-store.
+ *
+ * @param {FastifyInstance} fastify
+ * @param {FastifyPluginOptions} opts
+ * @param {any} next
+ *
+ */
 export const storeParamsPlugin: FastifyPluginCallback = (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
@@ -31,6 +39,13 @@ export const storeParamsPlugin: FastifyPluginCallback = (
   next();
 };
 
+/**
+ * Plugin to add the parameters `a` and `b` and set `sum` on the async store.
+ *
+ * @param {FastifyInstance} fastify
+ * @param {FastifyPluginOptions} opts
+ *
+ */
 export const calculateSum: FastifyPluginAsync = async (fastify: FastifyInstance, opts: FastifyPluginOptions) => {
   fastify.addHook('preHandler', async (req, reply) => {
     const data = await doSomethingAsync();
