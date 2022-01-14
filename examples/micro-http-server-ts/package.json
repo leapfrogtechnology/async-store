@@ -4,24 +4,20 @@
   "description": "A basic example for async-store and micro",
   "main": "index.js",
   "scripts": {
-    "start": "backpack",
-    "build": "backpack build"
+    "start": "nodemon",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@leapfrogtechnology/async-store": "^1.2.0",
     "micro": "^9.3.5-canary.3",
+    "nodemon": "^2.0.15",
     "qs": "^6.9.4"
   },
   "devDependencies": {
     "@types/qs": "^6.9.5",
-    "backpack-core": "^0.8.4",
-    "fork-ts-checker-webpack-plugin": "^6.0.8",
-    "ts-loader": "^8.0.13",
-    "tslint": "^6.1.3",
-    "tslint-config-leapfrog": "^1.0.3",
-    "tslint-config-prettier": "^1.18.0",
+    "ts-loader": "^9.2.6",
     "typescript": "^4.1.3"
   }
 }

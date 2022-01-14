@@ -4,23 +4,19 @@
   "description": "A basic example for async-store and node and TypeScript.",
   "main": "index.js",
   "scripts": {
-    "start": "backpack",
-    "build": "backpack build"
+    "start": "nodemon",
+    "build": "tsc"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@leapfrogtechnology/async-store": "^1.1.0",
+    "nodemon": "^2.0.15",
     "qs": "^6.9.1"
   },
   "devDependencies": {
     "@types/qs": "^6.9.0",
-    "backpack-core": "^0.8.4",
-    "fork-ts-checker-webpack-plugin": "^3.1.0",
     "ts-loader": "^6.2.1",
-    "tslint": "^5.20.1",
-    "tslint-config-leapfrog": "^1.0.3",
-    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
   }
 }
