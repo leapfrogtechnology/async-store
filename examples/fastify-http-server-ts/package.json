@@ -1,0 +1,18 @@
+{
+  "name": "fastify-http-server-ts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@leapfrogtechnology/async-store": "^1.2.0",
+    "fastify": "^3.25.3",
+    "fastify-plugin": "^3.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
