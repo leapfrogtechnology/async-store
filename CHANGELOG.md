@@ -1,34 +1,44 @@
-# Change Log
+# Changelog
+
+## [1.3.0-beta.0](https://github.com/leapfrogtechnology/async-store/tree/1.3.0-beta.0) (2022-01-14)
+
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.2.0...1.3.0-beta.0)
+
+**Closed Issues**
+
+- Update Koa Web Server Example from JavaScript to TypeScript [\#47](https://github.com/leapfrogtechnology/async-store/issues/47) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)]
 
 ## [1.2.0](https://github.com/leapfrogtechnology/async-store/tree/1.2.0) (2019-11-27)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.1.0...1.2.0)
 
 **Closed Issues**
 
 - Micro example doesn't point to correct path. [\#42](https://github.com/leapfrogtechnology/async-store/issues/42)
-- Use the latest release in all the examples [\#39](https://github.com/leapfrogtechnology/async-store/issues/39) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)]
-- Add tests to cover initializeMiddleware function [\#38](https://github.com/leapfrogtechnology/async-store/issues/38) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)]
-- Add an example project for micro [\#13](https://github.com/leapfrogtechnology/async-store/issues/13) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)] [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)]
+- Use the latest release in all the examples [\#39](https://github.com/leapfrogtechnology/async-store/issues/39) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)]
+- Add tests to cover initializeMiddleware function [\#38](https://github.com/leapfrogtechnology/async-store/issues/38) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)]
+- Add an example project for micro [\#13](https://github.com/leapfrogtechnology/async-store/issues/13) [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
 
 **Changes**
 
-- Remove is\_enabled flag and unused methods [\#46](https://github.com/leapfrogtechnology/async-store/pull/46) [[breaking change](https://github.com/leapfrogtechnology/async-store/labels/breaking%20change)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)] ([mesaugat](https://github.com/mesaugat))
-- Add tests to cover initializeMiddleware function [\#45](https://github.com/leapfrogtechnology/async-store/pull/45) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([p0k8h](https://github.com/p0k8h))
+- Remove is\_enabled flag and unused methods [\#46](https://github.com/leapfrogtechnology/async-store/pull/46) [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)] [[breaking change](https://github.com/leapfrogtechnology/async-store/labels/breaking%20change)] ([mesaugat](https://github.com/mesaugat))
+- Add tests to cover initializeMiddleware function [\#45](https://github.com/leapfrogtechnology/async-store/pull/45) [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] ([p0k8h](https://github.com/p0k8h))
 - Micro Example Path fix [\#43](https://github.com/leapfrogtechnology/async-store/pull/43) ([sumansta](https://github.com/sumansta))
 - Use latest release in all examples [\#41](https://github.com/leapfrogtechnology/async-store/pull/41) ([sumansta](https://github.com/sumansta))
 - Add example for micro [\#37](https://github.com/leapfrogtechnology/async-store/pull/37) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] ([sumansta](https://github.com/sumansta))
 
 ## [1.1.0](https://github.com/leapfrogtechnology/async-store/tree/1.1.0) (2019-11-14)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.2...1.1.0)
 
 **Closed Issues**
 
-- New accessor function to retrieve a list of values by keys [\#28](https://github.com/leapfrogtechnology/async-store/issues/28) [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
-- New accessor function to get all the store contents as a flat object [\#27](https://github.com/leapfrogtechnology/async-store/issues/27) [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)]
-- Ability to get short id from store.getId\(\) using a flag [\#26](https://github.com/leapfrogtechnology/async-store/issues/26) [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)]
-- CI - Integrate test code coverage reporting [\#21](https://github.com/leapfrogtechnology/async-store/issues/21) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)]
-- Add an example project for a basic http server built with just node [\#20](https://github.com/leapfrogtechnology/async-store/issues/20) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)]
-- Add an example project for koa js [\#17](https://github.com/leapfrogtechnology/async-store/issues/17) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)] [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)]
+- New accessor function to retrieve a list of values by keys [\#28](https://github.com/leapfrogtechnology/async-store/issues/28) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
+- New accessor function to get all the store contents as a flat object [\#27](https://github.com/leapfrogtechnology/async-store/issues/27) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
+- Ability to get short id from store.getId\(\) using a flag [\#26](https://github.com/leapfrogtechnology/async-store/issues/26) [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] [[improvement](https://github.com/leapfrogtechnology/async-store/labels/improvement)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
+- CI - Integrate test code coverage reporting [\#21](https://github.com/leapfrogtechnology/async-store/issues/21) [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)]
+- Add an example project for a basic http server built with just node [\#20](https://github.com/leapfrogtechnology/async-store/issues/20) [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)]
+- Add an example project for koa js [\#17](https://github.com/leapfrogtechnology/async-store/issues/17) [[help wanted](https://github.com/leapfrogtechnology/async-store/labels/help%20wanted)] [[good first issue](https://github.com/leapfrogtechnology/async-store/labels/good%20first%20issue)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[hacktoberfest](https://github.com/leapfrogtechnology/async-store/labels/hacktoberfest)]
 - Example with request id logging for express sample app [\#16](https://github.com/leapfrogtechnology/async-store/issues/16) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)]
 
 **Changes**
@@ -39,13 +49,14 @@
 - Add missing tests for edge cases [\#33](https://github.com/leapfrogtechnology/async-store/pull/33) [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 - Add new accessor function getAll\(\) [\#32](https://github.com/leapfrogtechnology/async-store/pull/32) [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] ([evless](https://github.com/evless))
 - Add new accessor function getByKeys\(\) [\#30](https://github.com/leapfrogtechnology/async-store/pull/30) [[feature](https://github.com/leapfrogtechnology/async-store/labels/feature)] ([spencerwi](https://github.com/spencerwi))
-- Refactor all the examples for consistency and simplicity  [\#29](https://github.com/leapfrogtechnology/async-store/pull/29) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[refactor](https://github.com/leapfrogtechnology/async-store/labels/refactor)] ([kabirbaidhya](https://github.com/kabirbaidhya))
+- Refactor all the examples for consistency and simplicity  [\#29](https://github.com/leapfrogtechnology/async-store/pull/29) [[refactor](https://github.com/leapfrogtechnology/async-store/labels/refactor)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 - Add an example project for a basic http server built with just node [\#25](https://github.com/leapfrogtechnology/async-store/pull/25) [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] [[node](https://github.com/leapfrogtechnology/async-store/labels/node)] [[web server](https://github.com/leapfrogtechnology/async-store/labels/web%20server)] ([silwalanish](https://github.com/silwalanish))
 - Add example for request id logging [\#24](https://github.com/leapfrogtechnology/async-store/pull/24) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] [[example](https://github.com/leapfrogtechnology/async-store/labels/example)] ([silwalanish](https://github.com/silwalanish))
 - Include only source files in test coverage [\#23](https://github.com/leapfrogtechnology/async-store/pull/23) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] ([mesaugat](https://github.com/mesaugat))
-- Integrate test code coverage reporting with Codecov and Travis [\#22](https://github.com/leapfrogtechnology/async-store/pull/22) [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] ([ghost](https://github.com/ghost))
+- Integrate test code coverage reporting with Codecov and Travis [\#22](https://github.com/leapfrogtechnology/async-store/pull/22) [[test](https://github.com/leapfrogtechnology/async-store/labels/test)] [[coverage](https://github.com/leapfrogtechnology/async-store/labels/coverage)] ([ghost](https://github.com/ghost))
 
 ## [1.0.2](https://github.com/leapfrogtechnology/async-store/tree/1.0.2) (2019-07-31)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.1...1.0.2)
 
 **Closed Issues**
@@ -59,6 +70,7 @@
 - Minor improvements on the documentation [\#12](https://github.com/leapfrogtechnology/async-store/pull/12) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([kabirbaidhya](https://github.com/kabirbaidhya))
 
 ## [1.0.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.1) (2019-07-19)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0...1.0.1)
 
 **Changes**
@@ -67,6 +79,7 @@
 - Add GitHub URL and update description in package.json [\#10](https://github.com/leapfrogtechnology/async-store/pull/10) [[documentation](https://github.com/leapfrogtechnology/async-store/labels/documentation)] ([mesaugat](https://github.com/mesaugat))
 
 ## [1.0.0](https://github.com/leapfrogtechnology/async-store/tree/1.0.0) (2019-07-19)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-beta.1...1.0.0)
 
 **Changes**
@@ -76,14 +89,21 @@
 - Cleanup and update dependencies [\#7](https://github.com/leapfrogtechnology/async-store/pull/7) ([kabirbaidhya](https://github.com/kabirbaidhya))
 
 ## [1.0.0-beta.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-beta.1) (2019-07-05)
+
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.0.0-alpha.1...1.0.0-beta.1)
+
+**Security fixes:**
+
+- Upgrade packages using vulnerable js-yaml package as a dependency [\#5](https://github.com/leapfrogtechnology/async-store/pull/5) [[security](https://github.com/leapfrogtechnology/async-store/labels/security)] ([mesaugat](https://github.com/mesaugat))
 
 **Changes**
 
 - Refactor domain implementation and add find\(\) function [\#6](https://github.com/leapfrogtechnology/async-store/pull/6) [[refactor](https://github.com/leapfrogtechnology/async-store/labels/refactor)] ([cham11ng](https://github.com/cham11ng))
-- Upgrade packages using vulnerable js-yaml package as a dependency [\#5](https://github.com/leapfrogtechnology/async-store/pull/5) [[security](https://github.com/leapfrogtechnology/async-store/labels/security)] ([mesaugat](https://github.com/mesaugat))
 
 ## [1.0.0-alpha.1](https://github.com/leapfrogtechnology/async-store/tree/1.0.0-alpha.1) (2019-04-18)
+
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/622d5ba16aeb9301947471ff0ceca54fcd8e567b...1.0.0-alpha.1)
+
 **Changes**
 
 - Add scripts to generate changelog and release [\#4](https://github.com/leapfrogtechnology/async-store/pull/4) [[script](https://github.com/leapfrogtechnology/async-store/labels/script)] ([kabirbaidhya](https://github.com/kabirbaidhya))
@@ -93,4 +113,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
