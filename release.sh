@@ -20,7 +20,7 @@ changelog() {
     --issues-label "**Closed Issues**" \
     --issue-line-labels=ALL \
     --future-release="$NEXT" \
-    --release-branch=master \
+    --release-branch=main \
     --exclude-labels=unnecessary,duplicate,question,invalid,wontfix
 }
 
