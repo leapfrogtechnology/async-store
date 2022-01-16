@@ -101,7 +101,7 @@ Value of bar:  World
 ### Express Example
 
 ```js
-const uuid = require('uuid');
+const { randomUUID } = require('crypto');
 const express = require('express');
 const store = require('@leapfrogtechnology/async-store');
 
@@ -113,7 +113,7 @@ app.use(store.initializeMiddleware());
 
 // Set request Id in store
 app.use((req, res, next) => {
-  store.set({ reqId: uuid.v4() });
+  store.set({ reqId: randomUUID() });
   next();
 });
 
@@ -140,7 +140,7 @@ Request Id: 03d8bd27-9097-427a-9460-7d8d9576f156
 ### Fastify Example
 
 ```js
-const uuid = require('uuid');
+const { randomUUID } = require('crypto');
 const fastifyPlugin = require('fastify-plugin');
 const store = require('@leapfrogtechnology/async-store');
 
@@ -152,7 +152,7 @@ fastifyServer.register(fastifyPlugin(store.initializeFastifyPlugin()));
 
 fastifyServer.register((fastifyInstance, opts, done) => {
   fastifyInstance.addHook('preHandler', (req, reply, done) => {
-    store.set({ reqId: uuid.v4() });
+    store.set({ reqId: randomUUID() });
     done();
   });
 
