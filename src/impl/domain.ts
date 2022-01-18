@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 import * as domain from 'domain';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 import { mergeDeepRight } from 'ramda'; // TODO: Import merge function only.
 
 import { STORE_DOMAIN } from '../constants';
@@ -26,7 +26,7 @@ export function initialize(callback: (err?: any) => void, params?: AsyncStorePar
   logDomain(`Adding ${STORE_KEY} and ${ID_KEY} in domain store`);
   // Initialize the context in the domain.
   d[STORE_KEY] = {};
-  d[ID_KEY] = uuidv4();
+  d[ID_KEY] = randomUUID();
 
   d.run(callback);
 }
