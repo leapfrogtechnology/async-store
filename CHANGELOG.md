@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.0.0](https://github.com/leapfrogtechnology/async-store/tree/v2.0.0) (2022-01-20)
+
+[Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.3.0-beta.0...v2.0.0)
+
+**Changes**
+
+- refactor\(impl/domain\): use native uuid generator [\#103](https://github.com/leapfrogtechnology/async-store/pull/103) [[dependencies](https://github.com/leapfrogtechnology/async-store/labels/dependencies)] ([DevAndromeda](https://github.com/DevAndromeda))
+
 ## [1.3.0-beta.0](https://github.com/leapfrogtechnology/async-store/tree/1.3.0-beta.0) (2022-01-14)
 
 [Full Changelog](https://github.com/leapfrogtechnology/async-store/compare/1.2.0...1.3.0-beta.0)
