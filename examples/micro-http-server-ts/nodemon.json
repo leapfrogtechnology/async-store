@@ -1,6 +1,0 @@
-{
-  "watch": ["src/**/*", ".env"],
-  "ext": "ts,js,.env",
-  "verbose": false,
-  "exec": "yarn build && node dist/index.js"
-}
