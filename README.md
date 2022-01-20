@@ -22,6 +22,13 @@ npm install @leapfrogtechnology/async-store
 yarn add @leapfrogtechnology/async-store
 ```
 
+## Version Compatibility
+
+| Node Version      | Async Store Version |
+| ----------------- | ------------------- |
+| 14.17.0 and above | >= 2.0.0            |
+| 14.17.0 and below | >= 1.0.0 < 2.0.0    |
+
 ## Usage
 
 ### JavaScript Example
