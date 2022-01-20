@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@leapfrogtechnology/async-store": "^1.1.0",
+    "@leapfrogtechnology/async-store": "^2.0.0",
     "nodemon": "^2.0.15",
     "qs": "^6.9.1"
   },
