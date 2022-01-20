@@ -12,7 +12,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@leapfrogtechnology/async-store": "^1.2.0",
+    "@leapfrogtechnology/async-store": "^2.0.0",
     "koa": "^2.13.4",
     "koa-request": "^1.0.0",
     "nodemon": "^2.0.15",
