@@ -14,6 +14,9 @@ changelog() {
 
   echo "Generating changelog upto version: $NEXT"
   github_changelog_generator \
+    --user "leapfrogtechnology" \
+    --project "async-store" \
+    --token $GITHUB_TOKEN \
     --no-verbose \
     --pr-label "**Changes**" \
     --bugs-label "**Bug Fixes**" \
