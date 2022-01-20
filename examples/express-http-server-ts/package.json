@@ -1,6 +1,6 @@
 {
-  "name": "async-store-sample",
-  "description": "A basic POC project for async store.",
+  "name": "express-http-server-ts",
+  "description": "Example of express and async-store usage in TypeScript",
   "version": "1.0.0",
   "author": "Kabir Baidhya <kabirbaidhya@gmail.com>",
   "license": "MIT",

@@ -1,8 +1,7 @@
 {
   "name": "koa-http-server-ts",
   "version": "1.0.0",
-  "description": "Example for Koajs using TypeScript",
-  "main": "index.js",
+  "description": "Example of koa and async-store usage in TypeScript",
   "author": "Swechhya Bista <swechhyabista@gmail.com>",
   "contributors": [
     "Saroj Rana <rana.saroj95@gmail.com>"

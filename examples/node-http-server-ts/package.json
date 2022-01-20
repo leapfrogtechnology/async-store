@@ -1,8 +1,7 @@
 {
-  "name": "async-store-example-node-ts",
+  "name": "node-http-server-ts",
   "version": "1.0.0",
-  "description": "A basic example for async-store and node and TypeScript.",
-  "main": "index.js",
+  "description": "Example of node and async-store usage in TypeScript",
   "scripts": {
     "start": "nodemon",
     "build": "tsc"

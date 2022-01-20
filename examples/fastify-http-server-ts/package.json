@@ -1,6 +1,7 @@
 {
   "name": "fastify-http-server-ts",
   "version": "1.0.0",
+  "description": "Example of fastify and async-store usage in TypeScript",
   "license": "MIT",
   "scripts": {
     "start": "nodemon",
