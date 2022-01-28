@@ -197,6 +197,20 @@ export function isInitialized(): boolean {
 }
 
 /**
+ * Check if the keys "__proto__", "prototype" or "constructor" are present in the object.
+ *
+ * @param {*} properties
+ * @returns {boolean}
+ */
+function isMalicious(properties: any): boolean {
+  for(const key in properties) {
+    return /__proto__|prototype|constructor/.test(key);
+  }
+
+  return false;
+}
+
+/**
  * Add (or override) properties to the given store (mutates the central store object).
  *
  * @param {StoreDomainInterface} store
@@ -204,6 +218,12 @@ export function isInitialized(): boolean {
  */
 function updateStore(store: StoreDomainInterface, properties: any) {
   const activeDomain = getActiveDomain();
+
+  if (isMalicious(properties)) {
+    logDomain('The properties contain malicious keys.');
+    
+    return;
+  }
 
   const data = mergeDeepRight(store, properties);
 
