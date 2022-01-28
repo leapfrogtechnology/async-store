@@ -451,6 +451,20 @@ describe('store: [adapter=DOMAIN]', () => {
 
       globalStore.initialize(adapter)(callback);
     });
+
+    it('should not pollute the prototype.', (done) => {
+      const callback = () => {
+        globalStore.set(JSON.parse('{ "__proto__": { "vuln": true } }'));
+        first();
+        done();
+      };
+
+      const first = () => {
+        expect((process.domain as any)[STORE_KEY]['vuln']).to.not.equal('true');
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
   });
 
   describe('Test Cases:', () => {
