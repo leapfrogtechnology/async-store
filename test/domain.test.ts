@@ -451,6 +451,22 @@ describe('store: [adapter=DOMAIN]', () => {
 
       globalStore.initialize(adapter)(callback);
     });
+
+    // @see https://github.com/leapfrogtechnology/async-store/issues/105
+    it('should set properties without polluting the prototype.', (done) => {
+      const callback = () => {
+        globalStore.set(JSON.parse('{ "__proto__": { "vuln": true } }'));
+        first();
+        done();
+      };
+
+      const first = () => {
+        expect((process.domain as any)[STORE_KEY]['vuln']).to.not.equal('true');
+        expect((process.domain as any)[STORE_KEY].__proto__).to.equal(undefined);
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
   });
 
   describe('Test Cases:', () => {
