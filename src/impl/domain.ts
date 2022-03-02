@@ -1,7 +1,7 @@
-import * as debug from 'debug';
+import debug from 'debug';
 import * as domain from 'domain';
+import merge from 'lodash.merge';
 import { randomUUID } from 'crypto';
-import { mergeDeepRight } from 'ramda'; // TODO: Import merge function only.
 
 import { STORE_DOMAIN } from '../constants';
 import AsyncStoreParams from '../AsyncStoreParams';
@@ -25,7 +25,7 @@ export function initialize(callback: (err?: any) => void, params?: AsyncStorePar
 
   logDomain(`Adding ${STORE_KEY} and ${ID_KEY} in domain store`);
   // Initialize the context in the domain.
-  d[STORE_KEY] = {};
+  d[STORE_KEY] = Object.create(null);
   d[ID_KEY] = randomUUID();
 
   d.run(callback);
@@ -205,7 +205,7 @@ export function isInitialized(): boolean {
 function updateStore(store: StoreDomainInterface, properties: any) {
   const activeDomain = getActiveDomain();
 
-  const data = mergeDeepRight(store, properties);
+  const data = merge(store, properties);
 
   logDomain('Updating store.');
 
