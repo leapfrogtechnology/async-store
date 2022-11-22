@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@leapfrogtechnology/async-store": "^2.0.0",
-    "fastify": "^3.25.3",
+    "fastify": "^3.29.4",
     "fastify-plugin": "^3.0.0",
     "nodemon": "^2.0.15"
   },
