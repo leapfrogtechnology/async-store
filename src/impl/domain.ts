@@ -28,7 +28,7 @@ export function initialize(callback: (err?: any) => void, params?: AsyncStorePar
   d[STORE_KEY] = Object.create(null);
   d[ID_KEY] = randomUUID();
 
-  d.run(callback);
+  return d.run(callback);
 }
 
 /**

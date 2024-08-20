@@ -111,7 +111,7 @@ export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN
   return (callback: (err?: any) => void, params?: AsyncStoreParams) => {
     initializedAdapter = adapter;
 
-    instance.initialize(callback, params);
+    return instance.initialize(callback, params);
   };
 }
 
