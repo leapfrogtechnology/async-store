@@ -99,7 +99,7 @@ export function initializeFastifyPlugin(adapter: AsyncStoreAdapter = AsyncStoreA
  * Initialize the async store based on the adapter provided.
  *
  * @param {AsyncStoreAdapter} [adapter=AsyncStoreAdapter.DOMAIN]
- * @returns {(params: AsyncStoreParams) => any}
+ * @returns {(callback: (err?: any) => void, params?: AsyncStoreParams) => any }
  */
 export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN) {
   if (isInitialized()) {
