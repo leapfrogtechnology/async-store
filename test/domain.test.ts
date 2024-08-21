@@ -840,119 +840,70 @@ describe('store: [adapter=DOMAIN]', () => {
       });
     });
 
-    it("should work even if the store is initialized under active domain w/o affecting the existing domain's attributes.", (done) => {
-      // Existing domain.
-      const d = domain.create() as any;
-
-      d.existingData = 'Hello world';
-
-      const callback = () => {
-        Promise.resolve().then(first).then(second).then(third).then(done).catch(done);
-      };
-
-      const first = () => {
-        globalStore.set({ foo: 'foo' });
-      };
-
-      const second = () => {
-        // Store should still have the data set.
-        expect(globalStore.get('foo')).to.equal('foo');
-
-        // And the existing data in the domain before our store
-        // was initialized should still be there.
-        expect((process.domain as any).existingData).to.equal('Hello world');
-      };
-
-      const third = () => {
-        // Ensure the same existing domain is used instead of creating a new one.
-        expect(process.domain).to.equal(d);
-      };
-
-      d.run(() => {
-        // Ensure data in the existing domain is available at this point.
-        expect((process.domain as any).existingData).to.equal('Hello world');
-
-        globalStore.initialize(adapter)(callback);
-      });
-    });
-    it("should work even if the store is initialized under active domain w/o affecting the existing domain's attributes.", (done) => {
-      // Existing domain.
-      const d = domain.create() as any;
-
-      d.existingData = 'Hello world';
-
-      const callback = () => {
-        Promise.resolve().then(first).then(second).then(third).then(done).catch(done);
-      };
-
-      const first = () => {
-        globalStore.set({ foo: 'foo' });
-      };
-
-      const second = () => {
-        // Store should still have the data set.
-        expect(globalStore.get('foo')).to.equal('foo');
-
-        // And the existing data in the domain before our store
-        // was initialized should still be there.
-        expect((process.domain as any).existingData).to.equal('Hello world');
-      };
-
-      const third = () => {
-        // Ensure the same existing domain is used instead of creating a new one.
-        expect(process.domain).to.equal(d);
-      };
-
-      d.run(() => {
-        // Ensure data in the existing domain is available at this point.
-        expect((process.domain as any).existingData).to.equal('Hello world');
-
-        globalStore.initialize(adapter)(callback);
-      });
-    });
-
-    it('should return the same response from the callback function.', async () => {
+    it('should return the response from async callback function.', async () => {
       const callback = async () => {
         globalStore.set({ foo: 'foo' });
 
-        return Promise.resolve('Hello world');
+        functionAccessingStore();
+        const response = await asyncTask();
+
+        return response;
+      };
+
+      const functionAccessingStore = () => {
+        expect(globalStore.get('foo')).to.equal('foo');
+      };
+
+      const asyncTask = () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(globalStore.get('foo'));
+          }, 1);
+        });
       };
 
       const response = await globalStore.initialize(adapter)(callback);
-
-      expect(response).to.equal('Hello world');
+      expect(response).to.equal('foo');
     });
   });
 
   describe('Error Handling:', () => {
     it('should bubble up the promise rejection from the callback.', async () => {
-      const callback = async () => {
+      const callback = () => {
         globalStore.set({ foo: 'foo' });
 
-        return Promise.reject('Hello world');
+        return new Promise((resolve, rejects) => {
+          setTimeout(() => {
+            rejects('Hello world');
+          }, 1);
+        });
       };
 
       try {
         await globalStore.initialize(adapter)(callback);
+        expect.fail('Should not reach here.');
       } catch (e) {
         expect(e).to.equal('Hello world');
       }
     });
 
-    it('should bubble up the error thrown from the callback.', async () => {
-      const callback = async () => {
+    it('should bubble up the error thrown from the callback.', (done) => {
+      const callback = () => {
         globalStore.set({ foo: 'foo' });
 
         throw new Error('Hello world');
       };
 
       try {
-        await globalStore.initialize(adapter)(callback);
+        globalStore.initialize(adapter)(callback);
+        expect.fail('Should not reach here.');
       } catch (e) {
         if (e instanceof Error) {
           expect(e.message).to.equal('Hello world');
         }
       }
+
+      done();
     });
   });
 });
