@@ -839,5 +839,88 @@ describe('store: [adapter=DOMAIN]', () => {
         globalStore.initialize(adapter)(callback);
       });
     });
+
+    it('should return the response from callback function.', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo' });
+
+        return functionAccessingStore();
+      };
+
+      const functionAccessingStore = () => {
+        return globalStore.get('foo');
+      };
+
+      const response = globalStore.initialize(adapter)(callback);
+      expect(response).to.equal('foo');
+
+      done();
+    });
+
+    it('should return the response from async callback function.', async () => {
+      const callback = async () => {
+        globalStore.set({ foo: 'foo' });
+
+        functionAccessingStore();
+        const response = await asyncTask();
+
+        return response;
+      };
+
+      const functionAccessingStore = () => {
+        expect(globalStore.get('foo')).to.equal('foo');
+      };
+
+      const asyncTask = () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(globalStore.get('foo'));
+          }, 1);
+        });
+      };
+
+      const response = await globalStore.initialize(adapter)(callback);
+      expect(response).to.equal('foo');
+    });
+  });
+
+  describe('Error Handling:', () => {
+    it('should bubble up the promise rejection from the callback.', async () => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo' });
+
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject('Hello world');
+          }, 1);
+        });
+      };
+
+      try {
+        await globalStore.initialize(adapter)(callback);
+        expect.fail('Should not reach here.');
+      } catch (e) {
+        expect(e).to.equal('Hello world');
+      }
+    });
+
+    it('should bubble up the error thrown from the callback.', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo' });
+
+        throw new Error('Hello world');
+      };
+
+      try {
+        globalStore.initialize(adapter)(callback);
+        expect.fail('Should not reach here.');
+      } catch (e) {
+        if (e instanceof Error) {
+          expect(e.message).to.equal('Hello world');
+        }
+      }
+
+      done();
+    });
   });
 });
