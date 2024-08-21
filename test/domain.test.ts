@@ -840,6 +840,23 @@ describe('store: [adapter=DOMAIN]', () => {
       });
     });
 
+    it('should return the response from callback function.', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo' });
+
+        return functionAccessingStore();
+      };
+
+      const functionAccessingStore = () => {
+        return globalStore.get('foo');
+      };
+
+      const response = globalStore.initialize(adapter)(callback);
+      expect(response).to.equal('foo');
+
+      done();
+    });
+
     it('should return the response from async callback function.', async () => {
       const callback = async () => {
         globalStore.set({ foo: 'foo' });
@@ -872,9 +889,9 @@ describe('store: [adapter=DOMAIN]', () => {
       const callback = () => {
         globalStore.set({ foo: 'foo' });
 
-        return new Promise((resolve, rejects) => {
+        return new Promise((resolve, reject) => {
           setTimeout(() => {
-            rejects('Hello world');
+            reject('Hello world');
           }, 1);
         });
       };
