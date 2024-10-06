@@ -485,6 +485,37 @@ describe('store: [adapter=DOMAIN]', () => {
     });
   });
 
+  describe('Reset():', () => {
+    it('should reset the store by removing all values', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo', bar: 'bar' });
+
+        globalStore.reset();
+
+        expect(globalStore.isInitialized()).to.equal(false);
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should reset the store by removing a specific value by key', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo', bar: 'bar' });
+
+        globalStore.reset('foo');
+
+        expect(globalStore.get('foo')).to.equal(undefined);
+        expect(globalStore.get('bar')).to.equal('bar');
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+  });
+
   describe('Test Cases:', () => {
     it('should work with a chain of sequentially invoked callbacks (synchronous).', (done) => {
       const callback = () => {

@@ -342,6 +342,18 @@ Note: This is same as `getId();` the difference being it only returns the first 
 const requestIdentifier = store.getShortId();
 ```
 
+### reset()
+
+Reset the store or a specific key of the global store.
+
+- `@returns {void}`
+
+```js
+store.reset(); // Reset the whole store
+
+store.reset('foo') // It will delete the key foo from store and get will result undefined
+```
+
 ## Example Projects
 
 1. [Node Web Server (TypeScript)](examples/node-http-server-ts)
