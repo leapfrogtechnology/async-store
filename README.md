@@ -342,8 +342,6 @@ Note: This is same as `getId();` the difference being it only returns the first 
 const requestIdentifier = store.getShortId();
 ```
 
-
-
 ## Example Projects
 
 1. [Node Web Server (TypeScript)](examples/node-http-server-ts)

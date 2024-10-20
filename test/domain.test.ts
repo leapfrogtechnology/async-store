@@ -8,6 +8,7 @@ import * as globalStore from '../src';
 import Middleware from '../src/Middleware';
 import { STORE_KEY } from '../src/StoreDomain';
 import AsyncStoreAdapter from '../src/AsyncStoreAdapter';
+import { getActiveDomain } from '../src/impl/domain';
 
 describe('store: [adapter=DOMAIN]', () => {
   const adapter = AsyncStoreAdapter.DOMAIN;
@@ -503,6 +504,47 @@ describe('store: [adapter=DOMAIN]', () => {
       globalStore.reset();
 
       expect(globalStore.isInitialized()).to.equal(false);
+
+      const activeDomain = getActiveDomain();
+      expect(activeDomain[STORE_KEY]).to.equal(null);
+    });
+  });
+
+  describe('del():', () => {
+    it('should delete a key from the store.', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo', bar: 'bar' });
+
+        expect(globalStore.get('foo')).to.equal('foo');
+        expect(globalStore.get('bar')).to.equal('bar');
+
+        globalStore.del('foo');
+
+        expect(globalStore.get('foo')).to.equal(undefined);
+        expect(globalStore.get('bar')).to.equal('bar');
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
+    });
+
+    it('should do nothing if the key does not exist.', (done) => {
+      const callback = () => {
+        globalStore.set({ foo: 'foo', bar: 'bar' });
+
+        expect(globalStore.get('foo')).to.equal('foo');
+        expect(globalStore.get('bar')).to.equal('bar');
+
+        globalStore.del('baz');
+
+        expect(globalStore.get('foo')).to.equal('foo');
+        expect(globalStore.get('bar')).to.equal('bar');
+
+        done();
+      };
+
+      globalStore.initialize(adapter)(callback);
     });
   });
 

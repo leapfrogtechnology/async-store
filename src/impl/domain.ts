@@ -110,6 +110,23 @@ export function reset() {
 }
 
 /**
+ * Delete a key from the store.
+ *
+ * @param {string} key
+ */
+export function del(key: string) {
+  logDomain(`Deleting ${key} from the domain store.`);
+
+  const store = getStore();
+
+  if (!store) {
+    return;
+  }
+
+  delete store[key];
+}
+
+/**
  * Get a value by a key from the store.
  * Throws an error if anything fails while getting the value.
  *
