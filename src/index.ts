@@ -116,18 +116,17 @@ export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN
 }
 
 /**
- * Reset the store or a specific key.
- *
- * @param {string} [key]
- */
-export function reset(key?: string) {
+ * Reset the store.
+ * 
+ * */
+export function reset() {
   if (!isInitialized()) {
     throw new Error('Async store not initialized.');
   }
 
-  coreLog(`Resetting store or key = ${key}`);
+  coreLog(`Resetting the store`);
 
-  getInstance(initializedAdapter).reset(key);
+  getInstance(initializedAdapter).reset();
 }
 
 /**

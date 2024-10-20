@@ -504,21 +504,6 @@ describe('store: [adapter=DOMAIN]', () => {
 
       expect(globalStore.isInitialized()).to.equal(false);
     });
-
-    it('should reset the store by removing a specific value by key', (done) => {
-      const callback = () => {
-        globalStore.set({ foo: 'foo', bar: 'bar' });
-
-        globalStore.reset('foo');
-
-        expect(globalStore.get('foo')).to.equal(undefined);
-        expect(globalStore.get('bar')).to.equal('bar');
-
-        done();
-      };
-
-      globalStore.initialize(adapter)(callback);
-    });
   });
 
   describe('Test Cases:', () => {
