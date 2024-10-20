@@ -501,6 +501,8 @@ describe('store: [adapter=DOMAIN]', () => {
 
       globalStore.initialize(adapter)(callback);
 
+      expect(globalStore.reset).to.not.throw('Async store not initialized.');
+
       globalStore.reset();
 
       expect(globalStore.isInitialized()).to.equal(false);
@@ -508,6 +510,12 @@ describe('store: [adapter=DOMAIN]', () => {
       const activeDomain = getActiveDomain();
       expect(activeDomain[STORE_KEY]).to.equal(null);
     });
+
+    it('should do nothing if the store is not initialized.', () => {
+      expect(globalStore.reset).to.throw('Async store not initialized.');
+    });
+
+
   });
 
   describe('del():', () => {
@@ -536,6 +544,7 @@ describe('store: [adapter=DOMAIN]', () => {
         expect(globalStore.get('foo')).to.equal('foo');
         expect(globalStore.get('bar')).to.equal('bar');
 
+        expect(globalStore.del.bind(globalStore, 'baz')).to.not.throw('Async store not initialized.');
         globalStore.del('baz');
 
         expect(globalStore.get('foo')).to.equal('foo');
@@ -545,6 +554,10 @@ describe('store: [adapter=DOMAIN]', () => {
       };
 
       globalStore.initialize(adapter)(callback);
+    });
+
+    it('should do nothing if the store is not initialized.', () => {
+      expect(globalStore.del.bind(globalStore, 'foo')).to.throw('Async store not initialized.');
     });
   });
 
