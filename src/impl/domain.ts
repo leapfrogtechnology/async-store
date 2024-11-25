@@ -100,6 +100,33 @@ export function set(properties: any) {
 }
 
 /**
+ * Reset the store by removing all values or a specific value by key.
+ */
+export function reset() {
+  logDomain('Resetting the domain store.');
+
+  const activeDomain = getActiveDomain();
+  activeDomain[STORE_KEY] = null;
+}
+
+/**
+ * Delete a key from the store.
+ *
+ * @param {string} key
+ */
+export function del(key: string) {
+  logDomain(`Deleting ${key} from the domain store.`);
+
+  const store = getStore();
+
+  if (!store) {
+    return;
+  }
+
+  delete store[key];
+}
+
+/**
  * Get a value by a key from the store.
  * Throws an error if anything fails while getting the value.
  *
