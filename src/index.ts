@@ -116,6 +116,35 @@ export function initialize(adapter: AsyncStoreAdapter = AsyncStoreAdapter.DOMAIN
 }
 
 /**
+ * Reset the store.
+ * 
+ * */
+export function reset() {
+  if (!isInitialized()) {
+    throw new Error('Async store not initialized.');
+  }
+
+  coreLog(`Resetting the store`);
+
+  getInstance(initializedAdapter).reset();
+}
+
+/**
+ * Delete a key from the store.
+ *
+ * @param {string} key
+ */
+export function del(key: string) {
+  if (!isInitialized()) {
+    throw new Error('Async store not initialized.');
+  }
+
+  coreLog(`Deleting ${key} from the store`);
+
+  getInstance(initializedAdapter).del(key);
+}
+
+/**
  * Sets properties in the store.
  *
  * Example:
