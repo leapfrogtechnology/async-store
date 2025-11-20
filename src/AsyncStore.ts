@@ -13,6 +13,8 @@ interface AsyncStore {
   isInitialized: () => boolean;
   getId: () => string | undefined;
   getShortId: () => string | undefined;
+  reset: () => void;
+  del: (key: string) => void;
 }
 
 export default AsyncStore;
